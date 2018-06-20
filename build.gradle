@@ -16,16 +16,20 @@ configurations {
     ecj
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 // --- DEPENDENCIES ---
 
 dependencies {
+
     testCompile 'junit:junit:4.12'
 	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
 	
     // =============== MOLECULER ===============
     
-    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.3' 
-    // compile project(':moleculer-java')
+    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.4-SNAPSHOT', changing: true
       
     // =============== LOGGING ===============
 	
@@ -57,12 +61,55 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework/spring-core
 	compile group: 'org.springframework', name: 'spring-context', version: '5.0.7.RELEASE'
 	
+	// =============== CACHES ===============
+		
+	// --- OHC OFF-HEAP CACHE ---
+	
+	// https://mvnrepository.com/artifact/org.caffinitas.ohc/ohc-core-j8
+	// compile group: 'org.caffinitas.ohc', name: 'ohc-core-j8', version: '0.6.1'
+
+	// --- JCACHE API ---
+		
+	// https://mvnrepository.com/artifact/org.jsr107.ri/cache-ri-impl
+	// compile group: 'org.jsr107.ri', name: 'cache-ri-impl', version: '1.1.0'
+		
 	// =============== TRANSPORTERS ===============
+
+	// --- DEPENDENCY OF THE REDIS TRANSPORTER & CACHER ---
+	
+	// https://mvnrepository.com/artifact/biz.paluch.redis/lettuce
+	// compile group: 'biz.paluch.redis', name: 'lettuce', version: '4.4.5.Final'
 
 	// --- DEPENDENCY OF THE NATS TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/io.nats/jnats
 	compile group: 'io.nats', name: 'jnats', version: '1.0'
+
+	// --- DEPENDENCY OF THE MQTT TRANSPORTER ---
+	
+	// https://mvnrepository.com/artifact/net.sf.xenqtt/xenqtt
+	// compile group: 'net.sf.xenqtt', name: 'xenqtt', version: '0.9.7'
+
+	// --- DEPENDENCY OF THE JMS TRANSPORTER ---
+
+	// https://mvnrepository.com/artifact/javax.jms/javax.jms-api
+	// compile group: 'javax.jms', name: 'javax.jms-api', version: '2.0.1'
+
+	// --- DEPENDENCY OF THE AMQP/RABBITMQ TRANSPORTER ---
+	
+	// https://mvnrepository.com/artifact/com.rabbitmq/amqp-client
+	// compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.2.0'
+
+	// --- DEPENDENCY OF THE GOOGLE CLOUD PUB/SUB TRANSPORTER ---
+	
+	// https://mvnrepository.com/artifact/com.google.cloud/google-cloud-pubsub
+	// compile group: 'com.google.cloud', name: 'google-cloud-pubsub', version: '1.33.0'
+
+	// --- DEPENDENCY OF THE KAFKA TRANSPORTER ---
+	
+	// https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+	// compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.1.0'
+	
 }
 
 // --- COMPILATION ---
