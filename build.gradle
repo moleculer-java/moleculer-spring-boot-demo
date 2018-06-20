@@ -1,0 +1,76 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+// --- REPOSITORIES ---
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+// --- CONFIGURATIONS ---
+
+configurations {
+    runtime
+    ecj
+}
+
+// --- DEPENDENCIES ---
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
+	
+    // =============== MOLECULER ===============
+    
+    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.3' 
+    // compile project(':moleculer-java')
+      
+    // =============== LOGGING ===============
+	
+	// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+       
+	// http://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
+	compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
+
+	// https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
+	compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
+
+	// https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
+	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
+	
+	// =============== MONITORING ===============
+	
+	// --- SIGAR API TO QUERY THE CPU USAGE ---
+	
+	// https://mvnrepository.com/artifact/org.fusesource/sigar
+	compile (group: 'org.fusesource', name: 'sigar', version: '1.6.4') {
+		exclude group: 'log4j', module: 'log4j'
+	}
+	
+	// =============== CDI FRAMEWORKS ===============
+	 
+    // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
+
+	// https://mvnrepository.com/artifact/org.springframework/spring-core
+	compile group: 'org.springframework', name: 'spring-context', version: '5.0.7.RELEASE'
+	
+	// =============== TRANSPORTERS ===============
+
+	// --- DEPENDENCY OF THE NATS TRANSPORTER ---
+	
+	// https://mvnrepository.com/artifact/io.nats/jnats
+	compile group: 'io.nats', name: 'jnats', version: '1.0'
+}
+
+// --- COMPILATION ---
+
+compileJava {
+	options.fork = true
+	options.forkOptions.with {
+		executable = 'java'
+		jvmArgs = ['-classpath', project.configurations.ecj.asPath, 'org.eclipse.jdt.internal.compiler.batch.Main', '-nowarn']
+	}
+}

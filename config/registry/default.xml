@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- DEFAULT SERVICE REGISTRY -->
+	<!-- REQUIRED DEPENDENCY: nothing -->
+	
+	<bean id="serviceRegistry" class="services.moleculer.service.DefaultServiceRegistry">
+	
+		<!-- Invoke local actions via Thread pool (true) or directly (false) -->	
+		<property name="asyncLocalInvocation" value="false" />
+		
+		<!-- Check protocol version of Moleculer -->
+		<property name="checkVersion"         value="false" />
+
+		<!-- Include error trace into error responses -->
+		<property name="sendErrorTrace"       value="true" />
+
+		<!-- Write invocation exceptions into the log file -->
+		<property name="writeErrorsToLog"     value="true" />
+			
+	</bean>
+
+</beans>

@@ -1,0 +1,4 @@
+// include ':moleculer-java'
+// project(':moleculer-java').projectDir = new File(settingsDir, '../moleculer-java')
+
+rootProject.name = 'moleculer-demo'
