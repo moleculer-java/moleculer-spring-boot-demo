@@ -28,7 +28,7 @@
 	<bean id="brokerConfig" class="services.moleculer.config.ServiceBrokerConfig">
 
 		<property name="namespace"           value="" />
-		<property name="nodeID"              value="java-node" />
+		<property name="nodeID"              value="node-1" />
 		<property name="internalServices"    value="true" />
 		<property name="shutDownThreadPools" value="true" />
 
@@ -46,24 +46,24 @@
 		<property name="scheduler"           ref="scheduler" />
 
 		<property name="jsonReaders"         value="boon,jackson,builtin" />
-		<property name="jsonWriters"         value="boon,jackson,builtin" />
+		<property name="jsonWriters"         value="jackson,builtin" />
 
 	</bean>
 
 	<!-- REPL DEVELOPER CONSOLE -->
 		
-	<import resource="repl/local.xml" />
+	<!-- import resource="repl/local.xml" / -->
 	<!-- import resource="repl/remote.xml" / -->
 		
 	<!-- TRANSPORTER -->
 
-	<!-- import resource="transporter/null.xml" / -->
+	<import resource="transporter/null.xml" />
 	<!-- import resource="transporter/amqp.xml" / -->
 	<!-- import resource="transporter/google.xml" / -->
 	<!-- import resource="transporter/jms.xml" / -->
 	<!-- import resource="transporter/kafka.xml" / -->
 	<!-- import resource="transporter/mqtt.xml" / -->
-	<import resource="transporter/nats.xml" />
+	<!-- import resource="transporter/nats.xml" / -->
 	<!-- import resource="transporter/redis.xml" / -->
 	<!-- import resource="transporter/tcp.xml" / -->
 

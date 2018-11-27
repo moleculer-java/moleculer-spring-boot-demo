@@ -14,7 +14,7 @@
 	<bean id="$repl" class="services.moleculer.repl.LocalRepl">
 	
 		<!-- Packages of custom commands -->	
-		<property name="packagesToScan" value="" />
+		<property name="packagesToScan"><null/></property>
 		
 	</bean>
 

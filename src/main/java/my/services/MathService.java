@@ -28,12 +28,8 @@ public class MathService extends Service {
 	}
 
 	public Action add = ctx -> {
-
-		//int n = rand.nextInt(100) + 1;
-		//if (n > 70)
-		//	throw new Exception("Random error");
-
 		return new Promise(resolver -> {
+
 			Tree res = new Tree();
 			res.put("count", ctx.params.get("count", 0));
 			res.put("res", ctx.params.get("a", 0) + ctx.params.get("b", 0));

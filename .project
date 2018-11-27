@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>moleculer-demo</name>
-	<comment>Project moleculer-demo created by Buildship.</comment>
+	<comment>Sample Moleculer Project</comment>
 	<projects>
 	</projects>
 	<buildSpec>

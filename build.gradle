@@ -28,9 +28,13 @@ dependencies {
 	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
 	
     // =============== MOLECULER ===============
-    
+
+	// Moleculer core (required)
+	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.5'
+	
+	// Moleculer developer console (optional)
     compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.4-SNAPSHOT', changing: true
-      
+	      
     // =============== LOGGING ===============
 	
 	// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
