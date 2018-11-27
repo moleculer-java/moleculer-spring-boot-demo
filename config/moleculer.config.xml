@@ -10,11 +10,13 @@
 
 	<context:annotation-config />
 
-	<!-- LOADER OF MOLECULER SERVICES -->
+	<!-- PACKAGE OF THE MOLECULER SERVICES -->
+	
+	<context:component-scan base-package="my.services" />
 
-	<bean id="registrator" class="services.moleculer.config.SpringRegistrator" depends-on="broker">
-		<property name="packagesToScan" value="my.services" />
-	</bean>
+	<!-- SPRING REGISTRATOR FOR MOLECULER SERVICES -->
+
+	<bean id="registrator" class="services.moleculer.config.SpringRegistrator" depends-on="broker" />
 
 	<!-- SERVICE BROKER INSTANCE -->
 
@@ -49,11 +51,6 @@
 		<property name="jsonWriters"         value="jackson,builtin" />
 
 	</bean>
-
-	<!-- REPL DEVELOPER CONSOLE -->
-		
-	<!-- import resource="repl/local.xml" / -->
-	<!-- import resource="repl/remote.xml" / -->
 		
 	<!-- TRANSPORTER -->
 
@@ -95,6 +92,11 @@
 	<!-- import resource="strategy/cpu.xml" / -->
 	<!-- import resource="strategy/network-latency.xml" / -->
 	
+	<!-- OPTIONAL DEVELOPER CONSOLE -->
+		
+	<import resource="repl/local.xml" />
+	<!-- import resource="repl/remote.xml" / -->
+	
 	<!-- COMMON TASK EXECUTOR -->
 
 	<bean id="executor" class="java.util.concurrent.ForkJoinPool"
@@ -107,15 +109,15 @@
 		<constructor-arg index="0" value="3" />
 	</bean>
 
-	<!-- CONTEXT FACTORY -->
+	<!-- IMPLEMENTATION OF THE CONTEXT FACTORY -->
 
 	<import resource="context/default.xml" />
 
-	<!-- SERVICE REGISTRY -->
+	<!-- IMPLEMENTATION OF THE SERVICE REGISTRY -->
 
 	<import resource="registry/default.xml" />
 
-	<!-- EVENT BUS -->
+	<!-- IMPLEMENTATION OF THE EVENT BUS -->
 
 	<import resource="eventbus/default.xml" />
 
