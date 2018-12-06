@@ -6,7 +6,6 @@ apply plugin: 'maven'
 repositories {
     mavenCentral()
     jcenter()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 // --- CONFIGURATIONS ---
@@ -16,24 +15,22 @@ configurations {
     ecj
 }
 
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
-
 // --- DEPENDENCIES ---
 
 dependencies {
 
+    // ============== COMPILATION ==============
+    
     testCompile 'junit:junit:4.12'
 	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
 	
     // =============== MOLECULER ===============
 
 	// Moleculer core (required)
-	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.5'
+	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.7'
 	
 	// Moleculer developer console (optional)
-    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.4-SNAPSHOT', changing: true
+    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.4'
 	      
     // =============== LOGGING ===============
 	
@@ -58,7 +55,7 @@ dependencies {
 		exclude group: 'log4j', module: 'log4j'
 	}
 	
-	// =============== CDI FRAMEWORKS ===============
+	// =============== CDI FRAMEWORK ===============
 	 
     // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
 
@@ -87,7 +84,7 @@ dependencies {
 	// --- DEPENDENCY OF THE NATS TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/io.nats/jnats
-	compile group: 'io.nats', name: 'jnats', version: '1.0'
+	// compile group: 'io.nats', name: 'jnats', version: '1.0'
 
 	// --- DEPENDENCY OF THE MQTT TRANSPORTER ---
 	
@@ -124,4 +121,26 @@ compileJava {
 		executable = 'java'
 		jvmArgs = ['-classpath', project.configurations.ecj.asPath, 'org.eclipse.jdt.internal.compiler.batch.Main', '-nowarn']
 	}
+}
+
+// --- WINDOWS INSTALLER ---
+
+// Run the 'gradlew buildInstaller' command to create a setup.exe from this project.
+// The EXE will be created in this directory: {project root}/build/installer/dist/
+
+jar {
+	baseName = 'moleculer-demo'
+	version =  '1.0.0'
+}
+
+task copyLibs(type: Copy) {
+	dependsOn jar
+	from configurations.runtime
+	into 'build/libs'
+}	
+
+task buildInstaller(type: Exec) {
+	dependsOn copyLibs
+    executable "build/installer/setup/ISCC.exe"
+    args 'build/installer/moleculer.config.iss'
 }

@@ -13,5 +13,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="services.moleculer.config.MoleculerRunner"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="/moleculer.config.xml"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="moleculer-java-gradle-demo"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.util.logging.config.file=./config/logger/with-console.properties -Djava.library.path=&quot;native&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.util.logging.config.file=./cfg/logger/with-console.properties -Djava.library.path=&quot;build/installer/bin&quot;"/>
 </launchConfiguration>
