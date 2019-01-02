@@ -27,10 +27,13 @@ dependencies {
     // =============== MOLECULER ===============
 
 	// Moleculer core (required)
-	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.7'
+	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.8'
 	
 	// Moleculer developer console (optional)
     compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.4'
+
+	// JMX service (optional)
+    compile group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.0.1'
 	      
     // =============== LOGGING ===============
 	
@@ -60,7 +63,7 @@ dependencies {
     // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
 
 	// https://mvnrepository.com/artifact/org.springframework/spring-core
-	compile group: 'org.springframework', name: 'spring-context', version: '5.0.7.RELEASE'
+	compile group: 'org.springframework', name: 'spring-context', version: '5.1.3.RELEASE'
 	
 	// =============== CACHES ===============
 		
@@ -79,12 +82,12 @@ dependencies {
 	// --- DEPENDENCY OF THE REDIS TRANSPORTER & CACHER ---
 	
 	// https://mvnrepository.com/artifact/biz.paluch.redis/lettuce
-	// compile group: 'biz.paluch.redis', name: 'lettuce', version: '4.4.5.Final'
+	// compile group: 'biz.paluch.redis', name: 'lettuce', version: '4.5.0.Final'
 
 	// --- DEPENDENCY OF THE NATS TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/io.nats/jnats
-	// compile group: 'io.nats', name: 'jnats', version: '1.0'
+	// compile group: 'io.nats', name: 'jnats', version: '2.4.1'
 
 	// --- DEPENDENCY OF THE MQTT TRANSPORTER ---
 	
@@ -99,17 +102,17 @@ dependencies {
 	// --- DEPENDENCY OF THE AMQP/RABBITMQ TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/com.rabbitmq/amqp-client
-	// compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.2.0'
+	// compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.5.1'
 
 	// --- DEPENDENCY OF THE GOOGLE CLOUD PUB/SUB TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/com.google.cloud/google-cloud-pubsub
-	// compile group: 'com.google.cloud', name: 'google-cloud-pubsub', version: '1.33.0'
+	// compile group: 'com.google.cloud', name: 'google-cloud-pubsub', version: '1.56.0'
 
 	// --- DEPENDENCY OF THE KAFKA TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
-	// compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.1.0'
+	// compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.1.0'
 	
 }
 

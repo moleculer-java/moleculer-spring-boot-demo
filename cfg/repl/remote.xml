@@ -14,7 +14,7 @@
 	<bean id="$repl-remote" class="services.moleculer.repl.RemoteRepl">
 	
 		<!-- Packages of custom commands -->	
-		<property name="packagesToScan"><null/></property>
+		<property name="packagesToScan" value="my.services" />
 		
 		<!-- Telnet port -->
 		<property name="port" value="23" />

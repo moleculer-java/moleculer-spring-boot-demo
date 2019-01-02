@@ -1,6 +1,3 @@
 /bin/
-/logs/
-/build/classes/
-/build/dependency-cache/
-/build/libs/
-/build/tmp/
+/log/
+/build/

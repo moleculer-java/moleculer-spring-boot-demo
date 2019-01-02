@@ -13,7 +13,7 @@
 	<!-- PACKAGE OF THE MOLECULER SERVICES -->
 	
 	<context:component-scan base-package="my.services" />
-
+	
 	<!-- SPRING REGISTRATOR FOR MOLECULER SERVICES -->
 
 	<bean id="registrator" class="services.moleculer.config.SpringRegistrator" depends-on="broker" />
@@ -51,6 +51,16 @@
 		<property name="jsonWriters"         value="jackson,builtin" />
 
 	</bean>
+
+	<!-- JMX SERVICE (OPTIONAL) -->
+	
+	<import resource="jmx/local.xml" />
+	<!-- import resource="jmx/remote.xml" / -->
+
+	<!-- REPL DEVELOPER CONSOLE (OPTIONAL) -->
+		
+	<import resource="repl/local.xml" />
+	<!-- import resource="repl/remote.xml" / -->
 		
 	<!-- TRANSPORTER -->
 
@@ -92,11 +102,6 @@
 	<!-- import resource="strategy/cpu.xml" / -->
 	<!-- import resource="strategy/network-latency.xml" / -->
 	
-	<!-- REPL DEVELOPER CONSOLE -->
-		
-	<!-- import resource="repl/local.xml" / -->
-	<!-- import resource="repl/remote.xml" / -->
-	
 	<!-- COMMON TASK EXECUTOR -->
 
 	<bean id="executor" class="java.util.concurrent.ForkJoinPool"
@@ -109,15 +114,15 @@
 		<constructor-arg index="0" value="3" />
 	</bean>
 
-	<!-- IMPLEMENTATION OF THE CONTEXT FACTORY -->
+	<!-- CONTEXT FACTORY -->
 
 	<import resource="context/default.xml" />
 
-	<!-- IMPLEMENTATION OF THE SERVICE REGISTRY -->
+	<!-- SERVICE REGISTRY -->
 
 	<import resource="registry/default.xml" />
 
-	<!-- IMPLEMENTATION OF THE EVENT BUS -->
+	<!-- EVENT BUS -->
 
 	<import resource="eventbus/default.xml" />
 
