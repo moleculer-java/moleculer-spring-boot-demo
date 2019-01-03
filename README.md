@@ -51,9 +51,9 @@ package my.services;
 
 import org.springframework.stereotype.Controller;
 
+import io.datatree.Tree;
 import services.moleculer.eventbus.Listener;
 import services.moleculer.eventbus.Subscribe;
-
 import services.moleculer.service.Action;
 import services.moleculer.service.Name;
 import services.moleculer.service.Service;
@@ -64,28 +64,28 @@ public class MyService extends Service {
 
 	// --- CALLABLE ACTION ---
 
-    @Name("myAction")
+	@Name("myAction")
 	public Action action = ctx -> {
-	
-	    // Read request
-	    String var1 = ctx.params.get("var1", "defaultValue");
-	    long   var2 = ctx.params.get("var2", 0L);
-	
-	    // Create response
-	    Tree rsp = new Tree();
+
+		// Read request
+		String var1 = ctx.params.get("var1", "defaultValue");
+		long var2 = ctx.params.get("var2", 0L);
+
+		// Create response
+		Tree rsp = new Tree();
 		rsp.put("key", "value");
 		return rsp;
 	};
 
 	// --- EVENT LISTENER ---
-		
+
 	@Subscribe("myEvent")
 	public Listener myEventListener = data -> {
-	    
+
 		// Read data
 		boolean var3 = data.get("key", false);
 	};
-	
+
 }
 ```
 
