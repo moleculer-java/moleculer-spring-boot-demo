@@ -42,7 +42,7 @@ The java-based Moleculer node's REPL console can be accessed via telnet. To do t
 
 **Make your own service**
 
-Copy the following code snippet to the "my.services" package:
+Copy the following code snippet into the "my.services" package/folder:
 
 ```java
 package my.services;
@@ -87,7 +87,7 @@ public class MyService extends Service {
 }
 ```
 
-The "ctx.params", "rsp" and "data" variables are hierarchical [Tree structures](https://berkesa.github.io/datatree/) (~= JSONs). At boot time the Spring Framework will automatically register this service as a distributed Moleculer Service, which can be called by other (Java or Node.js) nodes.
+The "ctx.params", "rsp" and "data" variables are hierarchical [Tree structures](https://berkesa.github.io/datatree/) (~= JSONs). For more information about using "Tree", see the JavaDoc of Tree. At boot time the Spring Framework will automatically register this service as a distributed Moleculer Service, which can be called by other (Java or Node.js) nodes.
 
 # License
 Moleculer-java is available under the [MIT license](https://tldrlegal.com/license/mit-license).
