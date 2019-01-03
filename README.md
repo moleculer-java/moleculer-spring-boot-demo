@@ -11,11 +11,12 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 **Build Windows Installer**
 
 The project does not include any transporter libraries (JARs). If you want to use transporters (such as Redis or NATS) the transporter libraries should be listed in the project dependencies list (in the "build.gradle" file). For example, to use NATS, remove comment prefix from the line of the NATS dependency.
-![image](dependency.png)
+
+![image](docs/dependency.png)
 
 In addition, you should specify in the "cfg/moleculer.config.xml" which transporter will be started. You can enable the telnet-based developer console in the same configuration file:
 
-![image](config.png)
+![image](docs/config.png)
 
 To create the installer, type "gradlew buildInstaller" in the project directory:
 
@@ -35,4 +36,4 @@ The Molecular service appears in the list of Windows Services:
 
 If you start a NodeJS-based Moleculer node, you can use the REPL console to call any java service:
 
-![image](docs/getobject.png) nodejs alól java hívás
+![image](docs/getobject.png)
