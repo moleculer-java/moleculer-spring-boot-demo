@@ -41,3 +41,6 @@ If you start a NodeJS-based Moleculer node, you can use the REPL console to test
 The java-based Moleculer node's REPL console can be accessed via telnet. To do this, type "telnet localhost" command, then enter your user name and password (defaults are "admin" / "admin"):
 
 ![image](docs/info.png)
+
+# License
+Moleculer-java is available under the [MIT license](https://tldrlegal.com/license/mit-license).
