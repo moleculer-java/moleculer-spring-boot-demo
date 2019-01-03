@@ -4,7 +4,7 @@ The project demonstrates a possible design of a functioning Moleculer-based appl
 
 The project also includes a "buildInstaller" Gradle command to create a **Windows Installer** from the project, and it will install the finished application as a 64-bit **Windows Service**.
 
-The Windows Service creates a Moleculer Node that can be connected to another **Java or NodeJS-based** Moleculer Node. The connection parameters can be specified in the "cfg/moleculer.config.xml" file and and in the files of the "cfg/transporter" directory.
+The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node. The connection parameters can be specified in the "cfg/moleculer.config.xml" file and and in the files of the "cfg/transporter" directory.
 
 **Build Windows Installer**
 
