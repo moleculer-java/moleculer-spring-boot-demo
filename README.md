@@ -34,6 +34,10 @@ The Molecular service appears in the list of Windows Services:
 
 ![image](docs/service.png)
 
-If you start a NodeJS-based Moleculer node, you can use the REPL console to call any java service:
+If you start a NodeJS-based Moleculer node, you can use the REPL console to test any Moleculer Action in Java node:
 
 ![image](docs/getobject.png)
+
+The java-based Moleculer node's REPL console can be accessed via telnet. To do this, type "telnet localhost" command, then enter your user name and password (defaults are "admin" / "admin"):
+
+![image](docs/info.png)
