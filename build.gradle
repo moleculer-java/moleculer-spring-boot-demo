@@ -19,13 +19,13 @@ configurations {
 
 dependencies {
 
-    // ============== COMPILATION ==============
-    
+    // ================ COMPILATION ================
+	    
     testCompile 'junit:junit:4.12'
 	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
 	
-    // =============== MOLECULER ===============
-
+    // ================= MOLECULER =================
+	
 	// Moleculer core (required)
 	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.8'
 	
@@ -35,7 +35,7 @@ dependencies {
 	// JMX service (optional)
     compile group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.0.1'
 	      
-    // =============== LOGGING ===============
+    // ================== LOGGING ==================
 	
 	// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
@@ -49,8 +49,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
 	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
 	
-	// =============== MONITORING ===============
-	
+	// ================= MONITORING ================
+		
 	// --- SIGAR API TO QUERY THE CPU USAGE ---
 	
 	// https://mvnrepository.com/artifact/org.fusesource/sigar
@@ -65,7 +65,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework/spring-core
 	compile group: 'org.springframework', name: 'spring-context', version: '5.1.3.RELEASE'
 	
-	// =============== CACHES ===============
+	// =================== CACHES ==================
 		
 	// --- OHC OFF-HEAP CACHE ---
 	
@@ -77,8 +77,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.jsr107.ri/cache-ri-impl
 	// compile group: 'org.jsr107.ri', name: 'cache-ri-impl', version: '1.1.0'
 		
-	// =============== TRANSPORTERS ===============
-
+	// =============== TRANSPORTERS ================
+	
 	// --- DEPENDENCY OF THE REDIS TRANSPORTER & CACHER ---
 	
 	// https://mvnrepository.com/artifact/biz.paluch.redis/lettuce
@@ -87,7 +87,7 @@ dependencies {
 	// --- DEPENDENCY OF THE NATS TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/io.nats/jnats
-	// compile group: 'io.nats', name: 'jnats', version: '2.4.1'
+	compile group: 'io.nats', name: 'jnats', version: '2.4.1'
 
 	// --- DEPENDENCY OF THE MQTT TRANSPORTER ---
 	
@@ -113,6 +113,18 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
 	// compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.1.0'
+
+	// ================ JSON APIS ==================
+	    
+    // --- BOON PARSER (FOR FASTER PARSING - OPTIONAL) ---
+	
+	// https://mvnrepository.com/artifact/io.fastjson/boon
+	compile group: 'io.fastjson', name: 'boon', version: '0.34'
+
+    // --- JACKSON PARSER (RECOMMENDED JSON API) ---
+    
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
 	
 }
 
@@ -144,6 +156,6 @@ task copyLibs(type: Copy) {
 
 task buildInstaller(type: Exec) {
 	dependsOn copyLibs
-    executable "build/installer/setup/ISCC.exe"
-    args 'build/installer/moleculer.config.iss'
+    executable "installer/setup/ISCC.exe"
+    args 'installer/moleculer.config.iss'
 }

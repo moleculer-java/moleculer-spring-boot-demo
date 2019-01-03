@@ -16,8 +16,8 @@ VersionInfoDescription={#ProgramName}
 UninstallDisplayName={#ProgramName} {#SetupVersion}
 VersionInfoCompany={#CompanyName}
 AppPublisher={#CompanyName}
-OutputDir=build\installer\dist
-SourceDir=..\..
+OutputDir=installer\dist
+SourceDir=..
 DisableProgramGroupPage=true
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=true
@@ -26,10 +26,10 @@ AppVersion={#SetupVersion}
 ArchitecturesInstallIn64BitMode=x64
 
 [Files]
-Source: build\installer\bin\*; DestDir: {app}\bin;  Flags: recursesubdirs createallsubdirs replacesameversion 
-Source: cfg\*;                 DestDir: {app}\cfg;  Flags: recursesubdirs createallsubdirs replacesameversion
-Source: build\installer\jre\*; DestDir: {app}\jre;  Flags: recursesubdirs createallsubdirs replacesameversion 
-Source: build\libs\*;          DestDir: {app}\lib;  Flags: recursesubdirs createallsubdirs replacesameversion 
+Source: installer\bin\*; DestDir: {app}\bin;  Flags: recursesubdirs createallsubdirs replacesameversion 
+Source: cfg\*;           DestDir: {app}\cfg;  Flags: recursesubdirs createallsubdirs replacesameversion
+Source: installer\jre\*; DestDir: {app}\jre;  Flags: recursesubdirs createallsubdirs replacesameversion 
+Source: build\libs\*;    DestDir: {app}\lib;  Flags: recursesubdirs createallsubdirs replacesameversion 
 
 [Dirs]
 Name: "{app}\tmp"
