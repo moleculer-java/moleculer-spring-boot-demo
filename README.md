@@ -89,7 +89,7 @@ public class MyService extends Service {
 }
 ```
 
-The "ctx.params", "rsp" and "data" variables are hierarchical [Tree](https://www.javadoc.io/doc/com.github.berkesa/datatree-core/1.0.9) structures (~= JSONs). At boot time the Spring Framework will automatically register this service as distributed Moleculer Service, which can be called by other (Java or Node.js) nodes.
+The "ctx.params", "rsp" and "data" variables are hierarchical [Tree](https://static.javadoc.io/com.github.berkesa/datatree-core/1.0.9/io/datatree/Tree.html) structures (~= JSONs). At boot time the Spring Framework will automatically register this service as distributed Moleculer Service, which can be called by other (Java or Node.js) nodes.
 
 # License
 Moleculer-java is available under the [MIT license](https://tldrlegal.com/license/mit-license).
