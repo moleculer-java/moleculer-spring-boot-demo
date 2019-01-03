@@ -80,7 +80,7 @@ public class MyService extends Service {
 	@Subscribe("myEvent")
 	public Listener myEventListener = data -> {
 
-		// Read data
+		// Process event's payload
 		boolean var3 = data.get("key", false);
 	};
 
