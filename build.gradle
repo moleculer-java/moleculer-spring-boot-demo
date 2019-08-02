@@ -6,6 +6,7 @@ apply plugin: 'maven'
 repositories {
     mavenCentral()
     jcenter()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 // --- CONFIGURATIONS ---
@@ -27,7 +28,7 @@ dependencies {
     // ================= MOLECULER =================
 	
 	// Moleculer core (required)
-	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.0.8'
+	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.0.4-SNAPSHOT'
 	
 	// Moleculer developer console (optional)
     compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.5'
@@ -38,16 +39,19 @@ dependencies {
     // ================== LOGGING ==================
 	
 	// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
        
 	// http://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
-	compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
+	compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.26'
 
 	// https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
-	compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
+	compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.26'
 
 	// https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
-	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
+	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.26'
+
+	// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j
+	compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.12.0'
 	
 	// ================= MONITORING ================
 		
@@ -62,21 +66,11 @@ dependencies {
 	 
     // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
 
-	// https://mvnrepository.com/artifact/org.springframework/spring-core
-	compile group: 'org.springframework', name: 'spring-context', version: '5.1.3.RELEASE'
-	
-	// =================== CACHES ==================
-		
-	// --- OHC OFF-HEAP CACHE ---
-	
-	// https://mvnrepository.com/artifact/org.caffinitas.ohc/ohc-core-j8
-	// compile group: 'org.caffinitas.ohc', name: 'ohc-core-j8', version: '0.6.1'
-
-	// --- JCACHE API ---
-		
-	// https://mvnrepository.com/artifact/org.jsr107.ri/cache-ri-impl
-	// compile group: 'org.jsr107.ri', name: 'cache-ri-impl', version: '1.1.0'
-		
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
+	compile (group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.1.6.RELEASE') {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+					
 	// =============== TRANSPORTERS ================
 	
 	// --- DEPENDENCY OF THE REDIS TRANSPORTER & CACHER ---
@@ -87,7 +81,7 @@ dependencies {
 	// --- DEPENDENCY OF THE NATS TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/io.nats/jnats
-	compile group: 'io.nats', name: 'jnats', version: '2.4.1'
+	// compile group: 'io.nats', name: 'jnats', version: '2.5.2'
 
 	// --- DEPENDENCY OF THE MQTT TRANSPORTER ---
 	
@@ -101,18 +95,23 @@ dependencies {
 
 	// --- DEPENDENCY OF THE AMQP/RABBITMQ TRANSPORTER ---
 	
+	// https://mvnrepository.com/artifact/org.apache.activemq/activemq-client
+	// compile group: 'org.apache.activemq', name: 'activemq-client', version: '5.15.9'
+
+	// --- DEPENDENCY OF THE AMQP/RABBITMQ TRANSPORTER ---
+	
 	// https://mvnrepository.com/artifact/com.rabbitmq/amqp-client
-	// compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.5.1'
+	// compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.7.1'
 
 	// --- DEPENDENCY OF THE GOOGLE CLOUD PUB/SUB TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/com.google.cloud/google-cloud-pubsub
-	// compile group: 'com.google.cloud', name: 'google-cloud-pubsub', version: '1.56.0'
+	// compile group: 'com.google.cloud', name: 'google-cloud-pubsub', version: '1.80.0'
 
 	// --- DEPENDENCY OF THE KAFKA TRANSPORTER ---
 	
 	// https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
-	// compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.1.0'
+	// compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.3.0'
 
 	// ================ JSON APIS ==================
 	    
@@ -124,8 +123,15 @@ dependencies {
     // --- JACKSON PARSER (RECOMMENDED JSON API) ---
     
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
-	
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9.2'
+
+	// ========== TEMPLATE ENGINES =============
+
+	// --- DATATREE TEMPLATES ---
+
+	// https://mvnrepository.com/artifact/com.github.berkesa/datatree-templates
+	compile group: 'com.github.berkesa', name: 'datatree-templates', version: '1.1.3'
+		
 }
 
 // --- COMPILATION ---
@@ -145,7 +151,10 @@ compileJava {
 
 jar {
 	baseName = 'moleculer-demo'
-	version =  '1.0.0'
+	version =  '1.0.2'
+	exclude('**/application.yml') 
+	exclude('**/logging-development.properties') 
+	exclude('**/logging-production.properties') 
 }
 
 task copyLibs(type: Copy) {
@@ -156,6 +165,6 @@ task copyLibs(type: Copy) {
 
 task buildInstaller(type: Exec) {
 	dependsOn copyLibs
-    executable "installer/setup/ISCC.exe"
+    executable 'installer/setup/ISCC.exe'
     args 'installer/moleculer.config.iss'
 }

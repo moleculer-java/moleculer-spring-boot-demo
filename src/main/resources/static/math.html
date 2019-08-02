@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">		
+		<title>Simple REST Service (math.add)</title>
+		<script>
+			function addNumbers() {
+				var a = document.getElementById("a").value;
+				var b = document.getElementById("b").value;
+				console.log("Invoking /add/" + a + "/" + b + "...");
+				var rest = new XMLHttpRequest();
+				
+				// "math.add" Service mapped to "/add/:a/:b" in MoleculerApplication.java
+				
+				rest.open("GET", "/add/" + a + "/" + b, true);
+				rest.setRequestHeader("Content-type", "application/json");
+				rest.onload = function() {
+					if (rest.readyState === rest.DONE) {
+						if (rest.status === 200) {
+							var response = JSON.parse(rest.responseText);
+							console.log("Response: ", response);
+							document.getElementById("aspan").innerHTML = response.a;
+							document.getElementById("bspan").innerHTML = response.b;
+							document.getElementById("cspan").innerHTML = response.c;
+						}
+					}
+				};
+				rest.send("");
+			}		
+		</script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>Simple REST Service (math.add)</h1>
+		
+		<form onsubmit="return false;" action="">		
+			A: <input type="text" id="a" value="2" maxlength="7">
+			<br>
+			B: <input type="text" id="b" value="3" maxlength="7">
+			<br>
+			<br>
+			<button onclick="addNumbers();">Calculate</button>
+		</form>
+
+		<p><b>RESPONSE:</b> <span id="aspan">2</span> (A) + <span id="bspan">3</span> (B) = <span id="cspan">5</span>.</p>
+
+		<a id="index" href="index.html">index</a>
+	</body>
+</html>

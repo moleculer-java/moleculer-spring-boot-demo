@@ -1,20 +1,16 @@
-# Moleculer Java demo project for Spring Framework
+# Moleculer Java demo project for SpringBoot Framework
 
-The project demonstrates a possible design of a functioning Moleculer-based application. The application is launched and configured by the Spring Framework. The project can be easily imported into the Eclipse IDE.
+The project demonstrates a possible design of a functioning Moleculer-based web-application. The application is launched and configured by the SpringBoot Framework. The project can be easily imported into the Eclipse IDE.
 
 The project also includes a "buildInstaller" Gradle command to create a **Windows Installer** from the project, and it will install the finished application as a 64-bit **Windows Service**.
 
-The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node. The connection parameters can be specified in the "cfg/moleculer.config.xml" file and and in the files of the "cfg/transporter" directory.
+The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node.
 
 **Build Windows Installer**
 
 The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file. For example, to use NATS, remove comment prefix from the line of the NATS dependency.
 
 ![image](docs/dependency.png)
-
-In addition, you should specify in the "cfg/moleculer.config.xml" which transporter will be started. You can enable the telnet-based developer console in this configuration file:
-
-![image](docs/config.png)
 
 To create the installer, run the "gradlew buildInstaller" command in the project's root directory:
 
@@ -36,7 +32,7 @@ If you start a Node.js-based Moleculer node, you can use the REPL console to tes
 
 ![image](docs/getobject.png)
 
-The java-based Moleculer node's REPL console can be accessed via telnet. To do this, type "telnet localhost" command, then enter the user name and password (defaults are "admin" / "admin"):
+The java-based Moleculer node's REPL console can be accessed via telnet. To do this, type "telnet localhost 21" command, then enter the user name and password (defaults are "admin" / "admin"):
 
 ![image](docs/info.png)
 

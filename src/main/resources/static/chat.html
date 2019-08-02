@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<title>WebSocket Chat</title>
+		<script src="websocket.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>WebSocket Chat</h1>
+		
+		<div id="history"></div>
+		
+		<br>
+		<form onsubmit="return false;" action="">		
+			Message: <input type="text" id="message" value="" width="200" maxwidth="200">
+			<button onclick="send();">Send</button>
+		</form>
+		
+		<script src="chat.js"></script>
+		
+		<br>
+		<a id="index" href="index.html">index</a>
+	</body>
+</html>

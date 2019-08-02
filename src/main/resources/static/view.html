@@ -1,0 +1,47 @@
+#{include parts/html-begin}
+
+		<h1>Server-side rendering (without JavaScript)</h1>
+		<form method="POST" action="render">
+
+			<input type="hidden" name="index" value="#{index}">
+
+			<input type="submit" name="firstButton" value="&lt;&lt; First" #{equals prevDisabled true} disabled #{end}>			
+			
+			<input type="submit" name="prevButton" value="&lt; Previous" #{equals prevDisabled true} disabled #{end}>			
+
+			#{for link : links}
+				<input type="submit" name="jump" value="#{link.page}" #{equals link.current true} disabled #{end}>
+			#{end}
+
+			<input type="submit" name="nextButton" value="Next &gt;" #{equals nextDisabled true} disabled #{end}>
+
+			<input type="submit" name="lastButton" value="Last &gt;&gt;" #{equals nextDisabled true} disabled #{end}>
+
+			<br>
+			Rows per page:
+			<select name="rowsPerPage" size="1">
+				#{for value : rowsPerPage}
+					<option value="#{value.number}" #{equals value.selected true} selected #{end}>#{value.number}</option>
+				#{end}
+			</select>
+			
+			<input type="submit" name="reload" value="Reload">
+			
+			<table>
+				<tr>
+					<th>Zone ID</th>
+					<th>Display Name</th>
+					<th>Raw Offset</th>
+				</tr>
+				#{for row : page}
+					<tr>
+						<td>#{row.id}</td>
+						<td>#{row.name}</td>
+						<td>#{row.offset}</td>
+					</tr>
+				#{end}
+			</table>
+  
+		</form>
+		
+#{include parts/html-end}

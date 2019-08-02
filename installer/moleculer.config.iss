@@ -27,9 +27,12 @@ ArchitecturesInstallIn64BitMode=x64
 
 [Files]
 Source: installer\bin\*; DestDir: {app}\bin;  Flags: recursesubdirs createallsubdirs replacesameversion 
-Source: cfg\*;           DestDir: {app}\cfg;  Flags: recursesubdirs createallsubdirs replacesameversion
 Source: installer\jre\*; DestDir: {app}\jre;  Flags: recursesubdirs createallsubdirs replacesameversion 
 Source: build\libs\*;    DestDir: {app}\lib;  Flags: recursesubdirs createallsubdirs replacesameversion 
+
+Source: src\main\resources\application.yml;                DestDir: {app}\cfg;  Flags: replacesameversion
+Source: src\main\resources\logging-development.properties; DestDir: {app}\cfg;  Flags: replacesameversion
+Source: src\main\resources\logging-production.properties;  DestDir: {app}\cfg;  Flags: replacesameversion
 
 [Dirs]
 Name: "{app}\tmp"
@@ -40,7 +43,7 @@ Name: StartService; Description: Start Moleculer service; Flags: checkedonce
 
 [Run]
 Filename: {app}\bin\service-install.bat; WorkingDir: {app}\bin; StatusMsg: Installing service...
-Filename: {app}\bin\service-start.bat; WorkingDir: {app}\bin; Tasks: StartService; StatusMsg: Starting service...
+Filename: {app}\bin\production-start.bat; WorkingDir: {app}\bin; Tasks: StartService; StatusMsg: Starting service...
 
 [UninstallRun]
 Filename: {app}\bin\service-stop.bat; WorkingDir: {app}\bin; Flags: skipifdoesntexist; StatusMsg: Stopping service...
@@ -49,7 +52,7 @@ Filename: {app}\bin\Tomcat7.exe; Parameters: "//DS/MoleculerJava"; WorkingDir: {
 [Registry]
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: string; ValueName: Jvm; ValueData: "{app}\jre\bin\server\jvm.dll"
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: string; ValueName: Classpath; ValueData: "{app}\cfg\;{app}\lib\*"
-Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: multisz; ValueName: Options; ValueData: "-Djava.net.preferIPv4Stack=true{break}-Djava.library.path={app}\bin{break}-Djava.io.tmpdir={app}\tmp{break}-Djava.util.logging.config.file={app}\cfg\logger\only-to-file.properties{break}-XX:MaxPermSize=256m{break}"
+Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: multisz; ValueName: Options; ValueData: "-Djava.net.preferIPv4Stack=true{break}-Djava.library.path={app}\bin{break}-Djava.io.tmpdir={app}\tmp{break}-Dlogging.config={app}\cfg\logging-production.properties{break}-Dspring.profiles.active=production{break}"
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: dword; ValueName: JvmMs; ValueData: 0
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: dword; ValueName: JvmMx; ValueData: 900
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: dword; ValueName: JvmSs; ValueData: 0
@@ -63,7 +66,7 @@ Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJ
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Start; ValueType: string; ValueName: Class; ValueData: "services.moleculer.config.MoleculerRunner"
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Start; ValueType: string; ValueName: WorkingPath; ValueData: "{app}"
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Start; ValueType: string; ValueName: Mode; ValueData: "jvm"
-Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Start; ValueType: multisz; ValueName: Params; ValueData: "/moleculer.config.xml"
+Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Start; ValueType: multisz; ValueName: Params; ValueData: "my.application.MoleculerApplication"
 
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Stop; ValueType: string; ValueName: Class; ValueData: "services.moleculer.config.MoleculerRunner"
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Stop; ValueType: string; ValueName: WorkingPath; ValueData: "{app}"

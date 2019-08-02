@@ -1,0 +1,15 @@
+# --- SPRING SETTINGS ---
+
+spring:
+  main:
+    banner-mode: "off"
+
+# --- NETTY SERVER (IN STANDALONE MODE) ---
+    
+netty:
+  port: 3000
+
+# --- DEVELOPER CONSOLE (IN DEVELOPMENT PROFILE) --- 
+
+repl:
+  port: 21  
