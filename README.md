@@ -6,6 +6,23 @@ The project also includes a "buildInstaller" Gradle command to create a **Window
 
 The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node.
 
+### Download and run ###
+
+1.) To run this Moleculer Application you need to download and install
+
+- [Java JDK (8 or higher)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Eclipse IDE for Java Developers](https://www.eclipse.org/downloads/packages/)
+- [Buildship Gradle Integration (Eclipse plug-in)](https://marketplace.eclipse.org/content/buildship-gradle-integration)
+- [Git Integration for Eclipse (Eclipse plug-in)](https://marketplace.eclipse.org/content/egit-git-integration-eclipse)
+
+2.) Copy this URL: https://github.com/moleculer-java/moleculer-spring-boot-demo.git
+
+3.) Open the "Git" perspective in Eclipse. Press "CTRL+V" to paste repository URL into the "Git Repositories" area.
+
+4.) Download the project from the repository. Left click on project, then click on the "Gradle/Refresh Gradle Project" option.
+
+5.) Left click on "molleculer-demo.launch" file, and press on the "Run As/moleculer-demo" option.
+
 **Build Windows Installer**
 
 The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file. For example, to use NATS, remove comment prefix from the line of the NATS dependency.
