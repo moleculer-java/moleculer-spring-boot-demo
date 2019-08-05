@@ -14,16 +14,13 @@
 				// "math.add" Service mapped to "/add/:a/:b" in MoleculerApplication.java
 				
 				rest.open("GET", "/add/" + a + "/" + b, true);
-				rest.setRequestHeader("Content-type", "application/json");
 				rest.onload = function() {
-					if (rest.readyState === rest.DONE) {
-						if (rest.status === 200) {
-							var response = JSON.parse(rest.responseText);
-							console.log("Response: ", response);
-							document.getElementById("aspan").innerHTML = response.a;
-							document.getElementById("bspan").innerHTML = response.b;
-							document.getElementById("cspan").innerHTML = response.c;
-						}
+					if (rest.readyState === rest.DONE && rest.status === 200) {
+						var response = JSON.parse(rest.responseText);
+						console.log("Response: ", response);
+						document.getElementById("aspan").innerHTML = response.a;
+						document.getElementById("bspan").innerHTML = response.b;
+						document.getElementById("cspan").innerHTML = response.c;
 					}
 				};
 				rest.send("");

@@ -12,13 +12,10 @@
 				// "greeter.hello" Service mapped to "/hello/:name" in MoleculerApplication.java
 								
 				rest.open("GET", "/hello/" + name, true);
-				rest.setRequestHeader("Content-type", "application/json");
 				rest.onload = function() {
-					if (rest.readyState === rest.DONE) {
-						if (rest.status === 200) {
-							console.log("Response: ", rest.responseText);
-							document.getElementById("rsp").innerHTML = rest.responseText;
-						}
+					if (rest.readyState === rest.DONE && rest.status === 200) {
+						console.log("Response: ", rest.responseText);
+						document.getElementById("rsp").innerHTML = rest.responseText;
 					}
 				};
 				rest.send("");

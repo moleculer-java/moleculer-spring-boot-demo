@@ -66,15 +66,13 @@ window.addEventListener("load", function(event) {
 	rest.open("GET", "chatService.getHistory", true);
 	rest.setRequestHeader("Content-type", "application/json");
 	rest.onload = function() {
-    	if (rest.readyState === rest.DONE) {
-        	if (rest.status === 200) {
-            	var root = JSON.parse(rest.responseText);
-				console.log("History:", root);
-				for (var i = 0; i < root.history.length; i++) {
-					var data = root.history[i];
-					addMessage(data.id, data.text);
-				}
-        	}
+    	if (rest.readyState === rest.DONE && rest.status === 200) {
+           	var root = JSON.parse(rest.responseText);
+			console.log("History:", root);
+			for (var i = 0; i < root.history.length; i++) {
+				var data = root.history[i];
+				addMessage(data.id, data.text);
+			}
     	}
 	};
 	rest.send("");

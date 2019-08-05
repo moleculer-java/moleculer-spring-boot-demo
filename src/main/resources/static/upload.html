@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<title>File Upload</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script>
+		    var timerID = null;
+			function startUploading() {
+				document.getElementById("fileToUpload").style.display = "none"; 
+				document.getElementById("status").innerHTML = "Upload has started. Please wait...";
+				if (timerID == null) {
+					timerID = setTimeout(displayUploadedBytes, 1000);
+				}
+				document.getElementById("uploadForm").submit();
+			}
+			function displayUploadedBytes() {
+				var rest = new XMLHttpRequest();
+				rest.open("GET", "/uploadCount", true);
+				rest.setRequestHeader("Content-type", "application/json");
+				rest.onload = function() {
+					if (rest.readyState === rest.DONE) {
+						if (rest.status === 200) {
+							var response = JSON.parse(rest.responseText).toString();
+							var status = document.getElementById("status");
+							status.innerHTML = response + " uploaded to the server. Please wait...";
+						}
+						setTimeout(displayUploadedBytes, 1000);
+					}
+				};
+				rest.send("");
+			}
+		</script>					
+	</head>
+	<body>
+		<h1>File Upload</h1>
+		
+		<img src="thumbnail" width="500" height="500">
+		
+		<form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">		
+			<span id="status">Select image to upload: </span>
+			<input id="fileToUpload" name="fileToUpload" type="file" onchange="startUploading();">
+		</form>
+		
+		<br>
+		<a id="index" href="index.html">index</a>
+	</body>
+</html>
