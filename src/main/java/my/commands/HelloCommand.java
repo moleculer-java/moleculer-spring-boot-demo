@@ -34,7 +34,8 @@ import services.moleculer.repl.Command;
 import services.moleculer.service.Name;
 
 /**
- * REPL command to call the "greeter.hello" service.
+ * REPL command to call the "greeter.hello" service. This command can also be
+ * invoked on the Moleculer's local or telnet-based console.
  */
 @Name("hello")
 public class HelloCommand extends Command {
@@ -42,7 +43,7 @@ public class HelloCommand extends Command {
 	public HelloCommand() {
 		option("uppercase, -u", "uppercase the name");
 	}
-	
+
 	@Override
 	public String getDescription() {
 		return "Call the greeter.welcome service with name";
@@ -55,35 +56,35 @@ public class HelloCommand extends Command {
 
 	@Override
 	public int getNumberOfRequiredParameters() {
-		
+
 		// One parameter (the "name") is required
 		return 1;
 	}
 
 	@Override
 	public void onCommand(ServiceBroker broker, PrintWriter out, String[] parameters) throws Exception {
-		
+
 		// Parse parameters
 		List<String> params = Arrays.asList(parameters);
 		boolean uppercase = params.contains("--uppercase") || params.contains("-u");
-		
+
 		// Last parameter is the name
 		String name = parameters[parameters.length - 1];
 		if (uppercase) {
 			name = name.toUpperCase();
 		}
-		
+
 		// Call the "greeter.hello" service
 		broker.call("greeter.hello", "name", name).then(rsp -> {
-			
+
 			// Print response
 			out.println(rsp.asString());
-			
+
 		}).catchError(err -> {
-			
+
 			// Print error
 			err.printStackTrace(out);
-			
+
 		});
 	}
 

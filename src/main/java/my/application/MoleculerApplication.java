@@ -148,6 +148,7 @@ public class MoleculerApplication {
 		restServices.addAlias("GET", "uploadCount", "upload.getUploadCount");
 		
 		restServices.addAlias("GET", "streamer", "mediaStreamer.getPacket");
+		restServices.addAlias("GET", "clock", "serverSideImage.getImage");
 		
 		// Enable "chatService.sendMessage" and "chatService.getHistory"
 		// services

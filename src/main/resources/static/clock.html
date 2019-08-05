@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<title>Server Side Generated Image</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script>
+			function reloadClock() {
+				var clock = document.getElementById("clock");
+				clock.src = "clock?stamp=" + new Date().getTime();
+			}
+			window.addEventListener("load", function(event) {
+				setInterval(reloadClock, 1000);
+			});
+		</script>		
+	</head>
+	<body>
+		<h1>Server Side Generated Image</h1>
+		
+		<img id="clock" src="clock" width="590" height="590">
+				
+		<br>
+		<a id="index" href="index.html">index</a>
+	</body>
+</html>

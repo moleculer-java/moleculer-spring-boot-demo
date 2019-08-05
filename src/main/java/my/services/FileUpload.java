@@ -105,7 +105,7 @@ public class FileUpload extends Service {
 		super.started(broker);
 
 		// Draw something...
-		BufferedImage thumbnail = new BufferedImage(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage thumbnail = new BufferedImage(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = thumbnail.createGraphics();
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
@@ -226,19 +226,9 @@ public class FileUpload extends Service {
 		}
 
 		// Write bytes into the response stream
-		PacketStream stream = null;
-		try {
-			stream = broker.createStream();
-			stream.sendData(bytes);
-		} catch (Exception cause) {
-			if (stream != null) {
-				stream.sendError(cause);
-			}
-		} finally {
-			if (stream != null) {
-				stream.sendClose();
-			}
-		}
+		PacketStream stream = broker.createStream();
+		stream.sendData(bytes);
+		stream.sendClose();
 
 		// Set response headers
 		Tree rsp = new CheckedTree(stream);

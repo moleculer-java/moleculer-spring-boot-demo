@@ -23,7 +23,7 @@
 						if (rest.status === 200) {
 							var response = JSON.parse(rest.responseText).toString();
 							var status = document.getElementById("status");
-							status.innerHTML = response + " uploaded to the server. Please wait...";
+							status.innerHTML = response + " bytes uploaded to the server. Please wait...";
 						}
 						setTimeout(displayUploadedBytes, 1000);
 					}
@@ -35,7 +35,7 @@
 	<body>
 		<h1>File Upload</h1>
 		
-		<img src="thumbnail" width="500" height="500">
+		<img id="thumbnail" src="thumbnail" width="500" height="500">
 		
 		<form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">		
 			<span id="status">Select image to upload: </span>
