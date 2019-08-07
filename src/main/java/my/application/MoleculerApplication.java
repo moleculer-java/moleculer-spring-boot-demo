@@ -29,7 +29,7 @@ import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
@@ -38,6 +38,7 @@ import org.springframework.core.env.Profiles;
 
 import io.datatree.Tree;
 import io.datatree.templates.SimpleHtmlMinifier;
+import my.commands.HelloCommand;
 import services.moleculer.ServiceBroker;
 import services.moleculer.config.ServiceBrokerConfig;
 import services.moleculer.config.SpringRegistrator;
@@ -100,7 +101,7 @@ public class MoleculerApplication {
 		renderer.setReloadable(developmentMode);
 		renderer.setTemplatePath("/static");
 		gateway.setTemplateEngine(renderer);
-		
+
 		// --- CONFIGURE WEB ROUTES ---
 
 		// Create routes for REST services and static content
@@ -112,21 +113,21 @@ public class MoleculerApplication {
 			if (route == restServices) {
 				String path = req.getPath();
 				if (path.startsWith("/upload")) {
-					
+
 					// Copy remote address into the "meta" structure
 					Tree meta = data.getMeta();
 					meta.put("address", req.getAddress());
 					return;
 				}
 				if ("/streamer".equals(path)) {
-					
+
 					// Copy the "Range" header into the "meta" structure
 					String range = req.getHeader("Range");
 					if (range != null) {
 						Tree meta = data.getMeta();
 						meta.put("range", range);
 					}
-					return;					
+					return;
 				}
 			}
 		});
@@ -136,7 +137,7 @@ public class MoleculerApplication {
 
 		// Configure REST services. These services may be LOCAL or REMOTE. Even
 		// NodeJS-based services can be provided via message broker (eg. NATS).
-		
+
 		restServices.addAlias("hello/:name", "greeter.hello");
 		restServices.addAlias("add/:a/:b", "math.add");
 		restServices.addAlias("GET", "jmx/all", "jmxListener.getAll");
@@ -146,19 +147,20 @@ public class MoleculerApplication {
 		restServices.addAlias("POST", "upload", "upload.receive");
 		restServices.addAlias("GET", "thumbnail", "upload.getThumbnail");
 		restServices.addAlias("GET", "uploadCount", "upload.getUploadCount");
-		
+
 		restServices.addAlias("GET", "streamer", "mediaStreamer.getPacket");
 		restServices.addAlias("GET", "clock", "serverSideImage.getImage");
-		
+
 		// Enable "chatService.sendMessage" and "chatService.getHistory"
 		// services
 		restServices.addToWhiteList("chatService.*");
 
 		// Add CORS headers to REST responses
 		restServices.use(new CorsHeaders());
-				
+
 		// Configure static web content in server-independent way
 		staticContent.setFaviconPath("favicon.ico");
+		staticContent.setIndexPage("index.html");
 
 		// Enable file reloading in development mode
 		staticContent.setEnableReloading(developmentMode);
@@ -206,7 +208,7 @@ public class MoleculerApplication {
 
 		// Start local (standard input) console
 		LocalRepl repl = new LocalRepl();
-		repl.setPackagesToScan("my.commands");
+		repl.addCommand(new HelloCommand());
 		return repl;
 	}
 
@@ -216,23 +218,32 @@ public class MoleculerApplication {
 
 		// Start remote (telnet-based) console
 		RemoteRepl repl = new RemoteRepl();
-		repl.setPackagesToScan("my.commands");
 		repl.setPort(env.getProperty("repl.port", Integer.class, 23));
+		repl.addCommand(new HelloCommand());
 		return repl;
 	}
 
 	// --- NETTY SERVER (IN STANDALONE MODE) ---
 
+	/**
+	 * Netty is used for standalone operation. This server is disabled in the
+	 * web.xml. Netty and J2ee Servers/Servlet Containers provide the same
+	 * capabilities for a Moleculer Application; WebSocket, SSL, REST, Template
+	 * Engines, File Upload, Static File Serving, etc.
+	 * 
+	 * @return Netty server instance
+	 */
 	@Bean
-	@ConditionalOnNotWebApplication
+	@ConditionalOnProperty(value = "netty.enabled", havingValue = "true", matchIfMissing = true)
 	public NettyServer getNettyServer() {
 
-		// It's not required when runs under a J2EE server
+		// Nett
 		NettyServer server = new NettyServer();
 		server.setPort(env.getProperty("netty.port", Integer.class, 3000));
 
 		// Set other webserver properties, eg:
 		// server.setUseSSL(env.getProperty(...));
+		// server.setKeyStoreFilePath("keytore.jks");
 
 		return server;
 	}

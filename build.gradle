@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'war'
 
 // --- REPOSITORIES ---
 
@@ -15,26 +16,29 @@ configurations {
     runtime
     ecj
 }
+configurations.all {
+    // resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
 
 // --- DEPENDENCIES ---
 
 dependencies {
 
     // ================ COMPILATION ================
-	    
+	
     testCompile 'junit:junit:4.12'
 	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
 	
     // ================= MOLECULER =================
 	
 	// Moleculer core (required)
-	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.0.4-SNAPSHOT'
+	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.0.6'
 	
 	// Moleculer developer console (optional)
-    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.5'
+    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.0.6'
 
 	// JMX service (optional)
-    compile group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.0.1'
+    compile group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.0.2'
 	      
     // ================== LOGGING ==================
 	
@@ -50,9 +54,6 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
 	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.26'
 
-	// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j
-	compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.12.0'
-	
 	// ================= MONITORING ================
 		
 	// --- SIGAR API TO QUERY THE CPU USAGE ---
@@ -69,6 +70,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
 	compile (group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.1.6.RELEASE') {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		exclude group: 'org.springframework', module: 'spring-jcl'
 	}
 					
 	// =============== TRANSPORTERS ================
@@ -151,7 +153,7 @@ compileJava {
 
 jar {
 	baseName = 'moleculer-demo'
-	version =  '1.0.2'
+	version =  '1.0.0'
 	exclude('**/application.yml') 
 	exclude('**/logging-development.properties') 
 	exclude('**/logging-production.properties') 
@@ -163,8 +165,16 @@ task copyLibs(type: Copy) {
 	into 'build/libs'
 }	
 
-task buildInstaller(type: Exec) {
+task buildInstaller(type: Exec, group: "build") {
+	description 'Create a standalone Windows Installer from this project.'
 	dependsOn copyLibs
     executable 'installer/setup/ISCC.exe'
     args 'installer/moleculer.config.iss'
+}
+
+// --- SERVLET / WAR SETTINGS ---
+
+war {   
+    rootSpec.exclude('**/logging-development.properties')
+    rootSpec.exclude('**/logging-production.properties')
 }

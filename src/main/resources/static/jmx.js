@@ -10,8 +10,7 @@ window.addEventListener("load", function(event) {
 
 	// Invoke REST service (get initial data)
 	var rest = new XMLHttpRequest();
-	rest.open("GET", "/jmx/all", true);
-	rest.setRequestHeader("Content-type", "application/json");
+	rest.open("GET", "jmx/all", true);
 	rest.onload = function() {
     	if (rest.readyState === rest.DONE) {
         	if (rest.status === 200) {
@@ -28,7 +27,7 @@ window.addEventListener("load", function(event) {
 	rest.send("");
 
 	// WebSocket connect
-	ws = MoleculerWebsocket("/ws/jmx", function(msg) {
+	ws = MoleculerWebsocket("ws/jmx", function(msg) {
 		
 		// Message received from server;
 		// message contains the memory usage in bytes

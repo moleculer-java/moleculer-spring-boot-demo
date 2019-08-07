@@ -6,12 +6,12 @@
 		<script>
 			function hello() {
 				var name = document.getElementById("name").value;
-				console.log("Invoking /hello/" + name + "...");
+				console.log("Invoking hello/" + name + "...");
 				var rest = new XMLHttpRequest();
 				
-				// "greeter.hello" Service mapped to "/hello/:name" in MoleculerApplication.java
+				// "greeter.hello" Service mapped to "hello/:name" in MoleculerApplication.java
 								
-				rest.open("GET", "/hello/" + name, true);
+				rest.open("GET", "hello/" + name, true);
 				rest.onload = function() {
 					if (rest.readyState === rest.DONE && rest.status === 200) {
 						console.log("Response: ", rest.responseText);

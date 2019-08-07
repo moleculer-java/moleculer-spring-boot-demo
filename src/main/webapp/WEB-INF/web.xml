@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0" metadata-complete="false">
+	
+	<!-- APPLICATION NAME -->
+
+	<display-name>Moleculer Java demo project for SpringBoot Framework</display-name>
+
+	<servlet>
+		<servlet-name>Moleculer Servlet</servlet-name>
+		<servlet-class>services.moleculer.web.servlet.MoleculerServlet</servlet-class>
+
+		<!-- MAIN APPLICATION CLASS -->
+		
+		<init-param>
+			<param-name>moleculer.application</param-name>
+			<param-value>my.application.MoleculerApplication</param-value>
+		</init-param>
+
+		<!-- SPRING BOOT SETTINGS -->
+
+		<init-param>
+			<param-name>--spring.profiles.active</param-name>
+			<param-value>production</param-value>
+		</init-param>
+		<init-param>
+			<param-name>--netty.enabled</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>-Dorg.springframework.boot.logging.LoggingSystem</param-name>
+			<param-value>none</param-value>
+		</init-param>
+		
+		<!-- ATMOSPHERE SETTINGS -->
+		
+		<init-param>
+			<param-name>org.atmosphere.websocket.maxTextMessageSize</param-name>
+			<param-value>32000</param-value>
+		</init-param>
+				
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Moleculer Servlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	<absolute-ordering />
+</web-app>

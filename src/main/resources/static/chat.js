@@ -64,7 +64,6 @@ window.addEventListener("load", function(event) {
 	// Invoke REST service (get initial data)
 	var rest = new XMLHttpRequest();
 	rest.open("GET", "chatService.getHistory", true);
-	rest.setRequestHeader("Content-type", "application/json");
 	rest.onload = function() {
     	if (rest.readyState === rest.DONE && rest.status === 200) {
            	var root = JSON.parse(rest.responseText);
@@ -78,7 +77,7 @@ window.addEventListener("load", function(event) {
 	rest.send("");
 	
 	// Create WebSocket connection
-	ws = MoleculerWebsocket("/ws/chat", function(msg) {
+	ws = MoleculerWebsocket("ws/chat", function(msg) {
 		
 		// Message received from server;
 		// message contains the positions and clientID

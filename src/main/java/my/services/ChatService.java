@@ -107,7 +107,7 @@ public class ChatService extends Service {
 		// Target "path" of the WebSocket message.
 		// Browers listen this logical "path".
 		// In Atmosphere terminology "path" is a name of a Broadcaster.
-		packet.put("path", "/ws/chat");
+		packet.put("path", "ws/chat");
 
 		// The outgoing "data" structure (payload of the websocket message)
 		packet.putObject("data", message);

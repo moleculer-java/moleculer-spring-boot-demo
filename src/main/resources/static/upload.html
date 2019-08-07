@@ -16,8 +16,7 @@
 			}
 			function displayUploadedBytes() {
 				var rest = new XMLHttpRequest();
-				rest.open("GET", "/uploadCount", true);
-				rest.setRequestHeader("Content-type", "application/json");
+				rest.open("GET", "uploadCount", true);
 				rest.onload = function() {
 					if (rest.readyState === rest.DONE) {
 						if (rest.status === 200) {

@@ -83,7 +83,7 @@ public class ScheduledService extends Service {
 		// Target "path" of the WebSocket message.
 		// Browers listen this logical "path".
 		// In Atmosphere terminology "path" is a name of a Broadcaster.
-		packet.put("path", "/ws/jmx");
+		packet.put("path", "ws/jmx");
 
 		// Payload of WebSocket message
 		// (the content of "data" can be arbitrary)

@@ -54,7 +54,7 @@ public class Drawing extends Service {
 		// Target "path" of the WebSocket message.
 		// Browers listen this logical "path".
 		// In Atmosphere terminology "path" is a name of a Broadcaster.
-		packet.put("path", "/ws/drawing");
+		packet.put("path", "ws/drawing");
 
 		// The incoming "params" structure is the outgoing "data"
 		packet.putObject("data", ctx.params);
