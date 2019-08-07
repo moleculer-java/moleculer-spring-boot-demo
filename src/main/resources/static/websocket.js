@@ -1,7 +1,7 @@
 // ---------------- SAMPLE ----------------------
 //
 // Create websocket-handler instance: 
-// var ws = MoleculerWebsocket("/ws/chat", function(msg) {
+// var ws = MoleculerWebsocket("ws/chat", function(msg) {
 //      console.log("Message received:", msg);
 // }, {
 // 	heartbeatInterval: 5 * 1000,
@@ -26,7 +26,7 @@
 function MoleculerWebsocket(channel, handler, opts) {
 
 	if (!channel) {
-		channel = "/ws/common";
+		channel = "ws/common";
 	}
 
 	var webSocket = null;

@@ -33,7 +33,7 @@ window.addEventListener("resize", resize, false);
 
 // Handle connect
 window.addEventListener("load", function(event) {
-	ws = MoleculerWebsocket("/ws/drawing", function(msg) {
+	ws = MoleculerWebsocket("ws/drawing", function(msg) {
 		
 		// Message received from server;
 		// message contains the positions and clientID
