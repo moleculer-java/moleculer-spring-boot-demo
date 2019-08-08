@@ -22,7 +22,6 @@
 		<!-- SPRING BOOT SETTINGS -->
 
 		<init-param>
-<<<<<<< HEAD
 			<param-name>--spring.profiles.active</param-name>
 			<param-value>production</param-value>
 		</init-param>
@@ -44,21 +43,6 @@
 				
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>		
-=======
-			<param-name>--netty.enabled</param-name>
-			<param-value>false</param-value>
-		</init-param>		
-
-		<!-- ATMOSPHERE SETTINGS -->
-		
-		<init-param>
-			<param-name>org.atmosphere.websocket.maxTextMessageSize</param-name>
-			<param-value>32000</param-value>
-		</init-param>
-		
-		<async-supported>true</async-supported>
-		<load-on-startup>1</load-on-startup>
->>>>>>> branch 'master' of https://github.com/moleculer-java/moleculer-java-gradle-demo.git
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Moleculer Servlet</servlet-name>
