@@ -29,7 +29,7 @@ The project does not include any transporter libraries (JARs) in its initial sta
 
 ![image](docs/dependency.png)
 
-To create the installer, run the "gradlew buildInstaller" command in the project's root directory:
+To create the installer, run the "gradle buildInstaller" command in the project's root directory:
 
 ![image](docs/gradlew.png)
 
