@@ -23,9 +23,22 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 
 5.) Left click on "molleculer-demo.launch" file, and press on the "Run As/moleculer-demo" option.
 
+**Build Web Application WAR**
+
+To create a WAR for J2EE servers, run the "gradle war" command in the project's root directory. The generated WAR is compatible with the following Application Servers:
+
+- Oracle WebLogic Server V12
+- Red Hat JBoss Enterprise Application Platform V7
+- WebSphere Application Server V19 Liberty
+- GlassFish Server Open Source Edition V4 and V5
+- Apache Tomcat V7, V8 and V9
+- Eclipse Jetty V9
+
+The WAR may work with other servers (it's built on standard non-blocking Servlet API).
+
 **Build Windows Installer**
 
-The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file. For example, to use NATS, remove comment prefix from the line of the NATS dependency.
+The standalone version is not Servlet-based and relies on Netty for higher performance. The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file.
 
 ![image](docs/dependency.png)
 
