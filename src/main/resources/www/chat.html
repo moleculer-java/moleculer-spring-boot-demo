@@ -5,6 +5,7 @@
 		<title>WebSocket Chat</title>
 		<script src="websocket.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 	</head>
 	<body>
 		<h1>WebSocket Chat</h1>
@@ -12,7 +13,8 @@
 		<div id="history"></div>
 		
 		<br>
-		<form onsubmit="return false;" action="">		
+		<form onsubmit="return false;" action="">
+			User: <input type="text" id="user" value="" width="30" maxwidth="30">		
 			Message: <input type="text" id="message" value="" width="200" maxwidth="200">
 			<button onclick="send();">Send</button>
 		</form>

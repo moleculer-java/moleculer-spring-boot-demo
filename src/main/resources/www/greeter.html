@@ -11,7 +11,7 @@
 				
 				// "greeter.hello" Service mapped to "hello/:name" in MoleculerApplication.java
 								
-				rest.open("GET", "hello/" + name, true);
+				rest.open("GET", "../hello/" + name, true);
 				rest.onload = function() {
 					if (rest.readyState === rest.DONE && rest.status === 200) {
 						console.log("Response: ", rest.responseText);
@@ -22,6 +22,7 @@
 			}		
 		</script>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 	</head>
 	<body>
 		<h1>Simple REST Service (greeter.hello)</h1>

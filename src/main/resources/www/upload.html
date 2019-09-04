@@ -3,7 +3,8 @@
 	<head>	
 		<meta charset="UTF-8">
 		<title>File Upload</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="../static/style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 		<script>
 		    var timerID = null;
 			function startUploading() {
@@ -16,7 +17,7 @@
 			}
 			function displayUploadedBytes() {
 				var rest = new XMLHttpRequest();
-				rest.open("GET", "uploadCount", true);
+				rest.open("GET", "../upload/count", true);
 				rest.onload = function() {
 					if (rest.readyState === rest.DONE) {
 						if (rest.status === 200) {
@@ -34,14 +35,14 @@
 	<body>
 		<h1>File Upload</h1>
 		
-		<img id="thumbnail" src="thumbnail" width="500" height="500">
+		<img id="thumbnail" src="../upload/thumbnail" width="500" height="500">
 		
-		<form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">		
+		<form id="uploadForm" action="../upload/receive" method="post" enctype="multipart/form-data">		
 			<span id="status">Select image to upload: </span>
 			<input id="fileToUpload" name="fileToUpload" type="file" onchange="startUploading();">
 		</form>
 		
 		<br>
-		<a id="index" href="index.html">index</a>
+		<a id="index" href="../static/index.html">index</a>
 	</body>
 </html>

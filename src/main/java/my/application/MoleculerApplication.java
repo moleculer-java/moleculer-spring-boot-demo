@@ -48,9 +48,11 @@ import services.moleculer.repl.LocalRepl;
 import services.moleculer.repl.RemoteRepl;
 import services.moleculer.web.ApiGateway;
 import services.moleculer.web.middleware.CorsHeaders;
+import services.moleculer.web.middleware.Favicon;
+import services.moleculer.web.middleware.Redirector;
+import services.moleculer.web.middleware.ServeStatic;
 import services.moleculer.web.netty.NettyServer;
-import services.moleculer.web.router.RestRoute;
-import services.moleculer.web.router.StaticRoute;
+import services.moleculer.web.router.Route;
 import services.moleculer.web.template.DataTreeEngine;
 
 @SpringBootApplication
@@ -80,95 +82,85 @@ public class MoleculerApplication {
 		// Create Service Broker and API Gateway
 		ServiceBroker broker = new ServiceBroker(cfg);
 		ApiGateway gateway = new ApiGateway();
+		broker.createService("api-gw", gateway);
+
 		gateway.setDebug(developmentMode);
 
 		// Set default server-side template engine, it can be
 		// - FreeMarker
 		// - Jade for Java
 		// - Mustache
+		// - Handlebars
 		// - Pebble
 		// - Thymeleaf
 		// - DataTree Engine
 		// - Your implementation (see "services.moleculer.web.template" package)
-		DataTreeEngine renderer = new DataTreeEngine();
+		DataTreeEngine templateEngine = new DataTreeEngine();
+		gateway.setTemplateEngine(templateEngine);
 		if (!developmentMode) {
 
 			// Minify in production mode
-			renderer.getEngine().setTemplatePreProcessor(new SimpleHtmlMinifier());
+			templateEngine.getEngine().setTemplatePreProcessor(new SimpleHtmlMinifier());
 		}
 
 		// Enable template reloading in development mode
-		renderer.setReloadable(developmentMode);
-		renderer.setTemplatePath("/static");
-		gateway.setTemplateEngine(renderer);
+		templateEngine.setReloadable(developmentMode);
+		templateEngine.setTemplatePath("/www");
 
-		// --- CONFIGURE WEB ROUTES ---
+		// --- CONFIGURE WEB MIDDLEWARES ---
+		
+		// Create route for REST services and static content
+		Route route = gateway.addRoute(new Route());
 
-		// Create routes for REST services and static content
-		RestRoute restServices = new RestRoute();
-		StaticRoute staticContent = new StaticRoute("/static");
+		// Install middlewares (in REVERSED invocation order)
+		ServeStatic serveStatic = new ServeStatic("/static", "/www");
+		serveStatic.setEnableReloading(developmentMode);
+		route.use(serveStatic);
+
+		route.use(new Favicon("/www/favicon.ico"));
+		route.use(new Redirector("/", "static/index.html", 307));
+		route.use(new CorsHeaders());
+		
+		// Enable static content
+		route.addToWhiteList("/", "/favicon.ico", "/static/**");
+		
+		// Configure REST services. These services may be LOCAL or REMOTE. Even
+		// NodeJS-based services can be provided via message broker (eg. NATS).
+		
+		route.addAlias("hello/:name", "greeter.hello");
+		route.addAlias("add/:a/:b", "math.add");
+		route.addAlias("GET", "jmx/all", "jmxListener.getAll");
+		route.addAlias("POST", "drawing", "drawing.send");
+		route.addAlias("ALL", "render", "modelViewController.render");
+
+		route.addAlias("GET", "streamer", "mediaStreamer.getPacket");
+		route.addAlias("GET", "clock", "serverSideImage.getImage");
+
+		// --- CUSTOM BEFORE-CALL FUNCTION ---
 
 		// Custom actions before/after the call
-		gateway.setBeforeCall((route, req, rsp, data) -> {
-			if (route == restServices) {
-				String path = req.getPath();
-				if (path.startsWith("/upload")) {
+		gateway.setBeforeCall((currentRoute, req, rsp, data) -> {
+			String path = req.getPath();
+			if (path.startsWith("/upload")) {
 
-					// Copy remote address into the "meta" structure
+				// Copy remote address into the "meta" structure
+				Tree meta = data.getMeta();
+				meta.put("address", req.getAddress());
+				return;
+			}
+			if ("/streamer".equals(path)) {
+
+				// Copy the "Range" header into the "meta" structure
+				String range = req.getHeader("Range");
+				if (range != null) {
 					Tree meta = data.getMeta();
-					meta.put("address", req.getAddress());
-					return;
+					meta.put("range", range);
 				}
-				if ("/streamer".equals(path)) {
-
-					// Copy the "Range" header into the "meta" structure
-					String range = req.getHeader("Range");
-					if (range != null) {
-						Tree meta = data.getMeta();
-						meta.put("range", range);
-					}
-					return;
-				}
+				return;
 			}
 		});
 
-		gateway.addRoute(restServices);
-		gateway.addRoute(staticContent);
-
-		// Configure REST services. These services may be LOCAL or REMOTE. Even
-		// NodeJS-based services can be provided via message broker (eg. NATS).
-
-		restServices.addAlias("hello/:name", "greeter.hello");
-		restServices.addAlias("add/:a/:b", "math.add");
-		restServices.addAlias("GET", "jmx/all", "jmxListener.getAll");
-		restServices.addAlias("POST", "drawing", "drawing.send");
-		restServices.addAlias("ALL", "render", "modelViewController.render");
-
-		restServices.addAlias("POST", "upload", "upload.receive");
-		restServices.addAlias("GET", "thumbnail", "upload.getThumbnail");
-		restServices.addAlias("GET", "uploadCount", "upload.getUploadCount");
-
-		restServices.addAlias("GET", "streamer", "mediaStreamer.getPacket");
-		restServices.addAlias("GET", "clock", "serverSideImage.getImage");
-
-		// Enable "chatService.sendMessage" and "chatService.getHistory"
-		// services
-		restServices.addToWhiteList("chatService.*");
-
-		// Add CORS headers to REST responses
-		restServices.use(new CorsHeaders());
-
-		// Configure static web content in server-independent way
-		staticContent.setFaviconPath("favicon.ico");
-		staticContent.setIndexPage("index.html");
-
-		// Enable file reloading in development mode
-		staticContent.setEnableReloading(developmentMode);
-
-		// Install APIGateway Moleculer Service
-		broker.createService("api-gw", gateway);
-
-		// --- CONFIGURE CUSTOM SERVICES ---
+		// --- ADD JMX SERVICE ---
 
 		// Create and install JMX service (optional)
 		JmxService jmx = new JmxService();

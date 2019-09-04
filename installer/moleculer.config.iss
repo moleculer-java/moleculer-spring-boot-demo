@@ -26,9 +26,9 @@ AppVersion={#SetupVersion}
 ArchitecturesInstallIn64BitMode=x64
 
 [Files]
-Source: installer\bin\*; DestDir: {app}\bin;  Flags: recursesubdirs createallsubdirs replacesameversion 
-Source: installer\jre\*; DestDir: {app}\jre;  Flags: recursesubdirs createallsubdirs replacesameversion 
-Source: build\libs\*;    DestDir: {app}\lib;  Flags: recursesubdirs createallsubdirs replacesameversion 
+Source: installer\bin\*;  DestDir: {app}\bin;  Flags: recursesubdirs createallsubdirs replacesameversion 
+Source: installer\jre\*;  DestDir: {app}\jre;  Flags: recursesubdirs createallsubdirs replacesameversion 
+Source: build\libs\*.jar; DestDir: {app}\lib;  Flags: recursesubdirs createallsubdirs replacesameversion 
 
 Source: src\main\resources\application.yml;                DestDir: {app}\cfg;  Flags: replacesameversion
 Source: src\main\resources\logging-development.properties; DestDir: {app}\cfg;  Flags: replacesameversion
@@ -39,7 +39,7 @@ Name: "{app}\tmp"
 Name: "{app}\log"
 
 [Tasks]
-Name: StartService; Description: Start Moleculer service; Flags: checkedonce
+Name: StartService; Description: Start Moleculer service; Flags: unchecked
 
 [Run]
 Filename: {app}\bin\service-install.bat; WorkingDir: {app}\bin; StatusMsg: Installing service...

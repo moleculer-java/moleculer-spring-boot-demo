@@ -52,10 +52,11 @@ import services.moleculer.service.Service;
 import services.moleculer.stream.PacketStream;
 import services.moleculer.util.CheckedTree;
 import services.moleculer.web.common.HttpConstants;
+import services.moleculer.web.router.HttpAlias;
 
 /**
- * File upload based on Moleculer Streams. URL of this sample (when
- * running the example on a local Netty server):<br>
+ * File upload based on Moleculer Streams. URL of this sample (when running the
+ * example on a local Netty server):<br>
  * <br>
  * http://localhost:3000/upload.html
  */
@@ -122,6 +123,7 @@ public class FileUpload extends Service {
 	// --- RECEIVE UPLOADED IMAGE ---
 
 	@Name("receive")
+	@HttpAlias(method = "POST", path = "upload/receive")
 	public Action receiveAction = ctx -> {
 		logger.info("Receiving file...");
 
@@ -182,10 +184,18 @@ public class FileUpload extends Service {
 						setThumbnail(thumbnail);
 						logger.info("Done.");
 
-						// Reload HTML page
+						// IMPORTANT PART: This section instructs APIGateway not
+						// to give a JSON
+						// response, but to convert JSON to HTML. The
+						// "$template" parameter
+						// specifies the file name of the template (relative
+						// path to template).
+						// Technically, the answer here will be "upload.html"
+						// (~= resend/reload).
 						Tree rsp = new Tree();
 						Tree meta = rsp.getMeta();
-						meta.put(HttpConstants.META_LOCATION, "upload.html");
+						meta.put("$template", "upload");
+
 						res.resolve(rsp);
 
 					} catch (Throwable error) {
@@ -208,6 +218,7 @@ public class FileUpload extends Service {
 
 	// --- GET UPLOADED IMAGE ---
 
+	@HttpAlias(method = "GET", path = "upload/thumbnail")
 	public Action getThumbnail = ctx -> {
 
 		// Get image bytes
@@ -244,6 +255,7 @@ public class FileUpload extends Service {
 
 	// --- GET UPLOADED BYTES ---
 
+	@HttpAlias(method = "GET", path = "upload/count")
 	public Action getUploadCount = ctx -> {
 
 		// Get remote host

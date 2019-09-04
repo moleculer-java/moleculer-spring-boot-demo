@@ -31,6 +31,7 @@ import io.datatree.Tree;
 import services.moleculer.ServiceBroker;
 import services.moleculer.service.Action;
 import services.moleculer.service.Service;
+import services.moleculer.web.router.HttpAlias;
 
 /**
  * Simple chat service with history. URL of this sample (when
@@ -47,21 +48,21 @@ public class ChatService extends Service {
 	 * <pre>
 	 * {
 	 *   "history": [
-	 *     {"id": "123", "message": "msg1"},
-	 *     {"id": "456", "message": "msg2"},
-	 *     {"id": "789", "message": "msg3"},
-	 *     {"id": "123", "message": "msg4"}
+	 *     {"id": "123", "user": "Randy", "message": "msg1"},
+	 *     {"id": "456", "user": "Arden", "message": "msg2"},
+	 *     {"id": "789", "user": "Maria", "message": "msg3"},
+	 *     {"id": "123", "user": "Simon", "message": "msg4"}
 	 *   ]
 	 * }
 	 * </pre>
 	 * 
 	 * ...where "id" is a client/sender ID, and the "message" is the text of the
-	 * message.
+	 * message. It's the simple simulation of the database.
 	 */
 	private Tree root = new Tree();
 
 	/**
-	 * History array( sub-structure of the "history" object.
+	 * History array.
 	 */
 	private Tree history;
 
@@ -76,6 +77,7 @@ public class ChatService extends Service {
 	/**
 	 * Send message to other users.
 	 */
+	@HttpAlias(method = "POST", path = "chat/send")
 	public Action sendMessage = ctx -> {
 
 		// Get and verify incoming paramters
@@ -87,10 +89,12 @@ public class ChatService extends Service {
 		if (text == null || text.isEmpty()) {
 			throw new IllegalArgumentException("Missing \"text\" parameter!");
 		}
+		String user = ctx.params.get("user", id);
 
 		// Crete chat message
 		Tree message = new Tree();
 		message.put("id", id);
+		message.put("user", user);
 		message.put("text", text);
 
 		// Add to history
@@ -119,6 +123,7 @@ public class ChatService extends Service {
 		return null;
 	};
 
+	@HttpAlias(method = "GET", path = "chat/history")
 	public Action getHistory = ctx -> {
 
 		// Create (deep) copy from history

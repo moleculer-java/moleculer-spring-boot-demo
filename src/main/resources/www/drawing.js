@@ -33,7 +33,7 @@ window.addEventListener("resize", resize, false);
 
 // Handle connect
 window.addEventListener("load", function(event) {
-	ws = MoleculerWebsocket("ws/drawing", function(msg) {
+	ws = MoleculerWebsocket("../ws/drawing", function(msg) {
 		
 		// Message received from server;
 		// message contains the positions and clientID
@@ -47,8 +47,8 @@ window.addEventListener("load", function(event) {
 	}, {
 				
 		// Set the WebSocket connection parameters
-		heartbeatInterval: 5 * 1000,
-		heartbeatTimeout: 1 * 1000,
+		heartbeatInterval: 15 * 1000,
+		heartbeatTimeout: 5 * 1000,
 		debug: true
 		
 	});
@@ -112,7 +112,7 @@ canvas.addEventListener("mousemove", function(event) {
 	// Invoke REST service (send positions and client ID to the APIGateway)
 	// "drawing" URI mapped to "drawing.send" Service in MoleculerApplication.java
 	var post = new XMLHttpRequest();
-	post.open("POST", "drawing", true);
+	post.open("POST", "../drawing", true);
 	post.setRequestHeader("Content-type", "application/json");
 	post.send(JSON.stringify({
 		id: id,

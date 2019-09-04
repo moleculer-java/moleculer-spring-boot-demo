@@ -12,7 +12,7 @@
 				
 				// "math.add" Service mapped to "/add/:a/:b" in MoleculerApplication.java
 				
-				rest.open("GET", "add/" + a + "/" + b, true);
+				rest.open("GET", "../add/" + a + "/" + b, true);
 				rest.onload = function() {
 					if (rest.readyState === rest.DONE && rest.status === 200) {
 						var response = JSON.parse(rest.responseText);
@@ -26,6 +26,7 @@
 			}		
 		</script>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 	</head>
 	<body>
 		<h1>Simple REST Service (math.add)</h1>

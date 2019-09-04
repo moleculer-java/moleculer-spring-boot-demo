@@ -8,6 +8,9 @@
 
 	<display-name>Moleculer Java demo project for SpringBoot Framework</display-name>
 
+	<listener>
+		<listener-class>services.moleculer.web.servlet.websocket.EndpointDeployer</listener-class>
+	</listener>
 	<servlet>
 		<servlet-name>Moleculer Servlet</servlet-name>
 		<servlet-class>services.moleculer.web.servlet.MoleculerServlet</servlet-class>
@@ -19,28 +22,27 @@
 			<param-value>my.application.MoleculerApplication</param-value>
 		</init-param>
 
-		<!-- SPRING BOOT SETTINGS -->
+		<!-- SET APPLICATION PROFILE -->
 
 		<init-param>
 			<param-name>--spring.profiles.active</param-name>
 			<param-value>production</param-value>
 		</init-param>
+		
+		<!-- USE J2EE SERVER INSTEAD OF THE NETTY SERVER -->
+				
 		<init-param>
 			<param-name>--netty.enabled</param-name>
 			<param-value>false</param-value>
 		</init-param>
+		
+		<!-- USE THE J2EE SERVER'S LOGGING SYSTEM -->
+				
 		<init-param>
 			<param-name>-Dorg.springframework.boot.logging.LoggingSystem</param-name>
 			<param-value>none</param-value>
 		</init-param>
-		
-		<!-- ATMOSPHERE SETTINGS -->
-		
-		<init-param>
-			<param-name>org.atmosphere.websocket.maxTextMessageSize</param-name>
-			<param-value>32000</param-value>
-		</init-param>
-				
+					
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>		
 	</servlet>

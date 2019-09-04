@@ -203,7 +203,7 @@ public class ModelViewController extends Service {
 		// response, but to convert JSON to HTML. The "$template" parameter
 		// specifies the file name of the template (relative path to template).
 		Tree meta = model.getMeta();
-		meta.put("$template", "view");
+		meta.put("$template", "table");
 
 		// Other special meta fields:
 		// - $statusCode = Status code (eg. 200, 404) of the HTTP response message.

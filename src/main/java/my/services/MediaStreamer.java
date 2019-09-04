@@ -61,7 +61,7 @@ public class MediaStreamer extends Service {
 	/**
 	 * Source of video (in this example it's a file).
 	 */
-	private static final String VIDEO_FILE = "static/video.mp4";
+	private static final String VIDEO_FILE = "www/video.mp4";
 
 	/**
 	 * Size of one media packet.
@@ -98,6 +98,13 @@ public class MediaStreamer extends Service {
 	// --- STREAM VIDEO ---
 
 	public Action getPacket = ctx -> {
+
+		// Is video available?
+		if (videoUrl == null || videoLength < 1) {
+			Tree rsp = new Tree();
+			rsp.getMeta().put("$statusCode", 404);
+			return rsp;
+		}
 
 		// Get range from request
 		String range = ctx.params.getMeta().get("range", "");
