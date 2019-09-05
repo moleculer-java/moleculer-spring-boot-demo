@@ -1,4 +1,4 @@
-# Moleculer Java demo project for SpringBoot Framework
+# Moleculer Java Demo Project
 
 The project demonstrates a possible design of a functioning Moleculer-based web-application. The application is launched and configured by the SpringBoot Framework. The project can be easily imported into the Eclipse IDE.
 
@@ -38,11 +38,7 @@ The WAR may work with other servers (it's built on standard non-blocking Servlet
 
 **Build Windows Installer**
 
-The standalone version is not Servlet-based and relies on Netty for higher performance. The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file.
-
-![image](docs/dependency.png)
-
-To create the installer, run the "gradle buildInstaller" command in the project's root directory:
+The standalone version is not Servlet-based and relies on Netty for higher performance. The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file. To create the installer, run the "gradle buildInstaller" command in the project's root directory:
 
 ![image](docs/gradlew.png)
 
