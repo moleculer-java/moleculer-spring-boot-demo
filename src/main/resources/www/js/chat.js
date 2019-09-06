@@ -29,7 +29,9 @@ function send() {
 	
 	// Invoke REST service (send positions and client ID to the APIGateway)
 	var post = new XMLHttpRequest();
-	post.open("POST", "../chat/send", true);
+	
+	// "chatService.sendMessage" Action mapped to "api/send" URL in ChatService.java
+	post.open("POST", "api/send", true);
 	post.setRequestHeader("Content-type", "application/json");
 	post.send(JSON.stringify({
 		id: id,
@@ -72,7 +74,9 @@ window.addEventListener("load", function(event) {
 
 	// Invoke REST service (get initial data)
 	var rest = new XMLHttpRequest();
-	rest.open("GET", "../chat/history", true);
+	
+	// "chatService.getHistory" Action mapped to "api/history" URL in ChatService.java
+	rest.open("GET", "api/history", true);
 	rest.onload = function() {
     	if (rest.readyState === rest.DONE && rest.status === 200) {
            	var root = JSON.parse(rest.responseText);
@@ -86,7 +90,7 @@ window.addEventListener("load", function(event) {
 	rest.send("");
 	
 	// Create WebSocket connection
-	ws = MoleculerWebsocket("../ws/chat", function(msg) {
+	ws = MoleculerWebsocket("ws/chat", function(msg) {
 		
 		// Message received from server;
 		// message contains the positions and clientID

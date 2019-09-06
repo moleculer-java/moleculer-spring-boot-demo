@@ -77,7 +77,7 @@ public class ChatService extends Service {
 	/**
 	 * Send message to other users.
 	 */
-	@HttpAlias(method = "POST", path = "chat/send")
+	@HttpAlias(method = "POST", path = "api/send")
 	public Action sendMessage = ctx -> {
 
 		// Get and verify incoming paramters
@@ -123,7 +123,7 @@ public class ChatService extends Service {
 		return null;
 	};
 
-	@HttpAlias(method = "GET", path = "chat/history")
+	@HttpAlias(method = "GET", path = "api/history")
 	public Action getHistory = ctx -> {
 
 		// Create (deep) copy from history

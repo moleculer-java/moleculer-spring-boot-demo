@@ -30,14 +30,12 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
-import java.lang.Math;
 
 import org.springframework.stereotype.Controller;
 
 import io.datatree.Tree;
 import services.moleculer.ServiceBroker;
 import services.moleculer.service.Action;
-import services.moleculer.service.Name;
 import services.moleculer.service.Service;
 
 /**
@@ -51,15 +49,15 @@ import services.moleculer.service.Service;
  * <li>FreeMarker
  * <li>Jade for Java
  * <li>Mustache
+ * <li>Handlebars
  * <li>Pebble
  * <li>Thymeleaf
  * <li>DataTree Engine (this example demonstrates this)
  * <li>Your implementation (see "services.moleculer.web.template" package)
  * </ul>
  */
-@Name("modelViewController")
 @Controller
-public class ModelViewController extends Service {
+public class TableService extends Service {
 
 	// --- DATABASE EMULATION ---
 
@@ -88,7 +86,7 @@ public class ModelViewController extends Service {
 			row.put("name", timeZone.getDisplayName());
 			
 			int offset = timeZone.getRawOffset();
-			String formatted = formatter.format(new Date(Math.abs(offset)));
+			String formatted = formatter.format(new Date(java.lang.Math.abs(offset)));
 			if (offset < 0) {
 				formatted = "-" + formatted;
 			}
@@ -113,7 +111,7 @@ public class ModelViewController extends Service {
 		Tree model = new Tree();
 
 		// Copy table rows from page offset (copy one page only)
-		int rowsPerPage = ctx.params.get("rowsPerPage", 20);
+		int rowsPerPage = ctx.params.get("rowsPerPage", 10);
 		int index = ctx.params.get("index", 0) / rowsPerPage * rowsPerPage;
 		Tree rows = database.get("rows");
 		int maxIndex = rows.size() / rowsPerPage * rowsPerPage;

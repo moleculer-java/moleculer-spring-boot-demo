@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<title>JMX Search</title>
+		
+		<script src="js/search.js"></script>
+		<script src="js/json2.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	</head>
+	<body>
+		<h1>JMX Search</h1>
+		
+		<form onsubmit="return false;" action="">		
+			Query: <input type="text" id="query" value="" placeholder="eg. 'java.lang:*' or 'memoryusage' or 'metaspace'" size="50" maxlength="100">
+			<button onclick="search();">Search</button>
+			<button onclick="clearResults();">Clear</button>
+		</form>
+
+		<br>
+		<b>RESPONSE:</b><pre id="rsp">[empty]</pre>
+
+		<a class="index" href="index.html">&lt; back to main menu</a>
+	</body>
+</html>

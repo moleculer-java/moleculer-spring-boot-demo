@@ -3,38 +3,20 @@
 	<head>	
 		<meta charset="UTF-8">
 		<title>Simple REST Service (math.add)</title>
-		<script>
-			function addNumbers() {
-				var a = document.getElementById("a").value;
-				var b = document.getElementById("b").value;
-				console.log("Invoking add/" + a + "/" + b + "...");
-				var rest = new XMLHttpRequest();
-				
-				// "math.add" Service mapped to "/add/:a/:b" in MoleculerApplication.java
-				
-				rest.open("GET", "../add/" + a + "/" + b, true);
-				rest.onload = function() {
-					if (rest.readyState === rest.DONE && rest.status === 200) {
-						var response = JSON.parse(rest.responseText);
-						console.log("Response: ", response);
-						document.getElementById("aspan").innerHTML = response.a;
-						document.getElementById("bspan").innerHTML = response.b;
-						document.getElementById("cspan").innerHTML = response.c;
-					}
-				};
-				rest.send("");
-			}		
-		</script>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+		
+		<script src="js/math.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	</head>
 	<body>
-		<h1>Simple REST Service (math.add)</h1>
+		<h1>Simple REST Service</h1>
 		
 		<form onsubmit="return false;" action="">		
-			A: <input type="text" id="a" value="2" maxlength="7">
+			A: <input type="number" id="a" value="2" min="1" max="100000" onkeypress="validate(event)">
 			<br>
-			B: <input type="text" id="b" value="3" maxlength="7">
+			<br>
+			B: <input type="number" id="b" value="3" min="1" max="100000" onkeypress="validate(event)">
 			<br>
 			<br>
 			<button onclick="addNumbers();">Calculate</button>
@@ -42,6 +24,6 @@
 
 		<p><b>RESPONSE:</b> <span id="aspan">2</span> (A) + <span id="bspan">3</span> (B) = <span id="cspan">5</span>.</p>
 
-		<a id="index" href="index.html">index</a>
+		<a class="index" href="index.html">&lt; back to main menu</a>
 	</body>
 </html>

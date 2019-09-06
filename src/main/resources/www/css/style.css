@@ -1,0 +1,102 @@
+body {
+	font-family: Lato, 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+	font-size: 15px;
+}
+
+h1 {
+	color: #0e83cd;
+	font-size: 24px;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#menu li {
+	padding-bottom: 10px;
+}
+
+#history {
+	font-weight: bold;
+}
+.yours {
+	background: #eee;
+	margin-bottom: 5px;
+	padding: 10px;
+	padding-left: 25px;
+	padding-right: 30px;
+	border-radius: 20px;
+	display: inline-block;
+}
+.yours > .sender {
+	color: #aaa;
+}
+.mine {
+	background: #0085D1;
+	margin-bottom: 5px;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 25px;
+	border-radius: 20px;
+	display: inline-block;
+}
+.mine > .sender {
+	color: #bbb;
+	text-align: right;
+}
+.mine > .content {
+	color: #fff;
+	text-align: right;	
+}
+
+.nav {
+	width: 100px;
+}
+
+.page {
+	width: 40px;
+}
+
+.table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 10px;	
+	margin-bottom: 10px;	
+}
+
+.table td, .table th {
+	border: 1px solid #ddd;
+	padding: 5px;
+	width: 30%;
+}
+
+.table tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.table tr:hover {
+	background-color: #ddd;
+}
+
+.table th {
+	background-color: #0e83cd;
+	color: white;
+}
+
+.index:link, .index:visited {
+	background-color: #ccc;
+	color: black;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.index:hover, .index:active {
+	background-color: #aaa;
+}

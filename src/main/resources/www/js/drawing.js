@@ -4,10 +4,10 @@
 var ws;
 
 // Canvas object
-var canvas = document.querySelector("canvas");
+var canvas;
 
 // 2D content of the canvas
-var context = canvas.getContext("2d");
+var context;
 
 // Drawing?
 var drawing = false;
@@ -25,15 +25,24 @@ var previousLineWidth = 2;
 
 // Handle resize
 function resize() {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	if (canvas) {
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+	}
 }
-resize();
 window.addEventListener("resize", resize, false);
 
-// Handle connect
+// Document loaded
 window.addEventListener("load", function(event) {
-	ws = MoleculerWebsocket("../ws/drawing", function(msg) {
+	
+	// Get canvas
+	canvas = document.querySelector("canvas");
+	context = canvas.getContext("2d");
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	// Handle WebSocket connect
+	ws = MoleculerWebsocket("ws/drawing", function(msg) {
 		
 		// Message received from server;
 		// message contains the positions and clientID
@@ -53,6 +62,52 @@ window.addEventListener("load", function(event) {
 		
 	});
 	ws.connect();
+	
+	// Handle mouse down event       
+	canvas.addEventListener("mousedown", function(event) {
+		drawing = true;
+		pos.x = event.clientX;
+		pos.y = event.clientY;
+	});	
+	
+	// Handle mouse move event
+	canvas.addEventListener("mousemove", function(event) {
+		if (!drawing) {
+			return;
+		}
+		var w = canvas.width;
+		var h = canvas.height;
+
+		// Invoke REST service (send positions and client ID to the APIGateway)
+		// "drawing.send" Action mapped to "api/drawing" URL in MoleculerApplication.java
+		var post = new XMLHttpRequest();
+		post.open("POST", "api/drawing", true);
+		post.setRequestHeader("Content-type", "application/json");
+		post.send(JSON.stringify({
+			id: id,
+			x1: pos.x / w,
+			y1: pos.y / h,
+			x2: event.clientX / w,
+			y2: event.clientY / h
+		}));
+
+		// Drawing to the local canvas
+		draw(pos.x, pos.y, event.clientX, event.clientY, id);
+
+		pos.x = event.clientX;
+		pos.y = event.clientY;
+		
+	}, false);
+
+	// Handle mouse up event
+	canvas.addEventListener("mouseup", function(event) {
+		drawing = false;
+	}, false);
+
+	// Handle mouse out event
+	canvas.addEventListener("mouseout", function(event) {
+		drawing = false;
+	}, false);	
 });
 
 // Handle disconnect
@@ -61,13 +116,6 @@ window.addEventListener("unload", function(event) {
 		ws.disconnect();
 		ws = null;
 	}
-});
-
-// Handle mouse down event       
-canvas.addEventListener("mousedown", function(event) {
-	drawing = true;
-	pos.x = event.clientX;
-	pos.y = event.clientY;
 });
 
 // Drawing
@@ -100,42 +148,3 @@ function draw(x1, y1, x2, y2, str) {
 	context.stroke();
 	context.closePath();
 }
-
-// Handle mouse move event
-canvas.addEventListener("mousemove", function(event) {
-	if (!drawing) {
-		return;
-	}
-	var w = canvas.width;
-	var h = canvas.height;
-
-	// Invoke REST service (send positions and client ID to the APIGateway)
-	// "drawing" URI mapped to "drawing.send" Service in MoleculerApplication.java
-	var post = new XMLHttpRequest();
-	post.open("POST", "../drawing", true);
-	post.setRequestHeader("Content-type", "application/json");
-	post.send(JSON.stringify({
-		id: id,
-		x1: pos.x / w,
-		y1: pos.y / h,
-		x2: event.clientX / w,
-		y2: event.clientY / h
-	}));
-
-	// Drawing to the local canvas
-	draw(pos.x, pos.y, event.clientX, event.clientY, id);
-
-	pos.x = event.clientX;
-	pos.y = event.clientY;
-	
-}, false);
-
-// Handle mouse up event
-canvas.addEventListener("mouseup", function(event) {
-	drawing = false;
-}, false);
-
-// Handle mouse out event
-canvas.addEventListener("mouseout", function(event) {
-	drawing = false;
-}, false);

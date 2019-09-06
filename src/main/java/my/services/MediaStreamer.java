@@ -61,7 +61,7 @@ public class MediaStreamer extends Service {
 	/**
 	 * Source of video (in this example it's a file).
 	 */
-	private static final String VIDEO_FILE = "www/video.mp4";
+	private static final String VIDEO_FILE = "www/media/video.mp4";
 
 	/**
 	 * Size of one media packet.

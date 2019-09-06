@@ -48,10 +48,12 @@ import services.moleculer.repl.LocalRepl;
 import services.moleculer.repl.RemoteRepl;
 import services.moleculer.web.ApiGateway;
 import services.moleculer.web.middleware.CorsHeaders;
+import services.moleculer.web.middleware.ErrorPage;
 import services.moleculer.web.middleware.Favicon;
 import services.moleculer.web.middleware.Redirector;
 import services.moleculer.web.middleware.ServeStatic;
 import services.moleculer.web.netty.NettyServer;
+import services.moleculer.web.router.MappingPolicy;
 import services.moleculer.web.router.Route;
 import services.moleculer.web.template.DataTreeEngine;
 
@@ -107,48 +109,55 @@ public class MoleculerApplication {
 		templateEngine.setReloadable(developmentMode);
 		templateEngine.setTemplatePath("/www");
 
-		// --- CONFIGURE WEB MIDDLEWARES ---
+		// --- CONFIGURE ROUTES AND MIDDLEWARES ---
 		
-		// Create route for REST services and static content
-		Route route = gateway.addRoute(new Route());
-
-		// Install middlewares (in REVERSED invocation order)
-		ServeStatic serveStatic = new ServeStatic("/static", "/www");
-		serveStatic.setEnableReloading(developmentMode);
-		route.use(serveStatic);
-
-		route.use(new Favicon("/www/favicon.ico"));
-		route.use(new Redirector("/", "static/index.html", 307));
-		route.use(new CorsHeaders());
+		// Create route for REST services
+		Route restRoute = gateway.addRoute(new Route());
 		
-		// Enable static content
-		route.addToWhiteList("/", "/favicon.ico", "/static/**");
+		// Add CORS headers to all REST responses
+		restRoute.use(new CorsHeaders());
+		restRoute.use(new ErrorPage());
 		
 		// Configure REST services. These services may be LOCAL or REMOTE. Even
-		// NodeJS-based services can be provided via message broker (eg. NATS).
+		// NodeJS-based services can be provided via message broker (eg. NATS).		
+		restRoute.addAlias("api/hello/:name", "greeter.hello");
+		restRoute.addAlias("api/add/:a/:b", "math.add");		
+		restRoute.addAlias("GET", "api/jmx", "jmxListener.getAll");
+		restRoute.addAlias("POST", "api/drawing", "drawing.send");
+		restRoute.addAlias("GET", "api/search/:query", "jmx.findObjects");
 		
-		route.addAlias("hello/:name", "greeter.hello");
-		route.addAlias("add/:a/:b", "math.add");
-		route.addAlias("GET", "jmx/all", "jmxListener.getAll");
-		route.addAlias("POST", "drawing", "drawing.send");
-		route.addAlias("ALL", "render", "modelViewController.render");
+		// With this tricky solutions we cover the HTML pages with a Moleculer Services
+		restRoute.addAlias("ALL", "table.html", "tableService.render");
+		restRoute.addAlias("ALL", "upload.html", "upload.receive");
+		
+		restRoute.addAlias("GET", "api/streamer", "mediaStreamer.getPacket");
+		restRoute.addAlias("GET", "api/clock", "serverSideImage.getImage");
 
-		route.addAlias("GET", "streamer", "mediaStreamer.getPacket");
-		route.addAlias("GET", "clock", "serverSideImage.getImage");
+		// Create route for static content (HTML pages, images, CSS files)
+		Route staticRoute = gateway.addRoute(new Route());
+		staticRoute.setMappingPolicy(MappingPolicy.ALL);
+		
+		// Install middlewares (in REVERSED invocation order)
+		ServeStatic serveStatic = new ServeStatic("/", "/www");
+		serveStatic.setEnableReloading(developmentMode);
+		
+		staticRoute.use(serveStatic);
+		staticRoute.use(new Favicon("/www/img/favicon.ico"));
+		staticRoute.use(new Redirector("/", "/index.html", 307));
 
 		// --- CUSTOM BEFORE-CALL FUNCTION ---
 
 		// Custom actions before/after the call
 		gateway.setBeforeCall((currentRoute, req, rsp, data) -> {
 			String path = req.getPath();
-			if (path.startsWith("/upload")) {
+			if (path.startsWith("/api/upload")) {
 
 				// Copy remote address into the "meta" structure
 				Tree meta = data.getMeta();
 				meta.put("address", req.getAddress());
 				return;
 			}
-			if ("/streamer".equals(path)) {
+			if ("/api/streamer".equals(path)) {
 
 				// Copy the "Range" header into the "meta" structure
 				String range = req.getHeader("Range");

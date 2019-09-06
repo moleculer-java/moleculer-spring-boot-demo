@@ -1,33 +1,23 @@
-#{include parts/html-begin}
+#{include includes/html-begin}
 
-		<h1>Server-side rendering (without JavaScript)</h1>
-		<form method="POST" action="render" enctype="text/plain">
+		<h1>Server-side rendering</h1>
+		<form method="POST" action="table.html" enctype="text/plain">
 
 			<input type="hidden" name="index" value="#{index}">
 
-			<input type="submit" name="firstButton" value="&lt;&lt; First" #{equals prevDisabled true} disabled #{end}>			
+			<input class="nav" type="submit" name="firstButton" value="&lt;&lt; First" #{equals prevDisabled true} disabled #{end}>			
 			
-			<input type="submit" name="prevButton" value="&lt; Previous" #{equals prevDisabled true} disabled #{end}>			
+			<input class="nav" type="submit" name="prevButton" value="&lt; Previous" #{equals prevDisabled true} disabled #{end}>			
 
 			#{for link : links}
-				<input type="submit" name="jump" value="#{link.page}" #{equals link.current true} disabled #{end}>
+				<input class="page" type="submit" name="jump" value="#{link.page}" #{equals link.current true} disabled #{end}>
 			#{end}
 
-			<input type="submit" name="nextButton" value="Next &gt;" #{equals nextDisabled true} disabled #{end}>
+			<input class="nav" type="submit" name="nextButton" value="Next &gt;" #{equals nextDisabled true} disabled #{end}>
 
-			<input type="submit" name="lastButton" value="Last &gt;&gt;" #{equals nextDisabled true} disabled #{end}>
-
-			<br>
-			Rows per page:
-			<select name="rowsPerPage" size="1">
-				#{for value : rowsPerPage}
-					<option value="#{value.number}" #{equals value.selected true} selected #{end}>#{value.number}</option>
-				#{end}
-			</select>
+			<input class="nav" type="submit" name="lastButton" value="Last &gt;&gt;" #{equals nextDisabled true} disabled #{end}>
 			
-			<input type="submit" name="reload" value="Reload">
-			
-			<table>
+			<table class="table">
 				<tr>
 					<th>Zone ID</th>
 					<th>Display Name</th>
@@ -41,7 +31,16 @@
 					</tr>
 				#{end}
 			</table>
+
+			Rows per page:
+			<select name="rowsPerPage" size="1">
+				#{for value : rowsPerPage}
+					<option value="#{value.number}" #{equals value.selected true} selected #{end}>#{value.number}</option>
+				#{end}
+			</select>
+			
+			<input type="submit" name="reload" value="Reload">
   
 		</form>
 		
-#{include parts/html-end}
+#{include includes/html-end}
