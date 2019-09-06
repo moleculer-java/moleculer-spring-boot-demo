@@ -116,7 +116,6 @@ public class MoleculerApplication {
 		
 		// Add CORS headers to all REST responses
 		restRoute.use(new CorsHeaders());
-		restRoute.use(new ErrorPage());
 		
 		// Configure REST services. These services may be LOCAL or REMOTE. Even
 		// NodeJS-based services can be provided via message broker (eg. NATS).		
@@ -144,7 +143,8 @@ public class MoleculerApplication {
 		staticRoute.use(serveStatic);
 		staticRoute.use(new Favicon("/www/img/favicon.ico"));
 		staticRoute.use(new Redirector("/", "/index.html", 307));
-
+		staticRoute.use(new ErrorPage());
+		
 		// --- CUSTOM BEFORE-CALL FUNCTION ---
 
 		// Custom actions before/after the call
