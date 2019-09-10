@@ -59,7 +59,7 @@ import services.moleculer.web.template.DataTreeEngine;
 
 /**
  * Sample Spring Boot Application. It can run on a Netty Server and as a J2EE
- * Servlet. The Services are loaded from the pacckage specified in
+ * Servlet. The Services are loaded from the package specified in
  * the @ComponentScan annotation.
  */
 @SpringBootApplication
@@ -94,8 +94,22 @@ public class MoleculerApplication {
 
 		// Configure Service Broker
 		ServiceBrokerConfig cfg = new ServiceBrokerConfig();
+
+		// Define the underlaying JSON implementations (eg. "jackson", "boon",
+		// "builtin", "gson", "fastjson", "genson", etc.)
+		// See https://github.com/berkesa/datatree-adapters
 		cfg.setJsonReaders("boon,jackson");
 		cfg.setJsonWriters("jackson");
+
+		// Define Transporter to connect other nodes
+		// cfg.setTransporter(new RedisTransporter("redis://host"));
+		
+		// Supported servers:
+		// - Redis Server
+		// - Kafka Server
+		// - NATS Server
+		// - Servers with AMQP protocol (eg. RabbitMQ)
+		// - TCP (serverless, direct connection between the nodes)
 
 		// Create Service Broker and API Gateway
 		ServiceBroker broker = new ServiceBroker(cfg);
