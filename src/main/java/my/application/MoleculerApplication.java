@@ -57,17 +57,33 @@ import services.moleculer.web.router.MappingPolicy;
 import services.moleculer.web.router.Route;
 import services.moleculer.web.template.DataTreeEngine;
 
+/**
+ * Sample Spring Boot Application. It can run on a Netty Server and as a J2EE
+ * Servlet. The Services are loaded from the pacckage specified in
+ * the @ComponentScan annotation.
+ */
 @SpringBootApplication
 @ComponentScan("my.services")
 public class MoleculerApplication {
 
 	// --- CONFIGURATION OF THE WEB APPLICATION ---
 
+	/**
+	 * The contents of the Environment are loaded from the main application
+	 * configuration file (from the "application.yml").
+	 */
 	@Autowired
 	private Environment env;
 
 	// --- CREATE AND CONFIGURE SERVICE BROKER ---
 
+	/**
+	 * This section contains the most important settings. Creates the
+	 * ServiceBroker, defines the HTTP Middlewares and assigns Aliases to REST
+	 * services.
+	 * 
+	 * @return ServiceBroker instance
+	 */
 	@Bean(initMethod = "start", destroyMethod = "stop")
 	public ServiceBroker getServiceBroker() {
 
@@ -110,44 +126,55 @@ public class MoleculerApplication {
 		templateEngine.setTemplatePath("/www");
 
 		// --- CONFIGURE ROUTES AND MIDDLEWARES ---
-		
+
 		// Create route for REST services
 		Route restRoute = gateway.addRoute(new Route());
-		
+
 		// Add CORS headers to all REST responses
 		restRoute.use(new CorsHeaders());
-		
+
+		// Custom error pages (for handle errors of Template Engine)
+		restRoute.use(new ErrorPage());
+
 		// Configure REST services. These services may be LOCAL or REMOTE. Even
-		// NodeJS-based services can be provided via message broker (eg. NATS).		
+		// NodeJS-based services can be provided via message broker (eg. NATS).
+		// You can define Aliases by using Annotations (see in ChatService.java)
 		restRoute.addAlias("api/hello/:name", "greeter.hello");
-		restRoute.addAlias("api/add/:a/:b", "math.add");		
+		restRoute.addAlias("api/add/:a/:b", "math.add");
 		restRoute.addAlias("GET", "api/jmx", "jmxListener.getAll");
 		restRoute.addAlias("POST", "api/drawing", "drawing.send");
 		restRoute.addAlias("GET", "api/search/:query", "jmx.findObjects");
-		
-		// With this tricky solutions we cover the HTML pages with a Moleculer Services
+
+		// With this tricky solutions we cover the HTML pages with a Moleculer
+		// Services
 		restRoute.addAlias("ALL", "table.html", "tableService.render");
 		restRoute.addAlias("ALL", "upload.html", "upload.receive");
-		
+
 		restRoute.addAlias("GET", "api/streamer", "mediaStreamer.getPacket");
 		restRoute.addAlias("GET", "api/clock", "serverSideImage.getImage");
 
 		// Create route for static content (HTML pages, images, CSS files)
 		Route staticRoute = gateway.addRoute(new Route());
 		staticRoute.setMappingPolicy(MappingPolicy.ALL);
-		
+
 		// Install middlewares (in REVERSED invocation order)
 		ServeStatic serveStatic = new ServeStatic("/", "/www");
 		serveStatic.setEnableReloading(developmentMode);
-		
+
+		// Last in the invocation chain is the static file handler
 		staticRoute.use(serveStatic);
+
+		// Second is the "favicon" handler
 		staticRoute.use(new Favicon("/www/img/favicon.ico"));
+
+		// First middleware redirects "/" path to "/index.html"
 		staticRoute.use(new Redirector("/", "/index.html", 307));
-		staticRoute.use(new ErrorPage());
-		
+
 		// --- CUSTOM BEFORE-CALL FUNCTION ---
 
-		// Custom actions before/after the call
+		// Custom actions before/after the call (here you can copy headers,
+		// session variables, remote IP address into the Meta block) - There is
+		// also an "afterCall" function (for copy from JSON into the Response)
 		gateway.setBeforeCall((currentRoute, req, rsp, data) -> {
 			String path = req.getPath();
 			if (path.startsWith("/api/upload")) {
@@ -171,7 +198,9 @@ public class MoleculerApplication {
 
 		// --- ADD JMX SERVICE ---
 
-		// Create and install JMX service (optional)
+		// Create and install JMX service
+		// (this example program uses JMX, but is not required)
+		// See https://github.com/moleculer-java/moleculer-java-jmx
 		JmxService jmx = new JmxService();
 		broker.createService(jmx);
 
@@ -203,28 +232,40 @@ public class MoleculerApplication {
 
 	// --- INTERACTIVE DEVELOPER CONSOLES ---
 
+	/**
+	 * See https://github.com/moleculer-java/moleculer-java-repl
+	 * 
+	 * @return local console instance
+	 */
 	@Bean
 	@Profile("development")
 	public LocalRepl getLocalConsole() {
 
 		// Start local (standard input) console
+		// (type "help" to list commands)
 		LocalRepl repl = new LocalRepl();
 		repl.addCommand(new HelloCommand());
 		return repl;
 	}
 
+	/**
+	 * See https://github.com/moleculer-java/moleculer-java-repl
+	 * 
+	 * @return telnet-based developer console instance
+	 */
 	@Bean
 	@Profile("development")
 	public RemoteRepl getRemoteConsole() {
 
 		// Start remote (telnet-based) console
+		// (mostly the Local Console is enough)
 		RemoteRepl repl = new RemoteRepl();
 		repl.setPort(env.getProperty("repl.port", Integer.class, 23));
 		repl.addCommand(new HelloCommand());
 		return repl;
 	}
 
-	// --- NETTY SERVER (IN STANDALONE MODE) ---
+	// --- NETTY SERVER (RUNS ONLY IN STANDALONE MODE) ---
 
 	/**
 	 * Netty is used for standalone operation. This server is disabled in the
@@ -238,7 +279,7 @@ public class MoleculerApplication {
 	@ConditionalOnProperty(value = "netty.enabled", havingValue = "true", matchIfMissing = true)
 	public NettyServer getNettyServer() {
 
-		// Nett
+		// Create Netty server
 		NettyServer server = new NettyServer();
 		server.setPort(env.getProperty("netty.port", Integer.class, 3000));
 
