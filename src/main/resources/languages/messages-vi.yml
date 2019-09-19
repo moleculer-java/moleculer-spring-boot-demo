@@ -1,0 +1,39 @@
+# VIETNAMESE (VI) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Hàng cho mỗi trang
+
+  # Next
+  next: Tiếp theo
+
+  # Previous
+  previous: Trước đó
+
+  # Server-side rendering
+  title: Kết xuất phía máy chủ
+
+  # First
+  first: Đầu tiên
+
+  # Name of the Time Zone
+  timeZoneName: Tên của Múi Giờ
+
+  # Reload
+  reload: Nạp lại
+
+  # Language
+  language: Ngôn ngữ
+
+  # back to main menu
+  back: trở lại đơn chính
+
+  # Offset in Hours
+  timeZoneOffset: Bù đắp trong Giờ
+
+  # Last
+  last: Cuối cùng
+
+  # Time Zone Identifier
+  timeZoneID: Múi Giờ Nhận Dạng

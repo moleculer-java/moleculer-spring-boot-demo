@@ -1,0 +1,39 @@
+# FRENCH (FR) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Nombre de lignes par page
+
+  # Next
+  next: Prochain
+
+  # Previous
+  previous: Précédent
+
+  # Server-side rendering
+  title: Rendu côté serveur
+
+  # First
+  first: Premier
+
+  # Name of the Time Zone
+  timeZoneName: Nom du fuseau horaire
+
+  # Reload
+  reload: Recharger
+
+  # Language
+  language: Langue
+
+  # back to main menu
+  back: retour au menu principal
+
+  # Offset in Hours
+  timeZoneOffset: Décalage dans les Heures
+
+  # Last
+  last: Dernière
+
+  # Time Zone Identifier
+  timeZoneID: Identificateur Du Fuseau Horaire

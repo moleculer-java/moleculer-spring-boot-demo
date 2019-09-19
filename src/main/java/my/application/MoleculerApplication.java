@@ -56,6 +56,7 @@ import services.moleculer.web.netty.NettyServer;
 import services.moleculer.web.router.MappingPolicy;
 import services.moleculer.web.router.Route;
 import services.moleculer.web.template.DataTreeEngine;
+import services.moleculer.web.template.languages.DefaultMessageLoader;
 
 /**
  * Sample Spring Boot Application. It can run on a Netty Server and as a J2EE
@@ -103,7 +104,7 @@ public class MoleculerApplication {
 
 		// Define Transporter to connect other nodes
 		// cfg.setTransporter(new RedisTransporter("redis://host"));
-		
+
 		// Supported servers:
 		// - Redis Server
 		// - Kafka Server
@@ -138,6 +139,10 @@ public class MoleculerApplication {
 		// Enable template reloading in development mode
 		templateEngine.setReloadable(developmentMode);
 		templateEngine.setTemplatePath("/www");
+
+		// Enable multilingualism and language file reloading in development
+		// mode (language files can be in YAML or Java Properties format)
+		templateEngine.setMessageLoader(new DefaultMessageLoader("languages/messages", "yml", developmentMode));
 
 		// --- CONFIGURE ROUTES AND MIDDLEWARES ---
 
@@ -181,9 +186,9 @@ public class MoleculerApplication {
 		// Second is the "favicon" handler
 		staticRoute.use(new Favicon("/www/img/favicon.ico"));
 
-		// First middleware redirects "/" path to "/index.html"
-		staticRoute.use(new Redirector("/", "/index.html", 307));
-
+		// First middleware redirects "/" path to "index.html"
+		staticRoute.use(new Redirector("/", "index.html", 307));
+		
 		// --- CUSTOM BEFORE-CALL FUNCTION ---
 
 		// Custom actions before/after the call (here you can copy headers,

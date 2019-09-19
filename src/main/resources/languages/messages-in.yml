@@ -1,0 +1,39 @@
+# INDONESIAN (IN) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Baris per halaman
+
+  # Next
+  next: Berikutnya
+
+  # Previous
+  previous: Sebelumnya
+
+  # Server-side rendering
+  title: Perenderan sisi-Server
+
+  # First
+  first: Pertama
+
+  # Name of the Time Zone
+  timeZoneName: Nama zona waktu
+
+  # Reload
+  reload: Reload
+
+  # Language
+  language: Bahasa
+
+  # back to main menu
+  back: kembali ke menu utama
+
+  # Offset in Hours
+  timeZoneOffset: Ofset dalam jam
+
+  # Last
+  last: Terakhir
+
+  # Time Zone Identifier
+  timeZoneID: Identifier Zona Waktu

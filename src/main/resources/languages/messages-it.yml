@@ -1,0 +1,39 @@
+# ITALIAN (IT) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Righe per pagina
+
+  # Next
+  next: Prossimo
+
+  # Previous
+  previous: Precedente
+
+  # Server-side rendering
+  title: Rendering lato Server
+
+  # First
+  first: Prima
+
+  # Name of the Time Zone
+  timeZoneName: Nome del fuso orario
+
+  # Reload
+  reload: Ricaricare
+
+  # Language
+  language: Lingua
+
+  # back to main menu
+  back: torna al menu principale
+
+  # Offset in Hours
+  timeZoneOffset: Scostamento in ore
+
+  # Last
+  last: Ultimo
+
+  # Time Zone Identifier
+  timeZoneID: Identificatore Del Fuso Orario

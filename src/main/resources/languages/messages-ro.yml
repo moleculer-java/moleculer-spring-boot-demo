@@ -1,0 +1,39 @@
+# ROMANIAN (RO) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rânduri pe pagină
+
+  # Next
+  next: Următorul
+
+  # Previous
+  previous: Anterior
+
+  # Server-side rendering
+  title: Redare Server-side
+
+  # First
+  first: Primul
+
+  # Name of the Time Zone
+  timeZoneName: Denumirea zonei temporale
+
+  # Reload
+  reload: Reîncarcă
+
+  # Language
+  language: Limba
+
+  # back to main menu
+  back: înapoi la meniul principal
+
+  # Offset in Hours
+  timeZoneOffset: Compensarea în ore
+
+  # Last
+  last: Ultimul
+
+  # Time Zone Identifier
+  timeZoneID: Identificatorul Zonei De Fus Orar

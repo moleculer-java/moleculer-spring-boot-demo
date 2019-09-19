@@ -1,0 +1,39 @@
+# SLOVENIAN (SL) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Vrstice na stran
+
+  # Next
+  next: Naprej
+
+  # Previous
+  previous: Predhodno
+
+  # Server-side rendering
+  title: Upodabljanje s strani strežnika
+
+  # First
+  first: Prvi
+
+  # Name of the Time Zone
+  timeZoneName: Ime časovnega območja
+
+  # Reload
+  reload: Znova naloži
+
+  # Language
+  language: Jezik
+
+  # back to main menu
+  back: nazaj na glavni meni
+
+  # Offset in Hours
+  timeZoneOffset: Odmik v urah
+
+  # Last
+  last: Nazadnje
+
+  # Time Zone Identifier
+  timeZoneID: Oznaka Časovnega Območja

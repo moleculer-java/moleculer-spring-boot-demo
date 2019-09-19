@@ -1,0 +1,39 @@
+# CROATIAN (HR) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Linije na stranici
+
+  # Next
+  next: Sljedeći
+
+  # Previous
+  previous: Prethodno
+
+  # Server-side rendering
+  title: Prikazivanje na strani poslužitelja
+
+  # First
+  first: Prvi
+
+  # Name of the Time Zone
+  timeZoneName: Naziv vremenske zone
+
+  # Reload
+  reload: Ponovo pokreni
+
+  # Language
+  language: Jezik
+
+  # back to main menu
+  back: povratak na glavni izbornik
+
+  # Offset in Hours
+  timeZoneOffset: Pomak u satu
+
+  # Last
+  last: Posljednji
+
+  # Time Zone Identifier
+  timeZoneID: Identifikator Vremenske Zone

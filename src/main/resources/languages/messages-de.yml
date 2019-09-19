@@ -1,0 +1,39 @@
+# GERMAN (DE) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Zeilen pro Seite
+
+  # Next
+  next: Nächsten
+
+  # Previous
+  previous: Vorherigen
+
+  # Server-side rendering
+  title: Serverseitige rendering
+
+  # First
+  first: Erst
+
+  # Name of the Time Zone
+  timeZoneName: Name der Zeitzone
+
+  # Reload
+  reload: Laden
+
+  # Language
+  language: Sprachlich
+
+  # back to main menu
+  back: zurück zum Hauptmenü
+
+  # Offset in Hours
+  timeZoneOffset: Offset in Stunden
+
+  # Last
+  last: Letzt
+
+  # Time Zone Identifier
+  timeZoneID: Zeitzonenbezeichner

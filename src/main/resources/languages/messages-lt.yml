@@ -1,0 +1,39 @@
+# LITHUANIAN (LT) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Eilučių per puslapį
+
+  # Next
+  next: Kitas
+
+  # Previous
+  previous: Ankstesnis
+
+  # Server-side rendering
+  title: Server-side atvaizdavimas
+
+  # First
+  first: Pirmas
+
+  # Name of the Time Zone
+  timeZoneName: Pavadinimas Laiko Juosta
+
+  # Reload
+  reload: Atnaujinti
+
+  # Language
+  language: Kalbos
+
+  # back to main menu
+  back: grįžti į pagrindinį meniu
+
+  # Offset in Hours
+  timeZoneOffset: Kompensuoti Valandas
+
+  # Last
+  last: Paskutinis
+
+  # Time Zone Identifier
+  timeZoneID: Laiko Juosta Vardas

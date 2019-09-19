@@ -1,0 +1,39 @@
+# CATALAN (CA) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Files per pàgina
+
+  # Next
+  next: Següent
+
+  # Previous
+  previous: Anteriors
+
+  # Server-side rendering
+  title: Servidor-al cantó
+
+  # First
+  first: Primer
+
+  # Name of the Time Zone
+  timeZoneName: Nom de la Zona horària
+
+  # Reload
+  reload: Carregar
+
+  # Language
+  language: Idioma
+
+  # back to main menu
+  back: tornar al menú principal
+
+  # Offset in Hours
+  timeZoneOffset: Desplaçament en Hores
+
+  # Last
+  last: Última
+
+  # Time Zone Identifier
+  timeZoneID: Zona Horària Identificador

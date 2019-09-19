@@ -1,0 +1,39 @@
+# KAZAKH (KZ) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Парақтағы жолдар
+
+  # Next
+  next: Келесі
+
+  # Previous
+  previous: Предыдущий
+
+  # Server-side rendering
+  title: Серверлік қызмет көрсету
+
+  # First
+  first: Бірінші
+
+  # Name of the Time Zone
+  timeZoneName: Уақыт белдеуінің атауы
+
+  # Reload
+  reload: Қайта жүктеу
+
+  # Language
+  language: Тілі
+
+  # back to main menu
+  back: басты мәзірге оралу
+
+  # Offset in Hours
+  timeZoneOffset: Сағаттардағы ығысу
+
+  # Last
+  last: Соңғы
+
+  # Time Zone Identifier
+  timeZoneID: Уақыт Белдеуінің Id

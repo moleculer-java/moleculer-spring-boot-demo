@@ -37,6 +37,8 @@ import io.datatree.Tree;
 import services.moleculer.ServiceBroker;
 import services.moleculer.service.Action;
 import services.moleculer.service.Service;
+import services.moleculer.web.ApiGateway;
+import services.moleculer.web.template.languages.MessageLoader;
 
 /**
  * Using a server-side template engine. URL of this sample (when
@@ -59,6 +61,10 @@ import services.moleculer.service.Service;
 @Controller
 public class TableService extends Service {
 
+	// --- MULTILINGUAL MESSAGE HANDLER ---
+	
+	private MessageLoader messageLoader;
+	
 	// --- DATABASE EMULATION ---
 
 	/**
@@ -74,7 +80,11 @@ public class TableService extends Service {
 		DateFormat formatter = new SimpleDateFormat("HH:mm");
 		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-		// Fill out "database"
+		// Get pointer to MessageLoader
+		ApiGateway apiGateway = (ApiGateway) broker.getLocalService("api-gw");
+		messageLoader = apiGateway.getTemplateEngine().getMessageLoader();
+		
+		// Fill out "database" with "records"
 		Tree rows = database.putList("rows");
 		String[] ids = TimeZone.getAvailableIDs();
 		Arrays.sort(ids, String.CASE_INSENSITIVE_ORDER);
@@ -197,17 +207,42 @@ public class TableService extends Service {
 			value.put("selected", rowsPerPage == i);
 		}
 
+		// List of languages/locales (select the current language)
+		String language = ctx.params.get("language", "en");
+		Tree messages = messageLoader.loadMessages(language);
+		Tree languages = messages.get("msg.languages").clone();
+		boolean found = false;
+		for (Tree lang: languages) {
+			if (language.equals(lang.get("code", ""))) {
+				found = true;
+				lang.put("selected", true);
+				model.put("languageName", lang.get("displayName", ""));
+				break;
+			}
+		}
+		model.putObject("languages", languages);
+		if (!found) {
+			
+			// Select English language
+			model.put("languages.english.selected", true);
+			model.put("languageName", "English");
+		}
+		
 		// IMPORTANT PART: This section instructs APIGateway not to give a JSON
 		// response, but to convert JSON to HTML. The "$template" parameter
 		// specifies the file name of the template (relative path to template).
 		Tree meta = model.getMeta();
 		meta.put("$template", "table");
+		
+		// Set the template language (use the specified message file)
+		meta.put("$locale", language);
 
 		// Other special meta fields:
 		// - $statusCode = Status code (eg. 200, 404) of the HTTP response message.
 		// - $responseType = Content-Type header's value of the HTTP response message.
 		// - $responseHeaders = Set of response headers.
 		// - $location = Location in header for redirects.
+		// - $locale = Language of the generated page (message file selector).
 		
 		// Write the page mode into the log file
 		// logger.info("Page model:\r\n" + model);

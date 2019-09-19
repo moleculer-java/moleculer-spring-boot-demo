@@ -1,0 +1,39 @@
+# GREEK (EL) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Γραμμές ανά σελίδα
+
+  # Next
+  next: Επόμενη
+
+  # Previous
+  previous: Προηγούμενη
+
+  # Server-side rendering
+  title: Απόδοση διακομιστή
+
+  # First
+  first: Πρώτη
+
+  # Name of the Time Zone
+  timeZoneName: Ονομασία της ζώνης ώρας
+
+  # Reload
+  reload: Φορτώσετε
+
+  # Language
+  language: Γλώσσα
+
+  # back to main menu
+  back: επιστροφή στο κύριο μενού
+
+  # Offset in Hours
+  timeZoneOffset: Μετατόπιση σε ώρες
+
+  # Last
+  last: Τελευταία
+
+  # Time Zone Identifier
+  timeZoneID: Αναγνωριστικό Ζώνης Ώρας

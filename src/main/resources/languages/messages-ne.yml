@@ -1,0 +1,39 @@
+# NEPALI (NE) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: पङ्क्ति प्रति पृष्ठ
+
+  # Next
+  next: अर्को
+
+  # Previous
+  previous: पछिल्लो
+
+  # Server-side rendering
+  title: सर्भर-पक्ष प्रतिपादन
+
+  # First
+  first: पहिलो
+
+  # Name of the Time Zone
+  timeZoneName: नाम को समय क्षेत्र
+
+  # Reload
+  reload: रिलोड गर्नुहोस्
+
+  # Language
+  language: भाषा
+
+  # back to main menu
+  back: फिर्ता मुख्य मेनुमा
+
+  # Offset in Hours
+  timeZoneOffset: मा Offset घण्टा
+
+  # Last
+  last: गत
+
+  # Time Zone Identifier
+  timeZoneID: समय क्षेत्र पहिचायक

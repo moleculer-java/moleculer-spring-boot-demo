@@ -1,0 +1,39 @@
+# MACEDONIAN (MK) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Редови по страница
+
+  # Next
+  next: Следна
+
+  # Previous
+  previous: Претходна
+
+  # Server-side rendering
+  title: Рендерирање од страна на серверот
+
+  # First
+  first: Прв
+
+  # Name of the Time Zone
+  timeZoneName: Името на Временската Зона
+
+  # Reload
+  reload: Вчитај
+
+  # Language
+  language: Јазик
+
+  # back to main menu
+  back: врати се на главното мени
+
+  # Offset in Hours
+  timeZoneOffset: Форумот во Часови
+
+  # Last
+  last: Последните
+
+  # Time Zone Identifier
+  timeZoneID: Временска Зона Идентификатор

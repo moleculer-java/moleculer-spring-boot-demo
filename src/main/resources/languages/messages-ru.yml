@@ -1,0 +1,39 @@
+# RUSSIAN (RU) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Строки на странице
+
+  # Next
+  next: Следующий
+
+  # Previous
+  previous: Предыдущий
+
+  # Server-side rendering
+  title: Рендеринг на стороне сервера
+
+  # First
+  first: Первый
+
+  # Name of the Time Zone
+  timeZoneName: Название часового пояса
+
+  # Reload
+  reload: Перезагрузить
+
+  # Language
+  language: Язык
+
+  # back to main menu
+  back: вернуться в Главное меню
+
+  # Offset in Hours
+  timeZoneOffset: Смещение в часах
+
+  # Last
+  last: Последний
+
+  # Time Zone Identifier
+  timeZoneID: Идентификатор Часового Пояса

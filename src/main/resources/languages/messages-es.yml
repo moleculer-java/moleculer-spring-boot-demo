@@ -1,0 +1,39 @@
+# SPANISH (ES) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Filas por página
+
+  # Next
+  next: Siguiente
+
+  # Previous
+  previous: Anterior
+
+  # Server-side rendering
+  title: Renderizado en el servidor
+
+  # First
+  first: Primero
+
+  # Name of the Time Zone
+  timeZoneName: Nombre de la zona Horaria
+
+  # Reload
+  reload: Cargar
+
+  # Language
+  language: Idioma
+
+  # back to main menu
+  back: volver al menú principal
+
+  # Offset in Hours
+  timeZoneOffset: Desplazamiento en Horas
+
+  # Last
+  last: Última
+
+  # Time Zone Identifier
+  timeZoneID: Identificador De La Zona Horaria

@@ -1,0 +1,39 @@
+# ESTONIAN (ET) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Read lehekülje kohta
+
+  # Next
+  next: Järgmine
+
+  # Previous
+  previous: Eelmine
+
+  # Server-side rendering
+  title: Serveripoolne renderdamine
+
+  # First
+  first: Esimene
+
+  # Name of the Time Zone
+  timeZoneName: Ajavööndi nimi
+
+  # Reload
+  reload: Laadida
+
+  # Language
+  language: Keel
+
+  # back to main menu
+  back: tagasi peamenüüsse
+
+  # Offset in Hours
+  timeZoneOffset: Nihe tundides
+
+  # Last
+  last: Viimane
+
+  # Time Zone Identifier
+  timeZoneID: Ajavööndi Identifikaator

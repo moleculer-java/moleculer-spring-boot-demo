@@ -1,0 +1,39 @@
+# MONGOLIAN (MN) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Нэг хуудас мөр
+
+  # Next
+  next: Дараа нь
+
+  # Previous
+  previous: Өмнөх
+
+  # Server-side rendering
+  title: Сервер тал узуулж
+
+  # First
+  first: Эхлээд
+
+  # Name of the Time Zone
+  timeZoneName: Цагийн бүсийн нэр
+
+  # Reload
+  reload: Дуут хувилбар
+
+  # Language
+  language: Хэл
+
+  # back to main menu
+  back: буцах үндсэн цэс
+
+  # Offset in Hours
+  timeZoneOffset: Цагийн офсет
+
+  # Last
+  last: Сүүлд
+
+  # Time Zone Identifier
+  timeZoneID: Цагийн Бүсийн Танигч

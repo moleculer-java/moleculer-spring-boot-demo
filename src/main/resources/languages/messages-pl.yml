@@ -1,0 +1,39 @@
+# POLISH (PL) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Wiersze na stronie
+
+  # Next
+  next: Następny
+
+  # Previous
+  previous: Poprzedni
+
+  # Server-side rendering
+  title: Renderowanie po stronie serwera
+
+  # First
+  first: Pierwszy
+
+  # Name of the Time Zone
+  timeZoneName: Nazwa strefy czasowej
+
+  # Reload
+  reload: Przeładować
+
+  # Language
+  language: Język
+
+  # back to main menu
+  back: powrót do Głównego menu
+
+  # Offset in Hours
+  timeZoneOffset: Przesunięcie w godzinach
+
+  # Last
+  last: Ostatni
+
+  # Time Zone Identifier
+  timeZoneID: Identyfikator Strefy Czasowej

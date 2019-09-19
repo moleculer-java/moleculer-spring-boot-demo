@@ -1,0 +1,39 @@
+# BULGARIAN (BG) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Редове на страница
+
+  # Next
+  next: Следващия
+
+  # Previous
+  previous: Предишна
+
+  # Server-side rendering
+  title: От страна на сървъра
+
+  # First
+  first: Първи
+
+  # Name of the Time Zone
+  timeZoneName: Име на часовата зона
+
+  # Reload
+  reload: Презареди
+
+  # Language
+  language: Език
+
+  # back to main menu
+  back: се върнете в Главното меню
+
+  # Offset in Hours
+  timeZoneOffset: Изместване на часа
+
+  # Last
+  last: Последно
+
+  # Time Zone Identifier
+  timeZoneID: Идентификатор На Часовия Пояс

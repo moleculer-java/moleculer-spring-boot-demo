@@ -1,0 +1,39 @@
+# CHINESE SIMPLIFIED (ZH) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: 每页行数
+
+  # Next
+  next: 下一个
+
+  # Previous
+  previous: 上一篇
+
+  # Server-side rendering
+  title: 服务器端渲染
+
+  # First
+  first: 首先
+
+  # Name of the Time Zone
+  timeZoneName: 时区名称
+
+  # Reload
+  reload: 重新加载
+
+  # Language
+  language: 语言
+
+  # back to main menu
+  back: 返回主菜单
+
+  # Offset in Hours
+  timeZoneOffset: 小时偏移
+
+  # Last
+  last: 最后
+
+  # Time Zone Identifier
+  timeZoneID: 时区标识符

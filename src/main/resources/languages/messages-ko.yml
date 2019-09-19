@@ -1,0 +1,39 @@
+# KOREAN (KO) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: 페이지 당 행
+
+  # Next
+  next: 다음
+
+  # Previous
+  previous: 이전
+
+  # Server-side rendering
+  title: 서버 측 렌더링
+
+  # First
+  first: 먼저
+
+  # Name of the Time Zone
+  timeZoneName: 시간대 이름
+
+  # Reload
+  reload: 새로 고침
+
+  # Language
+  language: 언어
+
+  # back to main menu
+  back: 메인 메뉴로 돌아 가기
+
+  # Offset in Hours
+  timeZoneOffset: 시간 단위 오프셋
+
+  # Last
+  last: 마지막
+
+  # Time Zone Identifier
+  timeZoneID: 시간대 식별자

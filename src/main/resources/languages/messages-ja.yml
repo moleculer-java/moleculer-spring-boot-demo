@@ -1,0 +1,39 @@
+# JAPANESE (JA) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: ページごとの行
+
+  # Next
+  next: 次へ
+
+  # Previous
+  previous: 前へ
+
+  # Server-side rendering
+  title: サーバー側レンダリング
+
+  # First
+  first: 最初に
+
+  # Name of the Time Zone
+  timeZoneName: タイムゾーンの名前
+
+  # Reload
+  reload: 再読み込み
+
+  # Language
+  language: 言語
+
+  # back to main menu
+  back: メインメニューに戻る
+
+  # Offset in Hours
+  timeZoneOffset: 時間単位のオフセット
+
+  # Last
+  last: 最後
+
+  # Time Zone Identifier
+  timeZoneID: タイムゾーン識別子

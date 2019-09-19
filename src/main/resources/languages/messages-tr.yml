@@ -1,0 +1,39 @@
+# TURKISH (TR) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Sayfa başına satır
+
+  # Next
+  next: Sonraki
+
+  # Previous
+  previous: Önceki
+
+  # Server-side rendering
+  title: Sunucu tarafı oluşturma
+
+  # First
+  first: İlk
+
+  # Name of the Time Zone
+  timeZoneName: Saat diliminin adı
+
+  # Reload
+  reload: Yüklemek
+
+  # Language
+  language: Dil
+
+  # back to main menu
+  back: ana menüye geri dön
+
+  # Offset in Hours
+  timeZoneOffset: Saat cinsinden ofset
+
+  # Last
+  last: Son
+
+  # Time Zone Identifier
+  timeZoneID: Saat Dilimi Tanımlayıcısı

@@ -1,0 +1,39 @@
+# LATVIAN (LV) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rindas lappusē
+
+  # Next
+  next: Nākamais
+
+  # Previous
+  previous: Iepriekšējo
+
+  # Server-side rendering
+  title: Servera puses renderēšana
+
+  # First
+  first: Pirmais
+
+  # Name of the Time Zone
+  timeZoneName: Laika joslas nosaukums
+
+  # Reload
+  reload: Pārlādēt
+
+  # Language
+  language: Valoda
+
+  # back to main menu
+  back: Atpakaļ uz galveno izvēlni
+
+  # Offset in Hours
+  timeZoneOffset: Nobīde stundās
+
+  # Last
+  last: Pēdējais
+
+  # Time Zone Identifier
+  timeZoneID: Laika Joslas Identifikators

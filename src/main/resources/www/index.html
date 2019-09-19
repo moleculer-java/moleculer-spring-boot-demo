@@ -10,15 +10,56 @@
 		<h1>Moleculer Samples</h1>
 		<ul id="menu">
 			<li><a href="drawing.html">Distributed, websocket-based drawing board</a>
+			<p>
+			Distributed drawing board where multiple users can draw.
+			The drawing events are transmitted over the network, so the
+			users can see each other's drawings.
+			</p>
 			<li><a href="chat.html">WebSocket-based Chat Application</a>
-			<li><a href="search.html">JMX Search</a>
-			<li><a href="jmx.html">JMX Listener</a>
-			<li><a href="math.html">Simple REST Service (math.add)</a>
-			<li><a href="greeter.html">Simple REST Service (greeter.hello)</a>		
+			<p>
+			The second example is a simple chat application.
+			Like the first example, it uses WebSockets to transmit events.
+			</p>
 			<li><a href="clock.html">Server Side Generated Image</a>
+			<p>
+			Molecular Services can not only produce JSONs.
+			This example shows how to generate binary content using Moleculer Service.
+			In this example, the generated binary content is a PNG image with a clock drawn on it.
+			</p>
+			<li><a href="table.html">Generating multilingual HTML with server-side template engine</a>
+			<p>
+			This example shows how HTML Template Engines can be used.
+			The Moleculer Service generates a pageable HTML table that can be displayed in 45 languages.
+			</p>
 			<li><a href="upload.html">File upload</a>
+			<p>
+			The example demonstrates that Moleculer services can not only receive requests in JSON format, but can also handle multipart content.
+			</p>
 			<li><a href="video.html">Media Streaming</a>
-			<li><a href="table.html">Generating HTML with server-side template engine</a>
+			<p>
+			Moleculer Services can send media (eg. video or audio) files to the browser.
+			When sending a video, the Moleculer Service handles partial requests, so the seeking function works in the Video Player window.
+			</p>
+			<li><a href="search.html">JMX Search</a>
+			<p>
+			A search interface to search the local JMX registry.
+			The example shows how to use the
+			<a href="https://moleculer-java.github.io/moleculer-java-jmx/" target="new">JMX Service</a>.
+			</p>
+			<li><a href="jmx.html">JMX Listener</a>
+			<p>
+			The example shows how to use event listeners.
+			The service monitors the JMX registry and sends the changed data to the browser when its contents change.
+			The data is sent to the HTML page via WebSocket.
+			</p>
+			<li><a href="math.html">Simple REST Service (math.add)</a>
+			<p>
+			This example illustrates the implementation of a simple REST call.
+			</p>
+			<li><a href="greeter.html">Simple REST Service (greeter.hello)</a>
+			<p>
+			This example also illustrates the implementation of a REST call.
+			</p>			
 		</ul>
 	</body>
 </html>

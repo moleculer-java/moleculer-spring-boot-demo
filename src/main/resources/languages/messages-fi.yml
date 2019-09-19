@@ -1,0 +1,39 @@
+# FINNISH (FI) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rivejä sivua kohti
+
+  # Next
+  next: Seuraava
+
+  # Previous
+  previous: Edellinen
+
+  # Server-side rendering
+  title: Palvelimen sivujen renderointi
+
+  # First
+  first: Ensimmäinen
+
+  # Name of the Time Zone
+  timeZoneName: Aikavyöhykkeen nimi
+
+  # Reload
+  reload: Lataa uudestaan
+
+  # Language
+  language: Kieli
+
+  # back to main menu
+  back: takaisin päävalikkoon
+
+  # Offset in Hours
+  timeZoneOffset: Siirtymä tunteina
+
+  # Last
+  last: Viimeinen
+
+  # Time Zone Identifier
+  timeZoneID: Aikavyöhykkeen Tunniste

@@ -1,0 +1,39 @@
+# HINDI (HI) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: प्रति पृष्ठ पंक्तियां
+
+  # Next
+  next: अगला
+
+  # Previous
+  previous: पिछला
+
+  # Server-side rendering
+  title: सर्वर साइड प्रतिपादन
+
+  # First
+  first: प्रथम
+
+  # Name of the Time Zone
+  timeZoneName: समय क्षेत्र का नाम
+
+  # Reload
+  reload: रीलोड करें
+
+  # Language
+  language: भाषा
+
+  # back to main menu
+  back: मुख्य मेनू पर वापस जाएं
+
+  # Offset in Hours
+  timeZoneOffset: घंटे में ऑफसेट
+
+  # Last
+  last: अंतिम
+
+  # Time Zone Identifier
+  timeZoneID: समय क्षेत्र पहचानकर्ता

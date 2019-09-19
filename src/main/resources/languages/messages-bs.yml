@@ -1,0 +1,39 @@
+# BOSNIAN (BS) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Redovi po stranici
+
+  # Next
+  next: Sljedeći
+
+  # Previous
+  previous: Prethodni
+
+  # Server-side rendering
+  title: Iscrtavanje fontova servera
+
+  # First
+  first: Prvi
+
+  # Name of the Time Zone
+  timeZoneName: Ime vremenskoj Zoni
+
+  # Reload
+  reload: Učitaj ponovo
+
+  # Language
+  language: Jezik
+
+  # back to main menu
+  back: povratak na glavni meni
+
+  # Offset in Hours
+  timeZoneOffset: Offset u satima
+
+  # Last
+  last: Posljednjoj
+
+  # Time Zone Identifier
+  timeZoneID: Modifikatori Vremenske Zone

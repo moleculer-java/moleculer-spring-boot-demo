@@ -1,0 +1,39 @@
+# UKRAINIAN (UK) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Рядки на сторінку
+
+  # Next
+  next: Наступний
+
+  # Previous
+  previous: Попередній
+
+  # Server-side rendering
+  title: Візуалізація на стороні сервера
+
+  # First
+  first: Перше
+
+  # Name of the Time Zone
+  timeZoneName: Назва часового поясу
+
+  # Reload
+  reload: Перезавантажити
+
+  # Language
+  language: Мова
+
+  # back to main menu
+  back: повернутися до головного меню
+
+  # Offset in Hours
+  timeZoneOffset: Зсув за години
+
+  # Last
+  last: Останній
+
+  # Time Zone Identifier
+  timeZoneID: Ідентифікатор часової зони

@@ -1,0 +1,39 @@
+# NORWEGIAN (NO) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rader per side
+
+  # Next
+  next: Neste
+
+  # Previous
+  previous: Tidligere
+
+  # Server-side rendering
+  title: Gjengivelse på serversiden
+
+  # First
+  first: Første
+
+  # Name of the Time Zone
+  timeZoneName: Navnet på Tidssone
+
+  # Reload
+  reload: Reload
+
+  # Language
+  language: Språk
+
+  # back to main menu
+  back: tilbake til hovedmenyen
+
+  # Offset in Hours
+  timeZoneOffset: Forskyvning i Timer
+
+  # Last
+  last: Siste
+
+  # Time Zone Identifier
+  timeZoneID: Tidssone Identifier

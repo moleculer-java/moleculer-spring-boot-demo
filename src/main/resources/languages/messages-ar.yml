@@ -1,0 +1,39 @@
+# ARABIC (AR) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: الصفوف في الصفحة
+
+  # Next
+  next: التالي
+
+  # Previous
+  previous: السابق
+
+  # Server-side rendering
+  title: عرض جانبي الخادم
+
+  # First
+  first: أولا
+
+  # Name of the Time Zone
+  timeZoneName: اسم المنطقة الزمنية
+
+  # Reload
+  reload: أعد التحميل
+
+  # Language
+  language: اللغة
+
+  # back to main menu
+  back: العودة إلى القائمة الرئيسية
+
+  # Offset in Hours
+  timeZoneOffset: إزاحة بوصة ساعات
+
+  # Last
+  last: الأخير
+
+  # Time Zone Identifier
+  timeZoneID: معرف المنطقة الزمنية

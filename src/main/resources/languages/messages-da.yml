@@ -1,0 +1,39 @@
+# DANISH (DA) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rækker pr. side
+
+  # Next
+  next: Næste
+
+  # Previous
+  previous: Forrige
+
+  # Server-side rendering
+  title: Server-sidegengivelse
+
+  # First
+  first: Første
+
+  # Name of the Time Zone
+  timeZoneName: Navn af Tidszone
+
+  # Reload
+  reload: Genindlæs
+
+  # Language
+  language: Sprog
+
+  # back to main menu
+  back: tilbage til hovedmenuen
+
+  # Offset in Hours
+  timeZoneOffset: Forskydning i timer
+
+  # Last
+  last: Sidste
+
+  # Time Zone Identifier
+  timeZoneID: Identifikator For Tidsområde

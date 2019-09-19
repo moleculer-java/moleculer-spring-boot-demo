@@ -1,0 +1,39 @@
+# THAI (TH) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: แถวต่อหน้า
+
+  # Next
+  next: ต่อไป
+
+  # Previous
+  previous: ก่อนหน้านี้
+
+  # Server-side rendering
+  title: เซิร์ฟเวอร์-ด้านการแสดงผล
+
+  # First
+  first: ก่อน
+
+  # Name of the Time Zone
+  timeZoneName: ชื่อของเขตเวลา
+
+  # Reload
+  reload: เรียกใหม่
+
+  # Language
+  language: ภาษา
+
+  # back to main menu
+  back: กลับหลักของเมนู
+
+  # Offset in Hours
+  timeZoneOffset: ช่วงเวลาในชั่วโมง
+
+  # Last
+  last: สุดท้าย
+
+  # Time Zone Identifier
+  timeZoneID: พื้นที่เวลาแสดงตัว

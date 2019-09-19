@@ -1,0 +1,147 @@
+# DEFAULT LANGUAGE FILE
+
+msg:
+  
+  title: Server-side rendering
+  first: First
+  previous: Previous
+  next: Next
+  last: Last
+  timeZoneID: Time Zone Identifier
+  timeZoneName: Name of the Time Zone
+  timeZoneOffset: Offset in Hours
+  rowsPerPage: Rows per page
+  language: Language
+  reload: Reload
+  back: back to main menu
+  
+  languages:
+    Byelorussian:
+      code: be
+      displayName: Беларуская
+    Bulgarian:
+      code: bg
+      displayName: Български
+    Bosnian:
+      code: bs
+      displayName: Bosanskih
+    Catalan:
+      code: ca
+      displayName: Català
+    Czech:
+      code: cs
+      displayName: Český
+    Serbian:
+      code: sr
+      displayName: Српски  
+    Danish:
+      code: da
+      displayName: Dansk
+    German:
+      code: de
+      displayName: Deutsche
+    Dutch:
+      code: nl
+      displayName: Dutch
+    Estonian:
+      code: et
+      displayName: Eesti
+    English:
+      code: en
+      displayName: English
+    Spanish:
+      code: es
+      displayName: Español
+    French:
+      code: fr
+      displayName: Français
+    Croatian:
+      code: hr
+      displayName: Hrvatski  
+    Indonesian:
+      code: in
+      displayName: Indonesian
+    Italian:
+      code: it
+      displayName: Italiano
+    Kazakh:
+      code: kz
+      displayName: Қазақ  
+    Latvian:
+      code: lv
+      displayName: Latvijas
+    Lithuanian:
+      code: lt
+      displayName: Lietuvos
+    Hungarian:
+      code: hu
+      displayName: Magyar
+    Macedonian:
+      code: mk
+      displayName: Македонски
+    Mongolian:
+      code: mn
+      displayName: Монгол  
+    Norwegian:
+      code: no
+      displayName: Norsk
+    Polish:
+      code: pl
+      displayName: Polskie
+    Portuguese:
+      code: pt
+      displayName: Português
+    Romanian:
+      code: ro
+      displayName: Română
+    Russian:
+      code: ru
+      displayName: Русский
+    Albanian:
+      code: sq
+      displayName: Shqiptare  
+    Slovene:
+      code: sl
+      displayName: Slovinčina
+    Slovak:
+      code: sk
+      displayName: Slovenský
+    Finnish:
+      code: fi
+      displayName: Suomalainen
+    Swedish:
+      code: sv
+      displayName: Svenska
+    Vietnamese:
+      code: vi
+      displayName: Tiếng Việt
+    Turkish:
+      code: tr
+      displayName: Türk
+    Ukrainian:
+      code: uk
+      displayName: Украинский  
+    Greek:
+      code: el
+      displayName: Ελληνικά
+    Hebrew:
+      code: iw
+      displayName: עברי
+    Arabic:
+      code: ar
+      displayName: عربى
+    Thai:
+      code: th
+      displayName: ไทย
+    Chinese:
+      code: zh
+      displayName: 中文
+    Hindi:
+      code: hi
+      displayName: हिंदी
+    Korean:
+      code: ko
+      displayName: 한국어
+    Japanese:
+      code: ja
+      displayName: 日本語

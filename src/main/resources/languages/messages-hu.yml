@@ -1,0 +1,39 @@
+# HUNGARIAN (HU) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Megjelenítendő sorok száma
+
+  # Next
+  next: Következő
+
+  # Previous
+  previous: Előző
+
+  # Server-side rendering
+  title: Szerveroldali lapgenerálás
+
+  # First
+  first: Első
+
+  # Name of the Time Zone
+  timeZoneName: Időzóna neve
+
+  # Reload
+  reload: Újratöltés
+
+  # Language
+  language: Nyelv
+
+  # back to main menu
+  back: vissza a főmenübe
+
+  # Offset in Hours
+  timeZoneOffset: Eltolódás órában
+
+  # Last
+  last: Utolsó
+
+  # Time Zone Identifier
+  timeZoneID: Időzóna azonosító

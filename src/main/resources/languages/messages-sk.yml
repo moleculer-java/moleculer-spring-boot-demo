@@ -1,0 +1,39 @@
+# SLOVAK (SK) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Riadky na stranu
+
+  # Next
+  next: Ďalší
+
+  # Previous
+  previous: Predchádzajúci
+
+  # Server-side rendering
+  title: Vykresľovanie na strane servera
+
+  # First
+  first: Prvý
+
+  # Name of the Time Zone
+  timeZoneName: Názov časového pásma
+
+  # Reload
+  reload: Načítať
+
+  # Language
+  language: Jazyk
+
+  # back to main menu
+  back: späť do hlavného menu
+
+  # Offset in Hours
+  timeZoneOffset: Posun v hodinách
+
+  # Last
+  last: Posledný
+
+  # Time Zone Identifier
+  timeZoneID: Identifikátor Časového Pásma

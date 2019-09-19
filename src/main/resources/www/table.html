@@ -1,27 +1,27 @@
 #{include includes/html-begin}
 
-		<h1>Server-side rendering</h1>
+		<h1>#{msg.title}</h1>
 		<form method="POST" action="table.html" enctype="text/plain">
 
 			<input type="hidden" name="index" value="#{index}">
 
-			<input class="nav" type="submit" name="firstButton" value="&lt;&lt; First" #{equals prevDisabled true} disabled #{end}>			
+			<input class="nav" type="submit" name="firstButton" value="&lt;&lt; #{msg.first}" #{equals prevDisabled true} disabled #{end}>			
 			
-			<input class="nav" type="submit" name="prevButton" value="&lt; Previous" #{equals prevDisabled true} disabled #{end}>			
+			<input class="nav" type="submit" name="prevButton" value="&lt;  #{msg.previous}" #{equals prevDisabled true} disabled #{end}>			
 
 			#{for link : links}
 				<input class="page" type="submit" name="jump" value="#{link.page}" #{equals link.current true} disabled #{end}>
 			#{end}
 
-			<input class="nav" type="submit" name="nextButton" value="Next &gt;" #{equals nextDisabled true} disabled #{end}>
+			<input class="nav" type="submit" name="nextButton" value="#{msg.next} &gt;" #{equals nextDisabled true} disabled #{end}>
 
-			<input class="nav" type="submit" name="lastButton" value="Last &gt;&gt;" #{equals nextDisabled true} disabled #{end}>
+			<input class="nav" type="submit" name="lastButton" value="#{msg.last} &gt;&gt;" #{equals nextDisabled true} disabled #{end}>
 			
 			<table class="table">
 				<tr>
-					<th>Zone ID</th>
-					<th>Display Name</th>
-					<th>Raw Offset</th>
+					<th>#{msg.timeZoneID}</th>
+					<th>#{msg.timeZoneName}</th>
+					<th>#{msg.timeZoneOffset}</th>
 				</tr>
 				#{for row : page}
 					<tr>
@@ -32,14 +32,21 @@
 				#{end}
 			</table>
 
-			Rows per page:
+			#{msg.rowsPerPage}:
 			<select name="rowsPerPage" size="1">
 				#{for value : rowsPerPage}
-					<option value="#{value.number}" #{equals value.selected true} selected #{end}>#{value.number}</option>
+					<option value="#{value.number}"#{equals value.selected true} selected #{end}>#{value.number}</option>
 				#{end}
 			</select>
 			
-			<input type="submit" name="reload" value="Reload">
+			#{msg.language}:
+			<select name="language" size="1">
+				#{for lang : languages}
+					<option value="#{lang.code}"#{equals lang.selected true} selected#{end}>#{lang.displayName}</option>
+				#{end}			
+			</select>
+			
+			<input type="submit" name="reload" value="#{msg.reload}">
   
 		</form>
 		

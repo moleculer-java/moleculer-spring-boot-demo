@@ -1,0 +1,39 @@
+# HEBREW (IW) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: שורות לעמוד
+
+  # Next
+  next: הבא
+
+  # Previous
+  previous: הקודם
+
+  # Server-side rendering
+  title: רינדור בצד השרת
+
+  # First
+  first: ראשון
+
+  # Name of the Time Zone
+  timeZoneName: שם אזור הזמן
+
+  # Reload
+  reload: טען מחדש
+
+  # Language
+  language: שפה
+
+  # back to main menu
+  back: חזרה לתפריט הראשי
+
+  # Offset in Hours
+  timeZoneOffset: היסט בעוד שעות
+
+  # Last
+  last: אחרון
+
+  # Time Zone Identifier
+  timeZoneID: מזהה אזור הזמן

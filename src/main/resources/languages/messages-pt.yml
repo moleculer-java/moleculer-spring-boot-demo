@@ -1,0 +1,39 @@
+# PORTUGUESE (PT) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Linhas por página
+
+  # Next
+  next: Proximo
+
+  # Previous
+  previous: Anterior
+
+  # Server-side rendering
+  title: Desenho do lado do servidor
+
+  # First
+  first: Primeiro
+
+  # Name of the Time Zone
+  timeZoneName: Nome do fuso horário
+
+  # Reload
+  reload: Recarregar
+
+  # Language
+  language: Idioma
+
+  # back to main menu
+  back: voltar ao menu principal
+
+  # Offset in Hours
+  timeZoneOffset: Deslocamento em horas
+
+  # Last
+  last: Ultimar
+
+  # Time Zone Identifier
+  timeZoneID: Identificador Do Fuso-Horário

@@ -1,0 +1,39 @@
+# BELARUSIAN (BE) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Радкі на старонцы
+
+  # Next
+  next: Наступны
+
+  # Previous
+  previous: Папярэдні
+
+  # Server-side rendering
+  title: Рэндэрынг на баку сервера
+
+  # First
+  first: Першы
+
+  # Name of the Time Zone
+  timeZoneName: Назва гадзіннага пояса
+
+  # Reload
+  reload: Перазагрузіць
+
+  # Language
+  language: Мова
+
+  # back to main menu
+  back: вярнуцца ў Галоўнае меню
+
+  # Offset in Hours
+  timeZoneOffset: Зрушэнне ў гадзінах
+
+  # Last
+  last: Апошні
+
+  # Time Zone Identifier
+  timeZoneID: Ідэнтыфікатар Гадзіннага Пояса

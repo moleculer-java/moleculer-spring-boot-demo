@@ -1,0 +1,39 @@
+# SERBIAN (SR) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Линије на страници
+
+  # Next
+  next: Следећи
+
+  # Previous
+  previous: Претходни
+
+  # Server-side rendering
+  title: Приказивање на страни сервера
+
+  # First
+  first: Први
+
+  # Name of the Time Zone
+  timeZoneName: Назив временске зоне
+
+  # Reload
+  reload: Поново
+
+  # Language
+  language: Језик
+
+  # back to main menu
+  back: вратите се у главни мени
+
+  # Offset in Hours
+  timeZoneOffset: Померање у сатима
+
+  # Last
+  last: Последњи
+
+  # Time Zone Identifier
+  timeZoneID: ИД Временске Зоне

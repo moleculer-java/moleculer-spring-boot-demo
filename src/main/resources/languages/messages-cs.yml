@@ -1,0 +1,39 @@
+# CZECH (CS) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Řádky na stránku
+
+  # Next
+  next: Další
+
+  # Previous
+  previous: Předchozí
+
+  # Server-side rendering
+  title: Renderování na straně serveru
+
+  # First
+  first: Nejprve
+
+  # Name of the Time Zone
+  timeZoneName: Název časového pásma
+
+  # Reload
+  reload: Načíst
+
+  # Language
+  language: Jazyk
+
+  # back to main menu
+  back: zpět do hlavní nabídky
+
+  # Offset in Hours
+  timeZoneOffset: Ofset v hodinách
+
+  # Last
+  last: Poslední
+
+  # Time Zone Identifier
+  timeZoneID: Identifikátor Časového Pásma

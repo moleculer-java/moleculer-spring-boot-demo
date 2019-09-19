@@ -1,0 +1,39 @@
+# SWEDISH (SV) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rader per sida
+
+  # Next
+  next: Nästa
+
+  # Previous
+  previous: Tidigare
+
+  # Server-side rendering
+  title: Serversidan rendering
+
+  # First
+  first: Första
+
+  # Name of the Time Zone
+  timeZoneName: Tidszonens namn
+
+  # Reload
+  reload: Ladda
+
+  # Language
+  language: Språk
+
+  # back to main menu
+  back: tillbaka till huvudmenyn
+
+  # Offset in Hours
+  timeZoneOffset: Offset i timmar
+
+  # Last
+  last: Förra
+
+  # Time Zone Identifier
+  timeZoneID: Tidszon Identifierare

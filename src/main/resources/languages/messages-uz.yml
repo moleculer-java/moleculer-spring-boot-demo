@@ -1,0 +1,39 @@
+# UZBEK (UZ) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Sahifa boshiga satrlar
+
+  # Next
+  next: Keyingi
+
+  # Previous
+  previous: Avvalgi
+
+  # Server-side rendering
+  title: Server-side ko&apos;rsatish
+
+  # First
+  first: Birinchi
+
+  # Name of the Time Zone
+  timeZoneName: Vaqt zonasining nomi
+
+  # Reload
+  reload: Reload
+
+  # Language
+  language: Tillarang
+
+  # back to main menu
+  back: bosh menyuga qaytish
+
+  # Offset in Hours
+  timeZoneOffset: Soat ichida ofset
+
+  # Last
+  last: Oxirgi
+
+  # Time Zone Identifier
+  timeZoneID: Vaqt Mintaqasi Identifikatori

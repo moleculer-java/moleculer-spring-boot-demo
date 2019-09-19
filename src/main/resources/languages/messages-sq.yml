@@ -1,0 +1,39 @@
+# ALBANIAN (SQ) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: rreshtat për faqe
+
+  # Next
+  next: vazhdo
+
+  # Previous
+  previous: paraardhëse
+
+  # Server-side rendering
+  title: Kryerja nga ana e serverit
+
+  # First
+  first: e para
+
+  # Name of the Time Zone
+  timeZoneName: emri i zonës orare
+
+  # Reload
+  reload: rilexo
+
+  # Language
+  language: gjuha
+
+  # back to main menu
+  back: kthehuni tek menuja qendrore
+
+  # Offset in Hours
+  timeZoneOffset: spostimi në orë
+
+  # Last
+  last: e fundit
+
+  # Time Zone Identifier
+  timeZoneID: identifikuesi i zonës orare

@@ -1,0 +1,39 @@
+# DUTCH (NL) LANGUAGE FILE
+
+msg:
+
+  # Rows per page
+  rowsPerPage: Rijen per bladzijde
+
+  # Next
+  next: Volgend
+
+  # Previous
+  previous: Vorig
+
+  # Server-side rendering
+  title: Server-side rendering
+
+  # First
+  first: Allereerst
+
+  # Name of the Time Zone
+  timeZoneName: Naam van de tijdzone
+
+  # Reload
+  reload: Herladen
+
+  # Language
+  language: Taal
+
+  # back to main menu
+  back: terug naar Hoofdmenu
+
+  # Offset in Hours
+  timeZoneOffset: Offset in uren
+
+  # Last
+  last: Laatst
+
+  # Time Zone Identifier
+  timeZoneID: Tijdzone-Identificatiecode
