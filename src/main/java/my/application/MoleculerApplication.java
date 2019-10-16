@@ -51,6 +51,7 @@ import services.moleculer.web.middleware.CorsHeaders;
 import services.moleculer.web.middleware.ErrorPage;
 import services.moleculer.web.middleware.Favicon;
 import services.moleculer.web.middleware.Redirector;
+import services.moleculer.web.middleware.RequestLogger;
 import services.moleculer.web.middleware.ServeStatic;
 import services.moleculer.web.netty.NettyServer;
 import services.moleculer.web.router.MappingPolicy;
@@ -99,7 +100,7 @@ public class MoleculerApplication {
 		// Define the underlaying JSON implementations (eg. "jackson", "boon",
 		// "builtin", "gson", "fastjson", "genson", etc.)
 		// See https://github.com/berkesa/datatree-adapters
-		cfg.setJsonReaders("boon,jackson");
+		cfg.setJsonReaders("jackson");
 		cfg.setJsonWriters("jackson");
 
 		// Define Transporter to connect other nodes
@@ -188,6 +189,13 @@ public class MoleculerApplication {
 
 		// First middleware redirects "/" path to "index.html"
 		staticRoute.use(new Redirector("/", "index.html", 307));
+		
+		// Add Request Logger to all Routes in development mode
+		if (developmentMode) {
+			RequestLogger requestLogger = new RequestLogger();
+			restRoute.use(requestLogger);
+			staticRoute.use(requestLogger);
+		}
 		
 		// --- CUSTOM BEFORE-CALL FUNCTION ---
 

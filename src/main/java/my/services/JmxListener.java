@@ -55,7 +55,7 @@ public class JmxListener extends Service {
 	 * This event is sent by JMXService's ObjectWatcher thread.
 	 */
 	@Subscribe("java.classloader")
-	public Listener classloaderListener = in -> {
+	public Listener classloaderListener = ctx -> {
 
 		// Write to log
 		// logger.info("Number of loaded classes: "
@@ -76,7 +76,7 @@ public class JmxListener extends Service {
 		// Payload of WebSocket message
 		Tree data = packet.putMap("data");
 		data.put("type", "classloader");
-		data.copyFrom(in);
+		data.copyFrom(ctx.params);
 
 		// Send all ApiGateway of this clustered environment
 		broker.broadcast("websocket.send", packet);
@@ -85,10 +85,10 @@ public class JmxListener extends Service {
 	// --- SECOND EVENT LISTENER ---
 
 	@Subscribe("java.memory")
-	public Listener memoryListener = in -> {
+	public Listener memoryListener = ctx -> {
 
 		// Incoming "structure" is a simple number
-		long memoryUsage = in.asLong();
+		long memoryUsage = ctx.params.asLong();
 
 		// Write to log
 		// logger.info("Memory usage: " + memoryUsage + " bytes");

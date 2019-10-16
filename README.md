@@ -1,8 +1,11 @@
 # Moleculer Java Demo Project
 
-The project demonstrates a possible design of a functioning Moleculer-based web-application. The application is launched and configured by the SpringBoot Framework. The project can be easily imported into the Eclipse IDE.
+The project demonstrates a possible design of a functioning Moleculer-based web-application.
+The application is launched and configured by the SpringBoot Framework.
+The project can be easily imported into the Eclipse IDE.
 
-The project also includes a "buildInstaller" Gradle command to create a **Windows Installer** from the project, and it will install the finished application as a 64-bit **Windows Service**.
+The project also includes a "buildInstaller" Gradle command to create a **Windows Installer** from the project,
+and it will install the finished application as a 64-bit **Windows Service**.
 
 The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node.
 
@@ -25,7 +28,8 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 
 **Build Web Application WAR**
 
-To create a WAR for J2EE servers, run the "gradle war" command in the project's root directory. The generated WAR is compatible with the following Application Servers:
+To create a WAR for J2EE servers, run the "gradle war" command in the project's root directory.
+The generated WAR is compatible with the following Application Servers:
 
 - Oracle WebLogic Server V12
 - Red Hat JBoss Enterprise Application Platform V7
@@ -33,16 +37,21 @@ To create a WAR for J2EE servers, run the "gradle war" command in the project's 
 - GlassFish Server Open Source Edition V4 and V5
 - Apache Tomcat V7, V8 and V9
 - Eclipse Jetty V9
+- Payara Server V5
 
 The WAR may work with other servers (it's built on standard non-blocking Servlet API).
 
 **Build Windows Installer**
 
-The standalone version is not Servlet-based and relies on Netty for higher performance. The project does not include any transporter libraries (JARs) in its initial state. If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file. To create the installer, run the "gradle buildInstaller" command in the project's root directory:
+The standalone version is not Servlet-based and relies on Netty for higher performance.
+The project does not include any transporter libraries (JARs) in its initial state.
+If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file.
+To create the installer, run the "gradle buildInstaller" command in the project's root directory:
 
 ![image](docs/gradlew.png)
 
-The executable installer will be generated into the "installer/dist" directory, as "moleculer_setup_1.0.0.exe". This installer will create all required libraries and configuration files, what is needed to run the service.
+The executable installer will be generated into the "installer/dist" directory, as "moleculer_setup_1.0.0.exe".
+This installer will create all required libraries and configuration files, what is needed to run the service.
 
 ![image](docs/installer1.png)
 
@@ -92,16 +101,19 @@ public class MyService extends Service {
 	// --- EVENT LISTENER ---
 
 	@Subscribe("myEvent")
-	public Listener myEventListener = data -> {
+	public Listener myEventListener = ctx -> {
 
 		// Process event's payload
-		boolean var3 = data.get("key", false);
+		boolean var3 = ctx.params.get("key", false);
 	};
 
 }
 ```
 
-The "ctx.params", "rsp" and "data" variables are hierarchical [Tree structures](https://berkesa.github.io/datatree/) (~= JSONs). For more information about using "Tree", see the JavaDoc of Tree. At boot time the Spring Framework will automatically register this service as a distributed Moleculer Service, which can be called by other (Java or Node.js) nodes.
+The "ctx.params" and "rsp" variables are hierarchical [Tree structures](https://berkesa.github.io/datatree/) (~= JSONs).
+For more information about using "Tree", see the JavaDoc of Tree.
+At boot time the Spring Framework will automatically register this service as a distributed Moleculer Service,
+which can be called by other (Java or Node.js) nodes.
 
 # License
-Moleculer-java is available under the [MIT license](https://tldrlegal.com/license/mit-license).
+Moleculer implementations are available under the [MIT license](https://tldrlegal.com/license/mit-license).
