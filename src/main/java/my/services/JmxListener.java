@@ -55,7 +55,7 @@ public class JmxListener extends Service {
 	 * This event is sent by JMXService's ObjectWatcher thread.
 	 */
 	@Subscribe("java.classloader")
-	public Listener classloaderListener = ctx -> {
+	Listener classloaderListener = ctx -> {
 
 		// Write to log
 		// logger.info("Number of loaded classes: "
@@ -84,8 +84,11 @@ public class JmxListener extends Service {
 
 	// --- SECOND EVENT LISTENER ---
 
+	/**
+	 * This event is sent by JMXService's ObjectWatcher thread.
+	 */
 	@Subscribe("java.memory")
-	public Listener memoryListener = ctx -> {
+	Listener memoryListener = ctx -> {
 
 		// Incoming "structure" is a simple number
 		long memoryUsage = ctx.params.asLong();
@@ -114,7 +117,7 @@ public class JmxListener extends Service {
 	// --- REST SERVICE TO GET THE INITIAL VALUES ---
 
 	@Name("getAll")
-	public Action getAll = ctx -> {
+	Action getAll = ctx -> {
 
 		// First invocation (returns a Promise)
 		Tree req1 = new Tree();

@@ -123,8 +123,8 @@ public class FileUpload extends Service {
 	// --- RECEIVE UPLOADED IMAGE ---
 
 	@Name("receive")
-	public Action receiveAction = ctx -> {
-		
+	Action receiveAction = ctx -> {
+
 		// First load? (~= no stream)
 		if (ctx.stream == null) {
 			Tree rsp = new Tree();
@@ -132,7 +132,7 @@ public class FileUpload extends Service {
 			meta.put("$template", "upload");
 			return rsp;
 		}
-		
+
 		// Get remote host
 		logger.info("Receiving file...");
 		String remoteAddress = ctx.params.getMeta().get("address", "");
@@ -226,7 +226,7 @@ public class FileUpload extends Service {
 	// --- GET UPLOADED IMAGE ---
 
 	@HttpAlias(method = "GET", path = "api/thumbnail")
-	public Action getThumbnail = ctx -> {
+	Action getThumbnail = ctx -> {
 
 		// Get image bytes
 		byte[] bytes = null;
@@ -263,7 +263,7 @@ public class FileUpload extends Service {
 	// --- GET UPLOADED BYTES ---
 
 	@HttpAlias(method = "GET", path = "api/count")
-	public Action getUploadCount = ctx -> {
+	Action getUploadCount = ctx -> {
 
 		// Get remote host
 		String remoteAddress = ctx.params.getMeta().get("address", "");

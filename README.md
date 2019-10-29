@@ -9,6 +9,19 @@ and it will install the finished application as a 64-bit **Windows Service**.
 
 The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node.
 
+### Topics of the examples ###
+
+- Integration of Moleculer API into the Spring Boot Framework
+- Configuring HTTP Routes and Middlewares
+- Creating non-blocking Moleculer Services and Event Listeners
+- Publishing and invoking Moleculer Services as REST Services
+- Generating HTML pages in multiple languages using Template Engines
+- Using WebSockets (sending real-time server-side events to browsers)
+- Using file upload and download
+- Video streaming and server-side image generation
+- Creating a WAR from the finished project (Servlet-based runtime)
+- Run code without any changes in "standalone mode" (Netty-based runtime)
+
 ### Download and run ###
 
 1.) To run this Moleculer Application you need to download and install
@@ -86,7 +99,7 @@ public class MyService extends Service {
 	// --- CALLABLE ACTION ---
 
 	@Name("myAction")
-	public Action action = ctx -> {
+	Action action = ctx -> {
 
 		// Read request
 		String var1 = ctx.params.get("var1", "defaultValue");
@@ -101,7 +114,7 @@ public class MyService extends Service {
 	// --- EVENT LISTENER ---
 
 	@Subscribe("myEvent")
-	public Listener myEventListener = ctx -> {
+	Listener myEventListener = ctx -> {
 
 		// Process event's payload
 		boolean var3 = ctx.params.get("key", false);

@@ -46,7 +46,7 @@ public class Drawing extends Service {
 	 * Send drawing events to browsers.
 	 */
 	@Name("send")
-	public Action send = ctx -> {
+	Action send = ctx -> {
 
 		// Create WebSocket packet
 		Tree packet = new Tree();

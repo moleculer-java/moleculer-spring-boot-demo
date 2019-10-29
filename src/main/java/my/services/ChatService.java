@@ -34,8 +34,8 @@ import services.moleculer.service.Service;
 import services.moleculer.web.router.HttpAlias;
 
 /**
- * Simple chat service with history. URL of this sample (when
- * running the example on a local Netty server):<br>
+ * Simple chat service with history. URL of this sample (when running the
+ * example on a local Netty server):<br>
  * <br>
  * http://localhost:3000/chat.html
  */
@@ -78,7 +78,7 @@ public class ChatService extends Service {
 	 * Send message to other users.
 	 */
 	@HttpAlias(method = "POST", path = "api/send")
-	public Action sendMessage = ctx -> {
+	Action sendMessage = ctx -> {
 
 		// Get and verify incoming paramters
 		String id = ctx.params.get("id", "");
@@ -124,7 +124,7 @@ public class ChatService extends Service {
 	};
 
 	@HttpAlias(method = "GET", path = "api/history")
-	public Action getHistory = ctx -> {
+	Action getHistory = ctx -> {
 
 		// Create (deep) copy from history
 		Tree copyOfRoot;

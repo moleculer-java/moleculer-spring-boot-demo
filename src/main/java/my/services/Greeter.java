@@ -52,7 +52,7 @@ public class Greeter extends Service {
 	 * </pre>
 	 */
 	@Name("hello")
-	public Action helloAction = ctx -> {
+	Action helloAction = ctx -> {
 		return "Hello " + ctx.params.get("name", "Anonymous");
 	};
 

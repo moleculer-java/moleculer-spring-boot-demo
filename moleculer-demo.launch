@@ -13,5 +13,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="services.moleculer.config.MoleculerRunner"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="my.application.MoleculerApplication"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="moleculer-spring-boot-demo"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.library.path=&quot;installer/bin&quot; -Dlogging.config=&quot;classpath:logging-development.properties&quot; -Dspring.profiles.active=development"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.library.path=&quot;installer/bin&quot; -Dlogging.config=&quot;classpath:logging-development.properties&quot; -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development"/>
 </launchConfiguration>

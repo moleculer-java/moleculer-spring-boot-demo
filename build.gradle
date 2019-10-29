@@ -31,8 +31,8 @@ dependencies {
 	
     // ================= MOLECULER =================
 	
-	// Moleculer core (required)
-	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.0'
+	// Moleculer web (required)
+	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.2'
 	
 	// Moleculer developer console (optional)
     compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.0'
@@ -78,7 +78,8 @@ dependencies {
     // --- JACKSON PARSER ---
     
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+	// Use this version because the 2.10.x version causes warnings under JBoss EAP.
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.10.1'
 
 	// ========== TEMPLATE ENGINES =============
 
@@ -103,6 +104,9 @@ compileJava {
 
 // Run the 'gradle buildInstaller' command to create a setup.exe from this project.
 // The EXE will be created in this directory: {project root}/build/installer/dist/
+
+// Run the 'gradle war' command to create WAR for J2EE Servers (eg. for JBoss or WebLogic).
+// The WAR will be created in this directory: {project root}/build/libs/
 
 jar {
 	baseName = 'moleculer-demo'

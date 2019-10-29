@@ -41,10 +41,10 @@ import services.moleculer.web.ApiGateway;
 import services.moleculer.web.template.languages.MessageLoader;
 
 /**
- * Using a server-side template engine. URL of this sample (when
- * running the example on a local Netty server):<br>
+ * Using a server-side template engine. URL of this sample (when running the
+ * example on a local Netty server):<br>
  * <br>
- * http://localhost:3000/render<br>
+ * http://localhost:3000/table.html<br>
  * <br>
  * Moleculer supports several template engine:
  * <ul>
@@ -62,9 +62,9 @@ import services.moleculer.web.template.languages.MessageLoader;
 public class TableService extends Service {
 
 	// --- MULTILINGUAL MESSAGE HANDLER ---
-	
+
 	private MessageLoader messageLoader;
-	
+
 	// --- DATABASE EMULATION ---
 
 	/**
@@ -83,7 +83,7 @@ public class TableService extends Service {
 		// Get pointer to MessageLoader
 		ApiGateway apiGateway = (ApiGateway) broker.getLocalService("api-gw");
 		messageLoader = apiGateway.getTemplateEngine().getMessageLoader();
-		
+
 		// Fill out "database" with "records"
 		Tree rows = database.putList("rows");
 		String[] ids = TimeZone.getAvailableIDs();
@@ -94,7 +94,7 @@ public class TableService extends Service {
 			Tree row = rows.addMap();
 			row.put("id", timeZone.getID());
 			row.put("name", timeZone.getDisplayName());
-			
+
 			int offset = timeZone.getRawOffset();
 			String formatted = formatter.format(new Date(java.lang.Math.abs(offset)));
 			if (offset < 0) {
@@ -112,7 +112,7 @@ public class TableService extends Service {
 	 * created, the function tells APIGateway to convert JSON to HTML with the
 	 * "$template" parameter.
 	 */
-	public Action render = ctx -> {
+	Action render = ctx -> {
 
 		// Log incoming data
 		// logger.info("Incoming request:\r\n" + ctx.params);
@@ -212,7 +212,7 @@ public class TableService extends Service {
 		Tree messages = messageLoader.loadMessages(language);
 		Tree languages = messages.get("msg.languages").clone();
 		boolean found = false;
-		for (Tree lang: languages) {
+		for (Tree lang : languages) {
 			if (language.equals(lang.get("code", ""))) {
 				found = true;
 				lang.put("selected", true);
@@ -222,28 +222,30 @@ public class TableService extends Service {
 		}
 		model.putObject("languages", languages);
 		if (!found) {
-			
+
 			// Select English language
 			model.put("languages.english.selected", true);
 			model.put("languageName", "English");
 		}
-		
+
 		// IMPORTANT PART: This section instructs APIGateway not to give a JSON
 		// response, but to convert JSON to HTML. The "$template" parameter
 		// specifies the file name of the template (relative path to template).
 		Tree meta = model.getMeta();
 		meta.put("$template", "table");
-		
+
 		// Set the template language (use the specified message file)
 		meta.put("$locale", language);
 
 		// Other special meta fields:
-		// - $statusCode = Status code (eg. 200, 404) of the HTTP response message.
-		// - $responseType = Content-Type header's value of the HTTP response message.
+		// - $statusCode = Status code (eg. 200, 404) of the HTTP response
+		// message.
+		// - $responseType = Content-Type header's value of the HTTP response
+		// message.
 		// - $responseHeaders = Set of response headers.
 		// - $location = Location in header for redirects.
 		// - $locale = Language of the generated page (message file selector).
-		
+
 		// Write the page mode into the log file
 		// logger.info("Page model:\r\n" + model);
 

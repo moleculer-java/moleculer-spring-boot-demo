@@ -25,6 +25,10 @@
  */
 package my.services;
 
+import static java.lang.Math.PI;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -44,8 +48,6 @@ import services.moleculer.stream.PacketStream;
 import services.moleculer.util.CheckedTree;
 import services.moleculer.web.common.HttpConstants;
 
-import java.lang.Math;
-
 /**
  * An example of how to generate an image on the server. This sample displays a
  * clock. URL of this sample (when running the example on a local Netty server):
@@ -58,7 +60,7 @@ public class ServerSideImage extends Service {
 
 	// --- CONSTANTS ---
 
-	private static final float DEGREES06 = (float) (Math.PI / 30);
+	private static final float DEGREES06 = (float) (PI / 30);
 	private static final float DEGREES30 = DEGREES06 * 5;
 	private static final float DEGREES90 = DEGREES30 * 3;
 
@@ -70,7 +72,7 @@ public class ServerSideImage extends Service {
 
 	// --- PRIVATE PAINT METHODS ---
 
-	public Action getImage = ctx -> {
+	Action getImage = ctx -> {
 
 		// Generate PNG image
 		Graphics2D g = null;
@@ -140,8 +142,8 @@ public class ServerSideImage extends Service {
 	}
 
 	private void drawHand(Graphics2D g, float angle, int radius, Color color) {
-		int x = CX + (int) (radius * Math.cos(angle));
-		int y = CY - (int) (radius * Math.sin(angle));
+		int x = CX + (int) (radius * cos(angle));
+		int y = CY - (int) (radius * sin(angle));
 		g.setColor(color);
 		g.drawLine(CX, CY, x, y);
 	}

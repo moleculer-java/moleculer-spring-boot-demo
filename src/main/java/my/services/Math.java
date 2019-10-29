@@ -27,7 +27,6 @@ package my.services;
 
 import org.springframework.stereotype.Controller;
 
-import io.datatree.Tree;
 import services.moleculer.service.Action;
 import services.moleculer.service.Name;
 import services.moleculer.service.Service;
@@ -52,11 +51,11 @@ public class Math extends Service {
 	 * </pre>
 	 */
 	@Name("add")
-	public Action add = ctx -> {
+	Action add = ctx -> {
 		int a = ctx.params.get("a", 0);
 		int b = ctx.params.get("b", 0);
 		int c = a + b;
-		return new Tree().put("a", a).put("b", b).put("c", c);
+		return ctx.params.put("c", c);
 	};
 
 }

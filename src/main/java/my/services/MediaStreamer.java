@@ -97,7 +97,7 @@ public class MediaStreamer extends Service {
 
 	// --- STREAM VIDEO ---
 
-	public Action getPacket = ctx -> {
+	Action getPacket = ctx -> {
 
 		// Is video available?
 		if (videoUrl == null || videoLength < 1) {

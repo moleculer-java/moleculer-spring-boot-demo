@@ -50,9 +50,11 @@ import services.moleculer.web.ApiGateway;
 import services.moleculer.web.middleware.CorsHeaders;
 import services.moleculer.web.middleware.ErrorPage;
 import services.moleculer.web.middleware.Favicon;
+import services.moleculer.web.middleware.NotFound;
 import services.moleculer.web.middleware.Redirector;
 import services.moleculer.web.middleware.RequestLogger;
 import services.moleculer.web.middleware.ServeStatic;
+import services.moleculer.web.middleware.TopLevelCache;
 import services.moleculer.web.netty.NettyServer;
 import services.moleculer.web.router.MappingPolicy;
 import services.moleculer.web.router.Route;
@@ -156,6 +158,10 @@ public class MoleculerApplication {
 		// Custom error pages (for handle errors of Template Engine)
 		restRoute.use(new ErrorPage());
 
+		// Top-level cache for accelerating the HTML pages of Blog Demo
+		// (blog.html)
+		restRoute.use(new TopLevelCache(cfg.getCacher(), "/blog**"));
+
 		// Configure REST services. These services may be LOCAL or REMOTE. Even
 		// NodeJS-based services can be provided via message broker (eg. NATS).
 		// You can define Aliases by using Annotations (see in ChatService.java)
@@ -164,6 +170,7 @@ public class MoleculerApplication {
 		restRoute.addAlias("GET", "api/jmx", "jmxListener.getAll");
 		restRoute.addAlias("POST", "api/drawing", "drawing.send");
 		restRoute.addAlias("GET", "api/search/:query", "jmx.findObjects");
+		restRoute.addAlias("GET", "blog/:id", "blog.render");
 
 		// With this tricky solutions we cover the HTML pages with a Moleculer
 		// Services
@@ -172,31 +179,35 @@ public class MoleculerApplication {
 
 		restRoute.addAlias("GET", "api/streamer", "mediaStreamer.getPacket");
 		restRoute.addAlias("GET", "api/clock", "serverSideImage.getImage");
+		restRoute.addAlias("GET", "api/clear", "blog.clear");
+		restRoute.addAlias("GET", "api/download", "download.getFile");
 
 		// Create route for static content (HTML pages, images, CSS files)
 		Route staticRoute = gateway.addRoute(new Route());
 		staticRoute.setMappingPolicy(MappingPolicy.ALL);
 
 		// Install middlewares (in REVERSED invocation order)
+		// Last middleware is the "404 not found" middleware
+		staticRoute.use(new NotFound());
+
+		// File handler for serve static files
 		ServeStatic serveStatic = new ServeStatic("/", "/www");
 		serveStatic.setEnableReloading(developmentMode);
-
-		// Last in the invocation chain is the static file handler
 		staticRoute.use(serveStatic);
 
-		// Second is the "favicon" handler
+		// Third is the "favicon" handler
 		staticRoute.use(new Favicon("/www/img/favicon.ico"));
 
-		// First middleware redirects "/" path to "index.html"
+		// This middleware redirects "/" path to "index.html"
 		staticRoute.use(new Redirector("/", "index.html", 307));
-		
+
 		// Add Request Logger to all Routes in development mode
 		if (developmentMode) {
 			RequestLogger requestLogger = new RequestLogger();
 			restRoute.use(requestLogger);
 			staticRoute.use(requestLogger);
 		}
-		
+
 		// --- CUSTOM BEFORE-CALL FUNCTION ---
 
 		// Custom actions before/after the call (here you can copy headers,
