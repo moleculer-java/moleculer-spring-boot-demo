@@ -32,13 +32,13 @@ dependencies {
     // ================= MOLECULER =================
 	
 	// Moleculer web (required)
-	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.3'
+	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.4'
 	
 	// Moleculer developer console (optional)
-    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.0'
+    compile group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.1'
 
 	// JMX service (optional)
-    compile group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.2.0'
+    compile group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.2.1'
 	      
     // ================== LOGGING ==================
 	
