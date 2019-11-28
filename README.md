@@ -22,7 +22,41 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 - Creating a WAR from the finished project (Servlet-based runtime)
 - Run code without any changes in "standalone mode" (Netty-based runtime)
 
-### Download and run ###
+### Download binaries for testing ###
+
+This web application can be deployed to Tomcat, JBoss, Glassfish, WebLogic:
+
+- **[Download WAR file for JavaEE Servers](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer-demo.war)**
+
+After the deployment, the examples are available at a URL similar to the one below:
+
+```
+http://appserver-host:port/moleculer-demo
+```
+
+Download 64-bit Windows Installer for testing the standalone, high performance but lightweight version of this demo:
+
+- **[Download 64-bit Windows Installer](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer_setup_1.0.0.exe)**
+
+After the installation, the application can be started in "development" or "production" mode.
+For "development" mode, run the following BAT file:
+
+```
+C:\Program Files\Moleculer Demo Project\bin\development-start.bat
+```
+The application starts in "development" mode with an Interactive Console (enter "help" or "info" to try it out).
+The sample programs are available at the following URL:
+```
+http://localhost:3000/
+```
+To exit the application, type "exit" in the Interactive Console.
+In "production" mode, launch the application with "production-start.bat".
+The demo will then run as a Windows Service in the background.
+The application cannot run at the same time in "production" and "development" mode
+because the two versions use the same port.
+To stop the Windows Service, run "production-stop.bat".
+
+### Compile and run from source code ###
 
 1.) To run this Moleculer Application you need to download and install
 
