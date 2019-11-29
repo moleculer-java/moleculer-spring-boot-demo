@@ -1,7 +1,8 @@
 # Moleculer Java Demo Project
 
-The project demonstrates a possible design of a functioning Moleculer-based web-application.
-The application is launched and configured by the SpringBoot Framework.
+The project demonstrates a possible design of a functioning
+[Moleculer](https://moleculer-java.github.io/moleculer-java/)-based
+web-application. The application is launched and configured by the SpringBoot Framework.
 The project can be easily imported into the Eclipse IDE.
 
 The project also includes a "buildInstaller" Gradle command to create a **Windows Installer** from the project,
