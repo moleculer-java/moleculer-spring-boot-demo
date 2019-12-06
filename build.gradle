@@ -31,6 +31,12 @@ dependencies {
 	
     // ================= MOLECULER =================
 	
+	// DataTree core (required)
+	compile group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.11'
+
+	// Moleculer core (required)
+	compile group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.4'
+ 	
 	// Moleculer web (required)
 	compile group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.5'
 	

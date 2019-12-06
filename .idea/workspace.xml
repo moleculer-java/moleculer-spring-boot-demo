@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1ff1944c-ca77-4a65-8f03-c188fa2af257" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="moleculer-demo" />
+  </component>
+  <component name="ProjectId" id="1UbkrcqYWSc00oUSWTUFnKGYemA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.40165976" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager">
+    <configuration name="MoleculerRunner" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="services.moleculer.config.MoleculerRunner" />
+      <module name="moleculer-demo.main" />
+      <option name="PROGRAM_PARAMETERS" value="my.application.MoleculerApplication" />
+      <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;installer/bin&quot; -Dlogging.config=&quot;classpath:logging-development.properties&quot; -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="services.moleculer.config.MoleculerRunner" />
+      <option name="PROGRAM_PARAMETERS" value="my.application.MoleculerApplication" />
+      <option name="VM_PARAMETERS" value="-Djava.library.path=&quot;installer/bin&quot; -Dlogging.config=&quot;classpath:logging-development.properties&quot; -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ff1944c-ca77-4a65-8f03-c188fa2af257" name="Default Changelist" comment="" />
+      <created>1575632882072</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575632882072</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="556" y="192" key="#Project_Structure" timestamp="1575634093672">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="556" y="192" key="#Project_Structure/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575634093672" />
+    <state x="481" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575636265621">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="481" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575636265621" />
+    <state x="731" y="415" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1575638417908">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="731" y="415" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575638417908" />
+    <state x="504" y="75" width="1106" height="878" key="FileChooserDialogImpl" timestamp="1575639187597">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="504" y="75" width="1106" height="878" key="FileChooserDialogImpl/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575639187597" />
+    <state width="1878" height="286" key="GridCell.Tab.0.bottom" timestamp="1575636538014">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state width="1878" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575636538014" />
+    <state width="1878" height="286" key="GridCell.Tab.0.center" timestamp="1575636538014">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state width="1878" height="286" key="GridCell.Tab.0.center/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575636538014" />
+    <state width="1878" height="286" key="GridCell.Tab.0.left" timestamp="1575636538014">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state width="1878" height="286" key="GridCell.Tab.0.left/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575636538014" />
+    <state width="1878" height="286" key="GridCell.Tab.0.right" timestamp="1575636538014">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state width="1878" height="286" key="GridCell.Tab.0.right/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575636538014" />
+    <state x="204" y="75" width="1427" height="836" key="SettingsEditor" timestamp="1575641267937">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="204" y="75" width="1427" height="836" key="SettingsEditor/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575641267937" />
+    <state x="683" y="359" key="com.intellij.ide.util.TipDialog" timestamp="1575636791052">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="683" y="359" key="com.intellij.ide.util.TipDialog/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575636791052" />
+    <state x="389" y="150" key="new project wizard" timestamp="1575639006899">
+      <screen x="0" y="0" width="1920" height="1052" />
+    </state>
+    <state x="389" y="150" key="new project wizard/0.0.1920.1052/1920.0.1920.1080@0.0.1920.1052" timestamp="1575639006899" />
+  </component>
+</project>
