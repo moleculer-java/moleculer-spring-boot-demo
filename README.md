@@ -57,7 +57,18 @@ The application cannot run at the same time in "production" and "development" mo
 because the two versions use the same port.
 To stop the Windows Service, run "production-stop.bat".
 
-### Compile and run from source code ###
+### Compile and run from source code (IntelliJ IDEA) ###
+
+The project is designed to be imported into both Eclipse and IntelliJ Idea development environments.
+IntelliJ Idea doesn't need any external plugin to compile and run this demo.
+Just download the sources and import it as a Java/Gradle Project.
+To run, the following parameters must be specified in the Run Configuration:
+
+- **Main class**: services.moleculer.config.MoleculerRunner
+- **VM options**: -Djava.library.path="installer/bin" -Dlogging.config="classpath:logging-development.properties" -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development
+- **Program arguments**: my.application.MoleculerApplication
+
+### Compile and run from source code (Eclipse SDK) ###
 
 1.) To run this Moleculer Application you need to download and install
 
