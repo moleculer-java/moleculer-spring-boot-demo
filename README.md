@@ -142,29 +142,29 @@ import services.moleculer.service.Service;
 @Controller
 public class MyService extends Service {
 
-	// --- CALLABLE ACTION ---
+    // --- CALLABLE ACTION ---
 
-	@Name("myAction")
-	Action action = ctx -> {
+    @Name("myAction")
+    Action action = ctx -> {
 
-		// Read request
-		String var1 = ctx.params.get("var1", "defaultValue");
-		long var2 = ctx.params.get("var2", 0L);
+        // Read request
+        String var1 = ctx.params.get("var1", "defaultValue");
+        long var2 = ctx.params.get("var2", 0L);
 
-		// Create response
-		Tree rsp = new Tree();
-		rsp.put("key", "value");
-		return rsp;
-	};
+        // Create response
+        Tree rsp = new Tree();
+        rsp.put("key", "value");
+        return rsp;
+    };
 
-	// --- EVENT LISTENER ---
+    // --- EVENT LISTENER ---
 
-	@Subscribe("myEvent")
-	Listener myEventListener = ctx -> {
+    @Subscribe("myEvent")
+    Listener myEventListener = ctx -> {
 
-		// Process event's payload
-		boolean var3 = ctx.params.get("key", false);
-	};
+        // Process event's payload
+        boolean var3 = ctx.params.get("key", false);
+    };
 
 }
 ```
