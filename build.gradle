@@ -133,7 +133,7 @@ task cleanupLibs(type: Delete) {
 
 task copyLibs(type: Copy) {
 	dependsOn jar
-	from configurations.runtime
+	from configurations.compileClasspath
 	into 'build/libs'
 }	
 
