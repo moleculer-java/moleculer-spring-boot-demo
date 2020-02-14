@@ -1,7 +1,7 @@
-# Moleculer Java Demo Project
+## Moleculer Java Demo Project
 
 The project demonstrates a possible design of a functioning
-[Moleculer](https://moleculer-java.github.io/moleculer-java/)-based
+[Moleculer](https://moleculer-java.github.io/site/)-based
 web-application. The application is launched and configured by the SpringBoot Framework.
 The project can be easily imported into the Eclipse IDE.
 
@@ -174,5 +174,10 @@ For more information about using "Tree", see the JavaDoc of Tree.
 At boot time the Spring Framework will automatically register this service as a distributed Moleculer Service,
 which can be called by other (Java or Node.js) nodes.
 
-# License
+## Moleculer Documentation
+
+[![Documentation](https://raw.githubusercontent.com/moleculer-java/site/master/docs/docs-button.png)](https://moleculer-java.github.io/site/)
+
+## License
+
 Moleculer implementations are available under the [MIT license](https://tldrlegal.com/license/mit-license).
