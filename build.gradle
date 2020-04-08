@@ -7,7 +7,9 @@ apply plugin: 'war'
 repositories {
     mavenCentral()
     jcenter()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
 }
 
 // --- CONFIGURATIONS ---
@@ -25,88 +27,88 @@ configurations.all {
 dependencies {
 
     // ================ COMPILATION ================
-	
-    testImplementation 'junit:junit:4.12'
-	ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
-	
-    // ================= MOLECULER =================
-	
-	// DataTree core (required)
-	implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.13'
 
-	// Moleculer core (required)
-	implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.11'
- 	
-	// Moleculer web (required)
-	implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.8'
-	
-	// Moleculer developer console (optional)
+    testImplementation 'junit:junit:4.12'
+    ecj 'org.eclipse.jdt.core.compiler:ecj:4.4.2'
+
+    // ================= MOLECULER =================
+
+    // DataTree core (required)
+    implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.13'
+
+    // Moleculer core (required)
+    implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.11'
+
+    // Moleculer web (required)
+    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.8'
+
+    // Moleculer developer console (optional)
     implementation group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.1'
 
-	// JMX service (optional)
+    // JMX service (optional)
     implementation group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.2.1'
-	      
-	// https://mvnrepository.com/artifact/com.diogonunes/JCDP
-	implementation group: 'com.diogonunes', name: 'JCDP', version: '2.0.3.1'
-	
+
+    // https://mvnrepository.com/artifact/com.diogonunes/JCDP
+    implementation group: 'com.diogonunes', name: 'JCDP', version: '2.0.3.1'
+
     // ================== LOGGING ==================
-	
-	// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
-	implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
-       
-	// http://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
-	implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.30'
 
-	// https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
-	implementation group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.30'
+    // http://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
 
-	// https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
-	implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.30'
+    // http://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
+    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.30'
 
-	// ================= MONITORING ================
-		
-	// --- SIGAR API TO QUERY THE CPU USAGE ---
-	
-	// https://mvnrepository.com/artifact/org.fusesource/sigar
-	implementation (group: 'org.fusesource', name: 'sigar', version: '1.6.4') {
-		exclude group: 'log4j', module: 'log4j'
-	}
-	
-	// =============== CDI FRAMEWORK ===============
-	 
+    // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
+    implementation group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.30'
+
+    // https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
+    implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.30'
+
+    // ================= MONITORING ================
+
+    // --- SIGAR API TO QUERY THE CPU USAGE ---
+
+    // https://mvnrepository.com/artifact/org.fusesource/sigar
+    implementation(group: 'org.fusesource', name: 'sigar', version: '1.6.4') {
+        exclude group: 'log4j', module: 'log4j'
+    }
+
+    // =============== CDI FRAMEWORK ===============
+
     // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
 
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
-	implementation (group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.2.4.RELEASE') {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-		exclude group: 'org.springframework', module: 'spring-jcl'
-	}
-					
-	// ================ JSON APIS ==================
-	    
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.2.4.RELEASE') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'org.springframework', module: 'spring-jcl'
+    }
+
+    // ================ JSON APIS ==================
+
     // --- JACKSON PARSER ---
-    
-	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	// Use this version because the 2.10.x version causes warnings under JBoss EAP.
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
 
-	// ========== TEMPLATE ENGINES =============
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    // Use this version because the 2.10.x version causes warnings under JBoss EAP.
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
 
-	// --- DATATREE TEMPLATES ---
+    // ========== TEMPLATE ENGINES =============
 
-	// https://mvnrepository.com/artifact/com.github.berkesa/datatree-templates
-	implementation group: 'com.github.berkesa', name: 'datatree-templates', version: '1.1.4'
-			
+    // --- DATATREE TEMPLATES ---
+
+    // https://mvnrepository.com/artifact/com.github.berkesa/datatree-templates
+    implementation group: 'com.github.berkesa', name: 'datatree-templates', version: '1.1.4'
+
 }
 
 // --- COMPILATION ---
 
 compileJava {
-	options.fork = true
-	options.forkOptions.with {
-		executable = 'java'
-		jvmArgs = ['-classpath', project.configurations.ecj.asPath, 'org.eclipse.jdt.internal.compiler.batch.Main', '-nowarn']
-	}
+    options.fork = true
+    options.forkOptions.with {
+        executable = 'java'
+        jvmArgs = ['-classpath', project.configurations.ecj.asPath, 'org.eclipse.jdt.internal.compiler.batch.Main', '-nowarn']
+    }
 }
 
 // --- WINDOWS INSTALLER ---
@@ -118,11 +120,11 @@ compileJava {
 // The WAR will be created in this directory: {project root}/build/libs/
 
 jar {
-	baseName = 'moleculer-demo'
-	version =  '1.0.0'
-	exclude('**/application.yml') 
-	exclude('**/logging-development.properties') 
-	exclude('**/logging-production.properties') 
+    baseName = 'moleculer-demo'
+    version = '1.0.0'
+    exclude('**/application.yml')
+    exclude('**/logging-development.properties')
+    exclude('**/logging-production.properties')
 }
 
 task cleanupLibs(type: Delete) {
@@ -132,21 +134,21 @@ task cleanupLibs(type: Delete) {
 }
 
 task copyLibs(type: Copy) {
-	dependsOn jar
-	from configurations.compileClasspath
-	into 'build/libs'
-}	
+    dependsOn jar
+    from configurations.compileClasspath
+    into 'build/libs'
+}
 
 task buildInstaller(type: Exec, group: "build") {
-	description 'Create a standalone Windows Installer from this project.'
-	dependsOn cleanupLibs, copyLibs
-	executable 'installer/setup/ISCC.exe'
-	args 'installer/moleculer.config.iss'
+    description 'Create a standalone Windows Installer from this project.'
+    dependsOn cleanupLibs, copyLibs
+    executable 'installer/setup/ISCC.exe'
+    args 'installer/moleculer.config.iss'
 }
 
 // --- SERVLET / WAR SETTINGS ---
 
-war {   
+war {
     rootSpec.exclude('**/logging-development.properties')
     rootSpec.exclude('**/logging-production.properties')
 }
