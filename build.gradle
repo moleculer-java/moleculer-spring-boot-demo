@@ -35,11 +35,7 @@ dependencies {
 	implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.13'
 
 	// Moleculer core (required)
-<<<<<<< HEAD
 	implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.11'
-=======
-	implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.9'
->>>>>>> branch 'master' of https://github.com/moleculer-java/moleculer-java-gradle-demo.git
  	
 	// Moleculer web (required)
 	implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.8'
