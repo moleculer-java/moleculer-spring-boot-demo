@@ -19,7 +19,7 @@ configurations {
     ecj
 }
 configurations.all {
-    // resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 // --- DEPENDENCIES ---
@@ -34,16 +34,16 @@ dependencies {
     // ================= MOLECULER =================
 
     // DataTree core (required)
-    implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.13'
+    implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.15'
 
     // Moleculer core (required)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.11'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.15'
 
     // Moleculer web (required)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.8'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.11-SNAPSHOT', changing: true
 
     // Moleculer developer console (optional)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.1'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.2'
 
     // JMX service (optional)
     implementation group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.2.1'
@@ -79,7 +79,7 @@ dependencies {
     // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.2.4.RELEASE') {
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.3.4.RELEASE') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
         exclude group: 'org.springframework', module: 'spring-jcl'
     }
