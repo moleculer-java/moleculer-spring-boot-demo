@@ -40,7 +40,7 @@ dependencies {
     implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.15'
 
     // Moleculer web (required)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.11'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.12'
 
     // Moleculer developer console (optional)
     implementation group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.2'

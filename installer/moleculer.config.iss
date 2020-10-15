@@ -35,8 +35,8 @@ Source: src\main\resources\logging-development.properties; DestDir: {app}\cfg;  
 Source: src\main\resources\logging-production.properties;  DestDir: {app}\cfg;  Flags: replacesameversion
 
 [Dirs]
-Name: "{app}\tmp"
-Name: "{app}\log"
+Name: "{app}\tmp"; Permissions: everyone-full
+Name: "{app}\log"; Permissions: everyone-full
 
 [Tasks]
 Name: StartService; Description: Start Moleculer service; Flags: unchecked
@@ -48,6 +48,9 @@ Filename: {app}\bin\production-start.bat; WorkingDir: {app}\bin; Tasks: StartSer
 [UninstallRun]
 Filename: {app}\bin\service-stop.bat; WorkingDir: {app}\bin; Flags: skipifdoesntexist; StatusMsg: Stopping service...
 Filename: {app}\bin\Tomcat7.exe; Parameters: "//DS/MoleculerJava"; WorkingDir: {app}\bin; Flags: skipifdoesntexist; StatusMsg: Uninstalling service...
+
+[UninstallDelete]
+Type: filesandordirs; Name: "{app}"
 
 [Registry]
 Root: HKLM32; Subkey: SOFTWARE\Apache Software Foundation\Procrun 2.0\MoleculerJava\Parameters\Java; ValueType: string; ValueName: Jvm; ValueData: "{app}\jre\bin\server\jvm.dll"
