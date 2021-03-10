@@ -34,22 +34,22 @@ dependencies {
     // ================= MOLECULER =================
 
     // DataTree core (required)
-    implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.0.15'
+    implementation group: 'com.github.berkesa', name: 'datatree-core', version: '1.1.0'
 
     // Moleculer core (required)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.15'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java', version: '1.2.17'
 
     // Moleculer web (required)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.2.12'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java-web', version: '1.3.2'
 
     // Moleculer developer console (optional)
-    implementation group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.2.2'
+    implementation group: 'com.github.berkesa', name: 'moleculer-java-repl', version: '1.3.0'
 
     // JMX service (optional)
     implementation group: 'com.github.berkesa', name: 'moleculer-java-jmx', version: '1.2.1'
 
     // https://mvnrepository.com/artifact/com.diogonunes/JCDP
-    implementation group: 'com.diogonunes', name: 'JCDP', version: '2.0.3.1'
+    implementation group: 'com.diogonunes', name: 'JCDP', version: '3.0.4'
 
     // ================== LOGGING ==================
 
@@ -79,7 +79,7 @@ dependencies {
     // --- SPRING DEPENDENCY INJECTION FRAMEWORK ---
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.3.4.RELEASE') {
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.4.3') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
         exclude group: 'org.springframework', module: 'spring-jcl'
     }
@@ -89,8 +89,7 @@ dependencies {
     // --- JACKSON PARSER ---
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    // Use this version because the 2.10.x version causes warnings under JBoss EAP.
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
 
     // ========== TEMPLATE ENGINES =============
 
