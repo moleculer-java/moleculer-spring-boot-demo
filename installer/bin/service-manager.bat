@@ -2,4 +2,4 @@
 
 REM --- START MOLECULER SERVICE MANAGER ---
 
-start Tomcat7w.exe //ES//MoleculerJava
+start prunmgr.exe //ES//MoleculerJava

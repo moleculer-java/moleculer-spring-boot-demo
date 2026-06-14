@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.berkesa</groupId>
+	<artifactId>moleculer-spring-boot-demo</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>Moleculer Java demo project for SpringBoot Framework</name>
+	<description>Reference demo web application showing how to run the Moleculer-Java microservices framework inside Spring Boot (runs as a WAR or standalone on Netty).</description>
+	<url>https://github.com/moleculer-java/moleculer-spring-boot-demo</url>
+	<inceptionYear>2019</inceptionYear>
+
+	<!--
+		This is a DEMO application, not a published library:
+		  * it is versioned 2.0.0 (in lockstep with the rest of the workspace) but
+		    is NOT published to Maven Central (no sources/javadoc/GPG/Central plugin);
+		  * the Maven coordinate stays 2.0.0-SNAPSHOT while the workspace is in active
+		    development (the inter-project deps are only available as 2.0.0-SNAPSHOT);
+		  * the user-facing RELEASE version (installer .exe, README download links) is
+		    2.0.0 (see installer/moleculer.config.iss -> SetupVersion).
+	-->
+
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>http://www.opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>berkesa</id>
+			<name>Andras Berkes</name>
+			<email>andras.berkes@programmer.net</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<url>https://github.com/moleculer-java/moleculer-spring-boot-demo</url>
+		<connection>scm:git:https://github.com/moleculer-java/moleculer-spring-boot-demo.git</connection>
+		<developerConnection>scm:git:git://github.com/moleculer-java/moleculer-spring-boot-demo.git</developerConnection>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.release>21</maven.compiler.release>
+
+		<!-- Inter-project dependencies (lockstep 2.0.0; SNAPSHOT while developing) -->
+		<moleculer.version>2.0.0-SNAPSHOT</moleculer.version>
+
+		<!-- Shared dependency versions (kept in sync across the workspace) -->
+		<spring-boot.version>3.5.3</spring-boot.version>
+		<slf4j.version>2.0.18</slf4j.version>
+		<jackson.version>2.19.0</jackson.version>
+		<junit.version>5.14.4</junit.version>
+
+		<!-- Build plugin versions (lockstep; see DEPENDENCY-MATRIX.md) -->
+		<maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
+		<maven-war-plugin.version>3.4.0</maven-war-plugin.version>
+		<maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+		<maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
+		<exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Align all com.fasterxml.jackson.* artifacts (lockstep 2.19.0) -->
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>${jackson.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Align all org.junit.* artifacts -->
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${junit.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- ====================== MOLECULER STACK (PIN 2.0.0) ====================== -->
+
+		<!-- DataTree core (also pulled transitively; declared explicitly) -->
+		<dependency>
+			<groupId>com.github.berkesa</groupId>
+			<artifactId>datatree-core</artifactId>
+			<version>${moleculer.version}</version>
+		</dependency>
+
+		<!-- Moleculer core (required) -->
+		<dependency>
+			<groupId>com.github.berkesa</groupId>
+			<artifactId>moleculer-java</artifactId>
+			<version>${moleculer.version}</version>
+		</dependency>
+
+		<!-- Moleculer web / API gateway (required; brings Netty 4.2.x + jakarta servlet path) -->
+		<dependency>
+			<groupId>com.github.berkesa</groupId>
+			<artifactId>moleculer-java-web</artifactId>
+			<version>${moleculer.version}</version>
+		</dependency>
+
+		<!-- Moleculer developer console (optional, used under the 'development' profile) -->
+		<dependency>
+			<groupId>com.github.berkesa</groupId>
+			<artifactId>moleculer-java-repl</artifactId>
+			<version>${moleculer.version}</version>
+		</dependency>
+
+		<!-- JMX service (optional) -->
+		<dependency>
+			<groupId>com.github.berkesa</groupId>
+			<artifactId>moleculer-java-jmx</artifactId>
+			<version>${moleculer.version}</version>
+		</dependency>
+
+		<!-- DataTree template engine (server-side HTML rendering + i18n) -->
+		<dependency>
+			<groupId>com.github.berkesa</groupId>
+			<artifactId>datatree-templates</artifactId>
+			<version>${moleculer.version}</version>
+		</dependency>
+
+		<!-- ====================== CDI / SPRING BOOT ====================== -->
+
+		<!--
+			Spring Boot starter. Pinned directly (NOT via the spring-boot-dependencies
+			BOM) on purpose: importing the Boot BOM would force io.netty:* down to Boot's
+			managed 4.1.x and override the Netty 4.2.15 that moleculer-java-web needs.
+			Keep the two original excludes (logging is provided by slf4j-jdk14 below;
+			spring-jcl is replaced by jcl-over-slf4j).
+		-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>${spring-boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jcl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- ====================== JSON (Jackson) ====================== -->
+
+		<!-- Jackson is the selected datatree JSON adapter (cfg.setJsonReaders/Writers("jackson")).
+		     Pulled transitively at 2.19.0; declared explicitly so the demo's chosen
+		     adapter is unambiguous and version-managed by jackson-bom above. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- ====================== LOGGING (slf4j 2.0.18) ====================== -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- ====================== TESTS (JUNIT 5 / JUPITER) ====================== -->
+		<!-- src/test is empty; kept for future tests. 'mvn verify' runs no tests. -->
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- Deterministic artifact names: target/moleculer-demo.war (context path
+		     /moleculer-demo) and, in the 'installer' profile, target/lib/moleculer-demo.jar. -->
+		<finalName>moleculer-demo</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+				<configuration>
+					<!-- The container supplies logging; keep application.yml in the WAR
+					     but exclude the standalone logging property files (web.xml sets
+					     -Dorg.springframework.boot.logging.LoggingSystem=none). -->
+					<packagingExcludes>WEB-INF/classes/logging-development.properties,WEB-INF/classes/logging-production.properties</packagingExcludes>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+
+		<!--
+			Windows installer profile (opt-in, Windows-only):
+
+			    mvn -Pinstaller package
+
+			1. maven-dependency-plugin  -> copies the runtime dependency JARs to target/lib
+			2. maven-jar-plugin         -> packages the app classes as target/lib/moleculer-demo.jar
+			                               (excludes application.yml + logging props, which the
+			                               installer ships separately under {app}\cfg)
+			3. jlink (exec)             -> generates a minimal JDK runtime into target/jre
+			4. ISCC.exe (exec)          -> compiles installer/moleculer.config.iss into
+			                               installer/dist/moleculer_setup_2.0.0.exe
+
+			The core 'mvn clean verify' does NOT activate this profile, so it never
+			requires jlink output layout assumptions or the bundled ISCC.exe.
+		-->
+		<profile>
+			<id>installer</id>
+			<build>
+				<plugins>
+
+					<!-- 1. Runtime dependency JARs -> target/lib -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>${maven-dependency-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>copy-runtime-libs</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/lib</outputDirectory>
+									<includeScope>runtime</includeScope>
+									<excludeScope>provided</excludeScope>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- 2. App classes JAR -> target/lib/moleculer-demo.jar -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>${maven-jar-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>standalone-app-jar</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/lib</outputDirectory>
+									<finalName>moleculer-demo</finalName>
+									<!-- War is the main artifact; attach the app JAR as a supplemental
+									     artifact (-> target/lib/moleculer-demo-app.jar). The installer's
+									     [Files] glob (target\lib\*.jar) picks it up alongside the deps. -->
+									<classifier>app</classifier>
+									<excludes>
+										<exclude>application.yml</exclude>
+										<exclude>logging-development.properties</exclude>
+										<exclude>logging-production.properties</exclude>
+									</excludes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- 3. + 4. jlink runtime, then the Inno Setup compiler -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>${exec-maven-plugin.version}</version>
+						<executions>
+
+							<!-- 3. Minimal JDK runtime image -> target/jre -->
+							<execution>
+								<id>jlink-runtime</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${java.home}/bin/jlink</executable>
+									<arguments>
+										<argument>--add-modules</argument>
+										<argument>java.se,jdk.unsupported,jdk.crypto.ec,jdk.management,jdk.jdwp.agent,jdk.localedata</argument>
+										<argument>--strip-debug</argument>
+										<argument>--no-header-files</argument>
+										<argument>--no-man-pages</argument>
+										<argument>--output</argument>
+										<argument>${project.build.directory}/jre</argument>
+									</arguments>
+								</configuration>
+							</execution>
+
+							<!-- 4. Build the setup .exe (Inno Setup; Windows-only) -->
+							<execution>
+								<id>build-installer-exe</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${project.basedir}/installer/setup/ISCC.exe</executable>
+									<arguments>
+										<argument>installer/moleculer.config.iss</argument>
+									</arguments>
+								</configuration>
+							</execution>
+
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+</project>

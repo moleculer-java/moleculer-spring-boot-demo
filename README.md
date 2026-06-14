@@ -2,11 +2,12 @@
 
 The project demonstrates a possible design of a functioning
 [Moleculer](https://moleculer-java.github.io/site/)-based
-web-application. The application is launched and configured by the SpringBoot Framework.
-The project can be easily imported into the Eclipse IDE.
+web-application. The application is launched and configured by the Spring Boot Framework.
+The project is a standard **Maven** project and can be imported into any modern IDE
+(VS Code, IntelliJ IDEA, Eclipse).
 
-The project also includes a "buildInstaller" Gradle command to create a **Windows Installer** from the project,
-and it will install the finished application as a 64-bit **Windows Service**.
+The project also includes a Maven `installer` profile to create a **Windows Installer** from the project,
+which installs the finished application as a 64-bit **Windows Service**.
 
 The Windows Service creates a Moleculer Node that can be connected to another **Java or Node.js-based** Moleculer Node.
 
@@ -23,11 +24,26 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 - Creating a WAR from the finished project (Servlet-based runtime)
 - Run code without any changes in "standalone mode" (Netty-based runtime)
 
+### Requirements ###
+
+- **Java JDK 21 (LTS)** — the supported build and runtime baseline
+- **Apache Maven 3.9+**
+
+The build targets Java 21 (`<maven.compiler.release>21</maven.compiler.release>`) with the standard
+`javac` compiler. The whole stack (Moleculer-Java 2.0.0, Spring Boot 3.5, Jakarta EE 10) is built for
+Java 17+.
+
+> **Runtime note:** the standalone (Netty) server is validated on **JDK 21**. The bundled
+> Netty 4.2.15 runtime does **not** run correctly on **JDK 25+** yet (JDK 25 removed the
+> `sun.misc.Unsafe` memory-access methods Netty relies on), so use a JDK 21 runtime for the
+> standalone / installer mode. The WAR (servlet) mode follows whatever JDK its container runs on.
+
 ### Download binaries for testing ###
 
-This web application can be deployed to Tomcat, JBoss, Glassfish, WebLogic:
+This web application can be deployed to any **Jakarta EE 10** servlet container
+(Tomcat 10+, Jetty 12, WildFly 27+, GlassFish 7, Payara 6, Open Liberty, WebLogic 14.1.2+):
 
-- **[Download WAR file for JavaEE Servers](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer-demo.war)**
+- **[Download WAR file for Jakarta EE Servers](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer-demo.war)**
 
 After the deployment, the examples are available at a URL similar to the one below:
 
@@ -35,9 +51,12 @@ After the deployment, the examples are available at a URL similar to the one bel
 http://appserver-host:port/moleculer-demo
 ```
 
-Download 64-bit Windows Installer for testing the standalone, high performance but lightweight version of this demo:
+Download the 64-bit Windows Installer for testing the standalone, high performance but lightweight version of this demo:
 
-- **[Download 64-bit Windows Installer](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer_setup_1.0.0.exe)**
+- **[Download 64-bit Windows Installer](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer_setup_2.0.0.exe)**
+
+> The WAR and the installer `.exe` are **generated** by the Maven build (see below). They are not
+> committed to the repository; `installer/dist/` is `.gitignore`d.
 
 After the installation, the application can be started in "development" or "production" mode.
 For "development" mode, run the following BAT file:
@@ -57,60 +76,83 @@ The application cannot run at the same time in "production" and "development" mo
 because the two versions use the same port.
 To stop the Windows Service, run "production-stop.bat".
 
-### Compile and run from source code (IntelliJ IDEA) ###
+### Compile and run from source code ###
 
-The project is designed to be imported into both Eclipse and IntelliJ Idea development environments.
-IntelliJ Idea doesn't need any external plugin to compile and run this demo.
-Just download the sources and import it as a Java/Gradle Project.
-To run, the following parameters must be specified in the Run Configuration:
+The project is a standard Maven project; no IDE plugin is required.
 
-- **Main class**: services.moleculer.config.MoleculerRunner
-- **VM options**: -Djava.library.path="installer/bin" -Dlogging.config="classpath:logging-development.properties" -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development
-- **Program arguments**: my.application.MoleculerApplication
+**Run the standalone (Netty) version directly with Maven** — compile, then launch `MoleculerRunner`:
 
-### Compile and run from source code (Eclipse SDK) ###
+```
+mvn compile
+mvn exec:java -Dexec.mainClass=services.moleculer.config.MoleculerRunner -Dexec.args=my.application.MoleculerApplication
+```
 
-1.) To run this Moleculer Application you need to download and install
+**Or configure a Run Configuration in your IDE** with the following parameters (a ready-made
+VS Code launch configuration is provided in `.vscode/launch.json`):
 
-- [Java JDK (8 or higher)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- [Eclipse IDE for Java Developers](https://www.eclipse.org/downloads/packages/)
-- [Buildship Gradle Integration (Eclipse plug-in)](https://marketplace.eclipse.org/content/buildship-gradle-integration)
-- [Git Integration for Eclipse (Eclipse plug-in)](https://marketplace.eclipse.org/content/egit-git-integration-eclipse)
+- **Main class**: `services.moleculer.config.MoleculerRunner`
+- **Program arguments**: `my.application.MoleculerApplication`
+- **VM options**: `-Dlogging.config="classpath:logging-development.properties" -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development`
 
-2.) Copy this URL: https://github.com/moleculer-java/moleculer-spring-boot-demo.git
+> Note: the old SIGAR-based CPU monitor (and its `-Djava.library.path=...` native libraries) has been
+> removed — Moleculer-Java 2.0.0 auto-selects a JMX-based monitor (falling back to a constant monitor),
+> so no native libraries are needed.
 
-3.) Open the "Git" perspective in Eclipse. Press "CTRL+V" to paste repository URL into the "Git Repositories" area.
+The app then serves the examples at `http://localhost:3000/` and opens an interactive REPL on stdin
+(type `help`).
 
-4.) Download the project from the repository. Left click on project, then click on the "Gradle/Refresh Gradle Project" option.
+**Build the Web Application WAR**
 
-5.) Left click on "molleculer-demo.launch" file, and press on the "Run As/moleculer-demo" option.
+To create a WAR for Jakarta EE servers, run:
 
-**Build Web Application WAR**
+```
+mvn clean package
+```
 
-To create a WAR for J2EE servers, run the "gradle war" command in the project's root directory.
-The generated WAR is compatible with the following Application Servers:
+The WAR is generated into the `target/` directory as `moleculer-demo.war`.
+It is built on the standard non-blocking **Jakarta** Servlet API (`web.xml` uses the
+`jakartaee` 6.0 namespace) and is compatible with the following application servers:
 
-- Oracle WebLogic Server V12
-- Red Hat JBoss Enterprise Application Platform V7
-- WebSphere Application Server V19 Liberty
-- GlassFish Server Open Source Edition V4 and V5
-- Apache Tomcat V7, V8 and V9
-- Eclipse Jetty V9
-- Payara Server V5
+- Apache Tomcat 10.1+
+- Eclipse Jetty 12 (ee10)
+- Red Hat JBoss EAP 8 / WildFly 27+
+- Oracle WebLogic Server 14.1.2+
+- GlassFish Server 7
+- Payara Server 6
+- IBM WebSphere / Open Liberty (Jakarta EE 10)
 
-The WAR may work with other servers (it's built on standard non-blocking Servlet API).
+The WAR may work with other servers as well (it relies only on the standard Jakarta Servlet API).
 
-**Build Windows Installer**
+**Build the Windows Installer**
 
 The standalone version is not Servlet-based and relies on Netty for higher performance.
 The project does not include any transporter libraries (JARs) in its initial state.
-If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be listed in the "build.gradle" file.
-To create the installer, run the "gradle buildInstaller" command in the project's root directory:
+If you want to use transporters (such as Redis, Kafka or NATS) the transporter dependencies must be
+added to the `pom.xml`.
 
-![image](docs/gradlew.png)
+To create the installer (Windows-only, opt-in), run:
 
-The executable installer will be generated into the "installer/dist" directory, as "moleculer_setup_1.0.0.exe".
-This installer will create all required libraries and configuration files, what is needed to run the service.
+```
+mvn -Pinstaller package
+```
+
+The `installer` Maven profile:
+
+1. copies the runtime dependency JARs into `target/lib` (`maven-dependency-plugin`),
+2. packages the application classes into `target/lib/moleculer-demo.jar` (`maven-jar-plugin`),
+3. generates a minimal **JDK 21+ runtime** into `target/jre` with `jlink`,
+4. compiles `installer/moleculer.config.iss` into `installer/dist/moleculer_setup_2.0.0.exe`
+   using the bundled Inno Setup compiler (`installer/setup/ISCC.exe`).
+
+The Windows Service wrapper uses the current **Apache Commons Daemon** `prunsrv.exe` / `prunmgr.exe`
+binaries (in `installer/bin/`).
+
+> The `docs/*.png` screenshots show the original Gradle-based flow; the commands are now Maven
+> (`mvn -Pinstaller package` instead of `gradle buildInstaller`).
+
+The executable installer is generated into the `installer/dist` directory, as `moleculer_setup_2.0.0.exe`.
+This installer creates all required libraries, the bundled Java runtime, and the configuration files
+needed to run the service.
 
 ![image](docs/installer1.png)
 

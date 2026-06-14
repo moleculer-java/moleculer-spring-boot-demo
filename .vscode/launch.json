@@ -1,0 +1,27 @@
+{
+	// Standalone (Netty) run configuration for the Moleculer Spring Boot demo.
+	// The app boots through MoleculerRunner, which loads the Spring context from
+	// the class given as the program argument. Serves http://localhost:3000/ and
+	// opens an interactive REPL on stdin (type "help").
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Moleculer Demo (standalone / development)",
+			"request": "launch",
+			"mainClass": "services.moleculer.config.MoleculerRunner",
+			"projectName": "moleculer-spring-boot-demo",
+			"args": "my.application.MoleculerApplication",
+			"vmArgs": "-Dlogging.config=classpath:logging-development.properties -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development"
+		},
+		{
+			"type": "java",
+			"name": "Moleculer Demo (standalone / production)",
+			"request": "launch",
+			"mainClass": "services.moleculer.config.MoleculerRunner",
+			"projectName": "moleculer-spring-boot-demo",
+			"args": "my.application.MoleculerApplication",
+			"vmArgs": "-Dlogging.config=classpath:logging-production.properties -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=production"
+		}
+	]
+}
