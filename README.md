@@ -38,43 +38,16 @@ Java 17+.
 > `sun.misc.Unsafe` memory-access methods Netty relies on), so use a JDK 21 runtime for the
 > standalone / installer mode. The WAR (servlet) mode follows whatever JDK its container runs on.
 
-### Download binaries for testing ###
+### Get the binaries ###
 
-This web application can be deployed to any **Jakarta EE 10** servlet container
-(Tomcat 10+, Jetty 12, WildFly 27+, GlassFish 7, Payara 6, Open Liberty, WebLogic 14.1.2+):
+There are no pre-built downloads. Build the artifacts yourself from source (see below):
 
-- **[Download WAR file for Jakarta EE Servers](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer-demo.war)**
-
-After the deployment, the examples are available at a URL similar to the one below:
-
-```
-http://appserver-host:port/moleculer-demo
-```
-
-Download the 64-bit Windows Installer for testing the standalone, high performance but lightweight version of this demo:
-
-- **[Download 64-bit Windows Installer](https://github.com/moleculer-java/moleculer-spring-boot-demo/raw/master/installer/dist/moleculer_setup_2.0.0.exe)**
-
-> The WAR and the installer `.exe` are **generated** by the Maven build (see below). They are not
-> committed to the repository; `installer/dist/` is `.gitignore`d.
-
-After the installation, the application can be started in "development" or "production" mode.
-For "development" mode, run the following BAT file:
-
-```
-C:\Program Files\Moleculer Demo Project\bin\development-start.bat
-```
-The application starts in "development" mode with an Interactive Console (enter "help" or "info" to try it out).
-The sample programs are available at the following URL:
-```
-http://localhost:3000/
-```
-To exit the application, type "exit" in the Interactive Console.
-In "production" mode, launch the application with "production-start.bat".
-The demo will then run as a Windows Service in the background.
-The application cannot run at the same time in "production" and "development" mode
-because the two versions use the same port.
-To stop the Windows Service, run "production-stop.bat".
+- the **WAR** (`mvn clean package` → `target/moleculer-demo.war`) deploys to any **Jakarta EE 10**
+  servlet container (Tomcat 10+, Jetty 12, WildFly 27+, GlassFish 7, Payara 6, Open Liberty,
+  WebLogic 14.1.2+); after deployment the examples are available at a URL like
+  `http://appserver-host:port/moleculer-demo`.
+- the **64-bit Windows Installer** (`mvn -Pinstaller package` → `installer/dist/moleculer_setup_2.0.0.exe`)
+  installs the standalone, high-performance Netty version as a Windows Service.
 
 ### Compile and run from source code ###
 
@@ -93,10 +66,6 @@ VS Code launch configuration is provided in `.vscode/launch.json`):
 - **Main class**: `services.moleculer.config.MoleculerRunner`
 - **Program arguments**: `my.application.MoleculerApplication`
 - **VM options**: `-Dlogging.config="classpath:logging-development.properties" -Djava.net.preferIPv4Stack=true -Dspring.profiles.active=development`
-
-> Note: the old SIGAR-based CPU monitor (and its `-Djava.library.path=...` native libraries) has been
-> removed — Moleculer-Java 2.0.0 auto-selects a JMX-based monitor (falling back to a constant monitor),
-> so no native libraries are needed.
 
 The app then serves the examples at `http://localhost:3000/` and opens an interactive REPL on stdin
 (type `help`).
@@ -147,9 +116,6 @@ The `installer` Maven profile:
 The Windows Service wrapper uses the current **Apache Commons Daemon** `prunsrv.exe` / `prunmgr.exe`
 binaries (in `installer/bin/`).
 
-> The `docs/*.png` screenshots show the original Gradle-based flow; the commands are now Maven
-> (`mvn -Pinstaller package` instead of `gradle buildInstaller`).
-
 The executable installer is generated into the `installer/dist` directory, as `moleculer_setup_2.0.0.exe`.
 This installer creates all required libraries, the bundled Java runtime, and the configuration files
 needed to run the service.
@@ -163,6 +129,24 @@ needed to run the service.
 The Moleculer service can be found in the list of the Windows Services:
 
 ![image](docs/service.png)
+
+After the installation, the application can be started in "development" or "production" mode.
+For "development" mode, run the following BAT file:
+
+```
+C:\Program Files\Moleculer Demo Project\bin\development-start.bat
+```
+The application starts in "development" mode with an Interactive Console (enter "help" or "info" to try it out).
+The sample programs are available at the following URL:
+```
+http://localhost:3000/
+```
+To exit the application, type "exit" in the Interactive Console.
+In "production" mode, launch the application with "production-start.bat".
+The demo will then run as a Windows Service in the background.
+The application cannot run at the same time in "production" and "development" mode
+because the two versions use the same port.
+To stop the Windows Service, run "production-stop.bat".
 
 **Make your own service**
 

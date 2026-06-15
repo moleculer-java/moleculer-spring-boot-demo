@@ -36,8 +36,6 @@ The core `mvn verify` never activates the `installer` profile, so it does not re
 
 A ready-made VS Code launch configuration lives in `.vscode/launch.json`. The app serves examples at `http://localhost:3000/` and opens an interactive REPL on stdin (type `help`).
 
-> **SIGAR is gone.** The old `-Djava.library.path=...` option (SIGAR native CPU-monitor libs) has been removed — Moleculer-Java 2.0.0 auto-selects a JMX monitor (falling back to a constant monitor), so no native libraries are needed.
-
 ## Architecture
 
 **Everything is wired in one place: `my.application.MoleculerApplication.getServiceBroker()`.** This single `@Bean` builds the `ServiceBroker`, picks the JSON adapter (Jackson), creates the `ApiGateway`, and defines all HTTP routes, middlewares, REST aliases, the template engine, and the JMX watchers. To change routing, middleware order, transporters, or server-side behavior, edit this method — start here before reading individual services.
@@ -69,6 +67,6 @@ A ready-made VS Code launch configuration lives in `.vscode/launch.json`. The ap
 
 ## Gotchas
 
-- **Edit resources under `src/main/resources/`, never `target/classes/`.** Maven copies `src/main/resources/` (`application.yml`, `languages/`, `www/`, etc.) into `target/classes` on build; edits there are overwritten and won't take effect. (The old Eclipse `bin/` output dir has been removed.)
+- **Edit resources under `src/main/resources/`, never `target/classes/`.** Maven copies `src/main/resources/` (`application.yml`, `languages/`, `www/`, etc.) into `target/classes` on build; edits there are overwritten and won't take effect.
 - The WAR build keeps `application.yml` but **excludes** `logging-development.properties` / `logging-production.properties` (see `maven-war-plugin` `<packagingExcludes>`); the container supplies logging. The standalone installer ships all three under `{app}\cfg` instead.
 - Transporters (Redis, Kafka, NATS, AMQP, TCP) are not bundled. To connect this node to other Java/Node.js Moleculer nodes, add the transporter dependency in `pom.xml` and uncomment/set `cfg.setTransporter(...)` in `getServiceBroker()`.
