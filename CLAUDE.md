@@ -14,7 +14,7 @@ There are no automated tests (`src/test` is empty; a JUnit 5 dependency is decla
 
 ## Build & run
 
-This is a **Maven** project (one `pom.xml`) targeting **Java 17** with `javac` (`<maven.compiler.release>17</maven.compiler.release>`). Build JDK 17+ (JDK 25 in use); minimum runtime: **JDK 17** (Spring Boot 3.5 requires Java 17+). It runs on **Spring Boot 3.5** (jakarta) and the `2.0.0` Moleculer/datatree stack. Version `2.0.0` (Maven coordinate `2.0.0-SNAPSHOT` while the workspace is in active development); **not** published to Maven Central (it's a demo).
+This is a **Maven** project (one `pom.xml`) targeting **Java 17** with `javac` (`<maven.compiler.release>17</maven.compiler.release>`). Build JDK 17+ (JDK 25 in use); minimum runtime: **JDK 17** (Spring Boot 3.5 requires Java 17+). It runs on **Spring Boot 3.5** (jakarta) and the `2.0.0` Moleculer/datatree stack. Version `2.0.0`; **not** published to Maven Central (it's a demo).
 
 ```bash
 mvn clean verify              # compile + build WAR -> target/moleculer-demo.war (no tests)

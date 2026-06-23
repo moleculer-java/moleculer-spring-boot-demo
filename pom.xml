@@ -7,7 +7,7 @@
 
 	<groupId>com.github.berkesa</groupId>
 	<artifactId>moleculer-spring-boot-demo</artifactId>
-	<version>2.0.0-SNAPSHOT</version>
+	<version>2.0.0</version>
 	<packaging>war</packaging>
 
 	<name>Moleculer Java demo project for SpringBoot Framework</name>
@@ -19,8 +19,6 @@
 		This is a DEMO application, not a published library:
 		  * it is versioned 2.0.0 (in lockstep with the rest of the workspace) but
 		    is NOT published to Maven Central (no sources/javadoc/GPG/Central plugin);
-		  * the Maven coordinate stays 2.0.0-SNAPSHOT while the workspace is in active
-		    development (the inter-project deps are only available as 2.0.0-SNAPSHOT);
 		  * the user-facing RELEASE version (installer .exe, README download links) is
 		    2.0.0 (see installer/moleculer.config.iss -> SetupVersion).
 	-->
@@ -52,8 +50,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
 
-		<!-- Inter-project dependencies (lockstep 2.0.0; SNAPSHOT while developing) -->
-		<moleculer.version>2.0.0-SNAPSHOT</moleculer.version>
+		<!-- Inter-project dependencies (lockstep 2.0.0) -->
+		<moleculer.version>2.0.0</moleculer.version>
 
 		<!-- Shared dependency versions (kept in sync across the workspace) -->
 		<spring-boot.version>3.5.3</spring-boot.version>
