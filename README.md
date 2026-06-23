@@ -30,11 +30,11 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 
 ### Requirements ###
 
-- **Java JDK 21 (LTS)** — the supported build and runtime baseline
+- **Java JDK 17+** — minimum required (Spring Boot 3.5 requires Java 17+)
 - **Apache Maven 3.9+**
 
-The build targets Java 21 (`<maven.compiler.release>21</maven.compiler.release>`) with the standard
-`javac` compiler. The whole stack (Moleculer-Java 2.0.0, Spring Boot 3.5, Jakarta EE 10) is built for
+The build targets Java 17 (`<maven.compiler.release>17</maven.compiler.release>`) with the standard
+`javac` compiler. The whole stack (Moleculer-Java 2.0.0, Spring Boot 3.5, Jakarta EE 10) requires
 Java 17+.
 
 > **Runtime note:** the standalone (Netty) server is validated on **JDK 21**. The bundled
