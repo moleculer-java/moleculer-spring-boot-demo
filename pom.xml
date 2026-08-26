@@ -7,7 +7,7 @@
 
 	<groupId>com.github.berkesa</groupId>
 	<artifactId>moleculer-spring-boot-demo</artifactId>
-	<version>2.0.0</version>
+	<version>2.1.0</version>
 	<packaging>war</packaging>
 
 	<name>Moleculer Java demo project for SpringBoot Framework</name>
@@ -17,10 +17,10 @@
 
 	<!--
 		This is a DEMO application, not a published library:
-		  * it is versioned 2.0.0 (in lockstep with the rest of the workspace) but
+		  * it is versioned 2.1.0 (in lockstep with the rest of the workspace) but
 		    is NOT published to Maven Central (no sources/javadoc/GPG/Central plugin);
 		  * the user-facing RELEASE version (installer .exe, README download links) is
-		    2.0.0 (see installer/moleculer.config.iss -> SetupVersion).
+		    2.1.0 (see installer/moleculer.config.iss -> SetupVersion).
 	-->
 
 	<licenses>
@@ -50,22 +50,22 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
 
-		<!-- Inter-project dependencies (lockstep 2.0.0) -->
-		<moleculer.version>2.0.0</moleculer.version>
+		<!-- Inter-project dependencies (lockstep 2.1.0) -->
+		<moleculer.version>2.1.0</moleculer.version>
 
 		<!-- Shared dependency versions (kept in sync across the workspace) -->
-		<spring-boot.version>3.5.3</spring-boot.version>
+		<spring-boot.version>3.5.16</spring-boot.version>
 		<slf4j.version>2.0.18</slf4j.version>
-		<jackson.version>2.19.0</jackson.version>
+		<jackson.version>2.22.2</jackson.version>
 		<junit.version>5.14.4</junit.version>
 
 		<!-- Build plugin versions (lockstep; see DEPENDENCY-MATRIX.md) -->
 		<maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-		<maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
-		<maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-		<maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-		<maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
-		<exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
+		<maven-surefire-plugin.version>3.5.6</maven-surefire-plugin.version>
+		<maven-war-plugin.version>3.5.1</maven-war-plugin.version>
+		<maven-jar-plugin.version>3.5.1</maven-jar-plugin.version>
+		<maven-dependency-plugin.version>3.11.0</maven-dependency-plugin.version>
+		<exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -94,7 +94,7 @@
 
 	<dependencies>
 
-		<!-- ====================== MOLECULER STACK (PIN 2.0.0) ====================== -->
+		<!-- ====================== MOLECULER STACK (PIN 2.1.0) ====================== -->
 
 		<!-- DataTree core (also pulled transitively; declared explicitly) -->
 		<dependency>
@@ -255,7 +255,7 @@
 			                               installer ships separately under {app}\cfg)
 			3. jlink (exec)             -> generates a minimal JDK runtime into target/jre
 			4. ISCC.exe (exec)          -> compiles installer/moleculer.config.iss into
-			                               installer/dist/moleculer_setup_2.0.0.exe
+			                               installer/dist/moleculer_setup_2.1.0.exe
 
 			The core 'mvn clean verify' does NOT activate this profile, so it never
 			requires jlink output layout assumptions or the bundled ISCC.exe.

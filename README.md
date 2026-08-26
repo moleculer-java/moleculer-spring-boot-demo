@@ -34,11 +34,11 @@ The Windows Service creates a Moleculer Node that can be connected to another **
 - **Apache Maven 3.9+**
 
 The build targets Java 17 (`<maven.compiler.release>17</maven.compiler.release>`) with the standard
-`javac` compiler. The whole stack (Moleculer-Java 2.0.0, Spring Boot 3.5, Jakarta EE 10) requires
+`javac` compiler. The whole stack (Moleculer-Java 2.1.0, Spring Boot 3.5, Jakarta EE 10) requires
 Java 17+.
 
 > **Runtime note:** the standalone (Netty) server is validated on **JDK 21**. The bundled
-> Netty 4.2.15 runtime does **not** run correctly on **JDK 25+** yet (JDK 25 removed the
+> Netty 4.2.17 runtime does **not** run correctly on **JDK 25+** yet (JDK 25 removed the
 > `sun.misc.Unsafe` memory-access methods Netty relies on), so use a JDK 21 runtime for the
 > standalone / installer mode. The WAR (servlet) mode follows whatever JDK its container runs on.
 
@@ -50,7 +50,7 @@ There are no pre-built downloads. Build the artifacts yourself from source (see 
   servlet container (Tomcat 10+, Jetty 12, WildFly 27+, GlassFish 7, Payara 6, Open Liberty,
   WebLogic 14.1.2+); after deployment the examples are available at a URL like
   `http://appserver-host:port/moleculer-demo`.
-- the **64-bit Windows Installer** (`mvn -Pinstaller package` → `installer/dist/moleculer_setup_2.0.0.exe`)
+- the **64-bit Windows Installer** (`mvn -Pinstaller package` → `installer/dist/moleculer_setup_2.1.0.exe`)
   installs the standalone, high-performance Netty version as a Windows Service.
 
 ### Compile and run from source code ###
@@ -114,13 +114,13 @@ The `installer` Maven profile:
 1. copies the runtime dependency JARs into `target/lib` (`maven-dependency-plugin`),
 2. packages the application classes into `target/lib/moleculer-demo.jar` (`maven-jar-plugin`),
 3. generates a minimal **JDK 21+ runtime** into `target/jre` with `jlink`,
-4. compiles `installer/moleculer.config.iss` into `installer/dist/moleculer_setup_2.0.0.exe`
+4. compiles `installer/moleculer.config.iss` into `installer/dist/moleculer_setup_2.1.0.exe`
    using the bundled Inno Setup compiler (`installer/setup/ISCC.exe`).
 
 The Windows Service wrapper uses the current **Apache Commons Daemon** `prunsrv.exe` / `prunmgr.exe`
 binaries (in `installer/bin/`).
 
-The executable installer is generated into the `installer/dist` directory, as `moleculer_setup_2.0.0.exe`.
+The executable installer is generated into the `installer/dist` directory, as `moleculer_setup_2.1.0.exe`.
 This installer creates all required libraries, the bundled Java runtime, and the configuration files
 needed to run the service.
 
