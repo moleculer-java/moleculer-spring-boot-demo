@@ -1,6 +1,6 @@
 ; --- INNO SETUP CONFIGURATION FILE FOR MOLECULER --- 
 
-#define SetupVersion '2.1.1'
+#define SetupVersion '2.2.0'
 #define ProgramName  'Moleculer Demo Project'
 #define CompanyName  'My Company'
 
